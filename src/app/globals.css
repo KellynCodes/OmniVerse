@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Gorditas:wght@700&family=Inter:wght@400;500;600&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gorditas:wght@400;700&family=Inter:wght@400;500;600&family=Poppins&display=swap');
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -77,9 +78,8 @@ nav .options img {
 /* === HERO SECTION START ===*/
 .hero {
   position: relative;
-  height: 100vh;
+  max-height: 100vh;
   width: 100vw;
-  margin-bottom: 3rem;
 }
 
 .hero img {
@@ -100,7 +100,7 @@ nav .options img {
 .hero-content {
   position: relative;
   height: 100vh;
-  margin-left: 3rem;
+  margin-left: 4rem;
   z-index: 99;
 }
 
@@ -137,8 +137,115 @@ nav .options img {
   display: flex;
   gap: 32px;
 }
+
+.articles h2{
+  font-weight: 700;
+  font-size: 40px;
+}
 /* === HERO SECTION END ===*/
 
-section {
-  background-color: red;
+/* NEW ARRIVALS SECTION */
+.arrivals {
+  margin: 6rem 3rem;
 }
+
+.arrivals h1 {
+  text-align: center;
+  font-family: 'Gorditas', serif;
+  font-size: 48px;
+  font-weight: 700;
+  padding-top: 3rem;
+  margin: 3rem 0;
+}
+
+.container {
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto;
+}
+
+.arrivals .card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 295px;
+}
+
+.card .image {
+  border-radius: 20px;
+  height: 298px;
+}
+
+.arrivals article div {
+  display: flex;
+}
+
+.arrivals article {
+  display: flex;
+  gap: 13px;
+}
+
+.article-content {
+  font-family: 'Gorditas', serif;
+  
+}
+
+.article-content p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.article-content .second {
+  font-weight: bold;
+font-size: 24px;
+}
+
+.arrivals button {
+display: block;
+margin: 1rem auto;
+  padding: 16px 54px;
+  border-radius: 62px;
+  border: 1px solid #000000;
+}
+
+.border {
+  background-color: #000000;
+  border: 1px solid #000000;
+}
+
+
+/* TOP SELLING PRODUCT SECTION */
+.top-selling h1{
+  text-align: center;
+  font-family: 'Gorditas', serif;
+  font-size: 48px;
+  font-weight: 700;
+  padding-top: 3rem;
+  margin: 1rem 0;
+  text-transform: uppercase;
+}
+
+.top-selling .card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 295px;
+}
+
+.top-selling article div {
+  display: flex;
+}
+
+.top-selling article {
+  display: flex;
+  gap: 13px;
+}
+
+
+.top-selling button {
+  display: block;
+  margin: 1rem auto;
+    padding: 16px 54px;
+    border-radius: 62px;
+    border: 1px solid #000000;
+  }
