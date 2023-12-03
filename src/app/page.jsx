@@ -2,6 +2,7 @@ export default function Home() {
   return (
     <main>
       <img src="./images/Frame.jpg" alt="" />
+       {/* ===== NAVBAR START ====== */}
       <nav>
         <div className="options">
           <ul>
@@ -19,6 +20,42 @@ export default function Home() {
           <img src="./images/Vector-2.jpg" alt="" />
         </div>
       </nav>
+       {/* ===== NAVBAR END ====== */}
+
+       {/* HERO SECTION START */}
+       <header className="hero">
+        <img src="./images/hero.jpg" alt="" />
+        <div className="hero-content">
+          <div className="hero-content-width">
+            <h1>FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
+            <p>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
+            <button type="button">Shop Now</button>
+            <div className="articles">
+              <article>
+                <h2>200+</h2>
+                <p>International Brands</p>
+              </article>
+              <article>
+                <h2>2,000+</h2>
+                <p>High-Quality Products</p>
+              </article>
+              <article>
+                <h2>30,000+</h2>
+                <p>Happy Customers</p>
+              </article>
+            </div>
+          </div>
+        </div>
+       </header>
+       {/* HERO SECTION END */}
+       
+       <section className="arrivals">
+        <div>
+          <div>
+
+          </div>
+        </div>
+       </section>
     </main>
   );
 }
