@@ -29,7 +29,7 @@ export default function Home() {
       {/* ===== NAVBAR END ====== */}
 
       {/* HERO SECTION START */}
-       <header className="hero">
+      <header className="hero">
         <img src="./images/hero.jpg" alt="" />
         <div className="hero-content">
           <div className="hero-content-width">
@@ -59,6 +59,17 @@ export default function Home() {
       </header>
       {/* HERO SECTION END */}
 
+      <div className="logo-section">
+        <div className="logos">
+          <img src="./images/Versace.png" alt="" />
+          <img src="./images/zara-logo.png" alt="" />
+          <img src="./images/gucci.png" alt="" />
+          <img src="./images/prada-logo.png" alt="" />
+          <img src="./images/calvin.png" alt="" />
+        </div>
+      </div>
+
+      {/* PRODUCT SECTION START */}
       <section className="arrivals">
         <h1>NEW ARRIVALS</h1>
         <div className="container">
@@ -210,6 +221,103 @@ export default function Home() {
         </div>
         <button type="button"> View All </button>
       </section>
+
+      <footer>
+        <div className="footer-container">
+          <div className="socials-card">
+            <p>
+              We have clothes that suits your style and which you’re proud to
+              wear. From women to men.
+            </p>
+            <div className="socials">
+              <img src="./images/1.png" alt="" />
+              <img src="./images/2.png" alt="" />
+              <img src="./images/3.png" alt="" />
+              <img src="./images/4.png" alt="" />
+            </div>
+          </div>
+          <div className="footer-details">
+            <h2>Company</h2>
+            <ul>
+              <li>
+                <a>About</a>
+              </li>
+              <li>
+                <a>Features</a>
+              </li>
+              <li>
+                <a>Works</a>
+              </li>
+              <li>
+                <a>Center</a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-details">
+            <h2>Help</h2>
+            <ul>
+              <li>
+                <a>customer support</a>
+              </li>
+              <li>
+                <a>delivery details</a>
+              </li>
+              <li>
+                <a>terms and condition</a>
+              </li>
+              <li>
+                <a>privacy policy</a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-details">
+            <h2>FAQ</h2>
+            <ul>
+              <li>
+                <a>account</a>
+              </li>
+              <li>
+                <a>manage deliveries</a>
+              </li>
+              <li>
+                <a>orders</a>
+              </li>
+              <li>
+                <a>payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="form">
+          <div className="form-container">
+            <div>
+              <h1>
+                STAY UPTO DATE ABOUT <br /> OUR LATEST OFFERS
+              </h1>
+            </div>
+            <form action="">
+              <div className="input-1">
+                <img src="./images/email.png" alt="" />
+                <input
+                  type="text"
+                  name="search"
+                  placeholder="Enter your email address"
+                />
+              </div>
+              <button className="btn-input" type="button">
+                Subscribe to Newsletter
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div className="border-1"></div>
+
+        <p className="footer-text">
+          Wedevforaliving © 2000-2023, All Rights Reserved
+        </p>
+      </footer>
     </main>
   );
 }
