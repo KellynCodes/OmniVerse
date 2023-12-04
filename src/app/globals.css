@@ -3,27 +3,13 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Gorditas:wght@400;700&family=Inter:wght@400;500;600;700&family=Poppins&display=swap');
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
 
 * {
   margin: 0;
   padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
   background: #ffffff;
 }
 
@@ -163,7 +149,7 @@ nav .options img {
 
 /* ==== NEW ARRIVALS SECTION ===== */
 .arrivals {
-  margin: 6rem 3rem;
+  margin: 2rem 3rem ;
 }
 
 .arrivals h1 {
@@ -280,8 +266,58 @@ nav .options img {
   color: #F0F0F0;
 }
 
+/* ==== REVIEWS SECTION START ====*/
+.reviews-section {
+  font-family: "Gorditas", serif;
+  margin: 4rem 0;
+}
 
-/* FOOTER SECTION START */
+.reviews-section h1 {
+  text-align: left;
+  font-weight: bold;
+  font-size: 48px;
+  margin: 4rem 2rem;
+}
+
+.reviews-container {
+  display: flex;
+
+}
+
+.reviews-card {
+  padding: 28px 32px;
+  border-radius: 20px;
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.review-star {
+  display: flex;
+  gap: 6.49px;
+}
+
+.reviewer {
+  display: flex;
+}
+
+.reviewer img {
+  height: 24px;
+  width: 24px;
+}
+
+.reviews-card span {
+  color: #999999;
+}
+
+.reviewer p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/*====  FOOTER SECTION START  ====*/
 footer {
   background-color: #F0F0F0;
   position: relative;
@@ -408,4 +444,99 @@ form {
   color: #999999;
   font-size: 14px;
   padding: 3rem;
+}
+
+/*=== 0RDER SUMMARRY SECTION ====*/
+ .checkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 50%;
+  padding: 20px 24px;
+  border-radius: 20px;
+  border: 1px solid #F0F0F0;
+}
+
+.checkout h1 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.checkout-card {
+  width: 100%;
+}
+
+.checkout-details {
+  display: flex;
+justify-content: space-between;
+gap: 6rem;
+margin-top: 1rem;
+} 
+
+.name {
+  color: #999999;
+}
+
+.price {
+  font-weight: bold;
+}
+
+.checkout-input {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  width: 100%;
+}
+
+.checkout-input input {
+  background-color: #F0F0F0;
+  padding: 12px 16px;
+  gap: 12px;
+  border-radius: 62px;
+  width: 70%;
+}
+
+.checkout-input button {
+  padding: 12px 16px;
+  background-color: #000000;
+  border-radius: 62px;
+  color: #F0F0F0;
+  width: 30%;
+}
+
+.checkout-btn {
+  padding: 16px 54px;
+  background-color: #000000;
+  color: #F0F0F0;
+  border-radius: 62px;
+  width: 100%;
+}
+
+.payment-form {
+  margin: 6rem auto;
+  width: 50%;
+}
+
+.payment-form input[type=text] {
+  border: 1px solid #B3B3B3;
+  border-radius: 5px;
+  color: #525252;
+  padding:  16px 54px;
+}
+
+.payment-form textarea {
+  border: 1px solid #B3B3B3;
+  border-radius: 5px;
+  color: #525252;
+  margin-top: 4rem;
+}
+
+.payment-form input[type=submit] {
+  background-color: #000000;
+  color: #FFFFFF;
+  padding: 14px 245px;
+  border-radius: 5px;
 }
