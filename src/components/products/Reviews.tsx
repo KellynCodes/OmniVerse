@@ -16,8 +16,8 @@ const Reviews = () => {
                 <Image
                   key={star.key}
                   src={star.value}
-                  width={18.5}
-                  height={18.5}
+                  width={23}
+                  height={21}
                   alt="Stars"
                 />
               ))}
@@ -31,7 +31,7 @@ const Reviews = () => {
                 alt={review.userName}
               />
             </div>
-            <span>"{review.reviewText}"</span>
+            <span>&quot;{review.reviewText}&quot;</span>
           </div>
         ))}
       </div>
