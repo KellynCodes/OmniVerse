@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main>
-      <Image src="/Images/Frame.jpg" width={1000} height={58} alt="" />
+      <Image src="/Images/Frame.jpg" width={1400} height={58} alt="" />
 
       {/* ===== NAVBAR START ====== */}
       <nav>
