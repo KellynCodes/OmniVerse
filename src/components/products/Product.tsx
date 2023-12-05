@@ -14,7 +14,7 @@ const Product = (): JSX.Element => {
           <Image
             src={product.productImg}
             width={product.width}
-            height={product.width}
+            height={product.height}
             alt={product.title}
           />
           <div className="article-content">

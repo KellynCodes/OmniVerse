@@ -9,7 +9,10 @@ export const NavBar = (): React.JSX.Element => {
       <div className="options">
         <ul>
           <li className="shop">
-            <Link href="/products">
+            <Link
+              href="/products"
+              className="flex flex-row items-center justify-between"
+            >
               Shop
               <Image src="/images/Vector-3.jpg" width={12} height={7} alt="" />
             </Link>

@@ -11,10 +11,10 @@ const Footer = (): React.JSX.Element => {
             wear. From women to men.
           </p>
           <div className="socials">
-            <Image src="/Images/1.png" width={28} height={28} alt="" />
-            <Image src="/Images/2.png" width={28} height={28} alt="" />{" "}
-            <Image src="/Images/3.png" width={28} height={28} alt="" />{" "}
-            <Image src="/Images/4.png" width={28} height={28} alt="" />
+            <Image src="/images/1.png" width={28} height={28} alt="" />
+            <Image src="/images/2.png" width={28} height={28} alt="" />{" "}
+            <Image src="/images/3.png" width={28} height={28} alt="" />{" "}
+            <Image src="/images/4.png" width={28} height={28} alt="" />
           </div>
         </div>
         <div className="footer-details">
@@ -79,7 +79,7 @@ const Footer = (): React.JSX.Element => {
           </div>
           <form action="">
             <div className="input-1">
-              <Image src="/Images/email.png" width={28} height={28} alt="" />
+              <Image src="/images/email.png" width={28} height={28} alt="" />
               <input
                 type="text"
                 name="search"
