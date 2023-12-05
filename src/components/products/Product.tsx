@@ -1,4 +1,4 @@
-import { ProductsData } from "@/libs/products/products";
+import { ProductsData } from "../../libs/products/products";
 import React from "react";
 import Image from "next/image";
 

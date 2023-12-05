@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { ReviewData } from "@/libs/products/product.review";
+import { ReviewData } from "../../libs/products/product.review";
 
 const Reviews = () => {
   return (
