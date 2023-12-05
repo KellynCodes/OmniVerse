@@ -7,7 +7,7 @@ import TopSelling from "../components/products/TopSelling";
 export default function Home() {
   return (
     <main>
-      <Image src="/Images/Frame.jpg" width={1400} height={58} alt="" />
+      <Image src="/images/Frame.jpg" width={1440} height={38} alt="" />
       <Header />
       {/* LOGO SECTION */}
       <div className="logo-section">
