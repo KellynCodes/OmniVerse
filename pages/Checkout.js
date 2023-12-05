@@ -3,32 +3,34 @@ import React from 'react'
 const Checkout = () => {
   return (
     <main>
-    <img src="./images/Frame.jpg" alt="" />
-    {/* ===== NAVBAR START ====== */}
-    <nav>
-      <div className="options">
-        <ul>
-          <li className="shop">
-            Shop <img src="./images/Vector-3.jpg" alt="" />{" "}
-          </li>
-          <li>On Sale</li>
-          <li>New Arrivals</li>
-          <li>Brands</li>
-        </ul>
-      </div>
-      <div className="search-container">
-        <img src="./images/Vector-1.png" alt="" />
-        <input
-          type="text"
-          name="search"
-          placeholder="Search for products..."
-        />
-      </div>
-      <div>
-        <img src="./images/Vector-2.jpg" alt="" />
-      </div>
-    </nav>
-    {/* ===== NAVBAR END ====== */}
+   <Image src="/Images/Frame.jpg" width={1000} height={58} alt="" />
+
+{/* ===== NAVBAR START ====== */}
+<nav>
+  <div className="options">
+    <ul>
+      <li className="shop">
+        Shop
+        <Image src="/Images/Vector-3.jpg" width={58} height={58} alt="" />
+      </li>
+      <li>On Sale</li>
+      <li>New Arrivals</li>
+      <li>Brands</li>
+    </ul>
+  </div>
+  <div className="search-container">
+    <Image src="/Images/Vector-1.png" width={24} height={24} alt="" />
+    <input
+      type="text"
+      name="search"
+      placeholder="Search for products..."
+    />
+  </div>
+  <div>
+    <Image src="/Images/Vector-2.jpg" width={33} height={33} alt="" />
+  </div>
+</nav>
+{/* ===== NAVBAR END ====== */}
 
     {/* 0RDER SUMMARRY SECTION */}
     <div className="checkout">
@@ -59,101 +61,124 @@ const Checkout = () => {
     </div>
 
     <footer>
-      <div className="footer-container">
-        <div className="socials-card">
-          <p>
-            We have clothes that suits your style and which you’re proud to
-            wear. From women to men.
-          </p>
-          <div className="socials">
-            <img src="./images/1.png" alt="" />
-            <img src="./images/2.png" alt="" />
-            <img src="./images/3.png" alt="" />
-            <img src="./images/4.png" alt="" />
-          </div>
-        </div>
-        <div className="footer-details">
-          <h2>Company</h2>
-          <ul>
-            <li>
-              <a>About</a>
-            </li>
-            <li>
-              <a>Features</a>
-            </li>
-            <li>
-              <a>Works</a>
-            </li>
-            <li>
-              <a>Center</a>
-            </li>
-          </ul>
-        </div>
-        <div className="footer-details">
-          <h2>Help</h2>
-          <ul>
-            <li>
-              <a>customer support</a>
-            </li>
-            <li>
-              <a>delivery details</a>
-            </li>
-            <li>
-              <a>terms and condition</a>
-            </li>
-            <li>
-              <a>privacy policy</a>
-            </li>
-          </ul>
-        </div>
-        <div className="footer-details">
-          <h2>FAQ</h2>
-          <ul>
-            <li>
-              <a>account</a>
-            </li>
-            <li>
-              <a>manage deliveries</a>
-            </li>
-            <li>
-              <a>orders</a>
-            </li>
-            <li>
-              <a>payment</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="form">
-        <div className="form-container">
-          <div>
-            <h1>
-              STAY UPTO DATE ABOUT <br /> OUR LATEST OFFERS
-            </h1>
-          </div>
-          <form action="">
-            <div className="input-1">
-              <img src="./images/email.png" alt="" />
-              <input
-                type="text"
-                name="search"
-                placeholder="Enter your email address"
+        <div className="footer-container">
+          <div className="socials-card">
+            <p>
+              We have clothes that suits your style and which you’re proud to
+              wear. From women to men.
+            </p>
+            <div className="socials">
+            <Image
+                    src="/Images/1.png"
+                    width={28}
+                    height={28}
+                    alt=""
+                  />
+               <Image
+                    src="/Images/2.png"
+                    width={28}
+                    height={28}
+                    alt=""
+                  /> <Image
+                  src="/Images/3.png"
+                  width={28}
+                  height={28}
+                  alt=""
+                /> <Image
+                src="/Images/4.png"
+                width={28}
+                height={28}
+                alt=""
               />
             </div>
-            <button className="btn-input" type="button">
-              Subscribe to Newsletter
-            </button>
-          </form>
+          </div>
+          <div className="footer-details">
+            <h2>Company</h2>
+            <ul>
+              <li>
+                <a>About</a>
+              </li>
+              <li>
+                <a>Features</a>
+              </li>
+              <li>
+                <a>Works</a>
+              </li>
+              <li>
+                <a>Center</a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-details">
+            <h2>Help</h2>
+            <ul>
+              <li>
+                <a>customer support</a>
+              </li>
+              <li>
+                <a>delivery details</a>
+              </li>
+              <li>
+                <a>terms and condition</a>
+              </li>
+              <li>
+                <a>privacy policy</a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-details">
+            <h2>FAQ</h2>
+            <ul>
+              <li>
+                <a>account</a>
+              </li>
+              <li>
+                <a>manage deliveries</a>
+              </li>
+              <li>
+                <a>orders</a>
+              </li>
+              <li>
+                <a>payment</a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div className="border-1"></div>
+        <div className="form">
+          <div className="form-container">
+            <div>
+              <h1>
+                STAY UPTO DATE ABOUT <br /> OUR LATEST OFFERS
+              </h1>
+            </div>
+            <form action="">
+              <div className="input-1">
+              <Image
+                    src="/Images/email.png"
+                    width={28}
+                    height={28}
+                    alt=""
+                  />
+                <input
+                  type="text"
+                  name="search"
+                  placeholder="Enter your email address"
+                />
+              </div>
+              <button className="btn-input" type="button">
+                Subscribe to Newsletter
+              </button>
+            </form>
+          </div>
+        </div>
 
-      <p className="footer-text">
-        Wedevforaliving © 2000-2023, All Rights Reserved
-      </p>
-    </footer>
+        <div className="border-1"></div>
+
+        <p className="footer-text">
+          Wedevforaliving © 2000-2023, All Rights Reserved
+        </p>
+      </footer>
   </main>
   )
 }
