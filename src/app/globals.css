@@ -11,6 +11,8 @@
 
 body {
   background: #ffffff;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
 }
 
 /* ===== NAVBAR START ======*/
@@ -101,28 +103,11 @@ nav .options img {
 .hero-content-width h1 {
   font-weight: bold;
   font-size: 50px;
-  font-family: "Gorditas", serif;
 }
 
 .hero-content-width p {
-  font-family: "Poppins", sans-serif;
   font-size: 16px;
   color: #999999;
-}
-
-.hero-content-width button {
-  background-color: #000000;
-  border-radius: 62px;
-  padding: 16px 54px;
-  color: #ffffff;
-  font-size: 16px;
-  transition: 0.6s all;
-}
-
-.hero-content-width button:hover {
-  background-color: #f0f0f0;
-  color: #000000;
-  border: 1px solid #000000;
 }
 
 .articles {
@@ -150,11 +135,15 @@ nav .options img {
 /* ==== NEW ARRIVALS SECTION ===== */
 .arrivals {
   margin: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .arrivals h1 {
   text-align: center;
-  font-family: "Gorditas", serif;
   font-size: 48px;
   font-weight: 700;
   padding-top: 3rem;
@@ -188,15 +177,6 @@ nav .options img {
   gap: 13px;
 }
 
-.article-content {
-  font-family: "Gorditas", serif;
-}
-
-.article-content p {
-  font-size: 20px;
-  font-weight: bold;
-}
-
 .article-content .second {
   font-weight: bold;
   font-size: 24px;
@@ -207,12 +187,12 @@ nav .options img {
   margin: 1rem auto;
   padding: 16px 54px;
   border-radius: 62px;
-  border: 1px solid #000000;
+  border: 1px solid #000000da;
   transition: 0.7s all;
 }
 
 .arrivals button:hover {
-  background-color: #000000;
+  background-color: #000000db;
   color: #f0f0f0;
 }
 
@@ -224,11 +204,14 @@ nav .options img {
 /* TOP SELLING PRODUCT SECTION */
 .top-selling {
   margin: 0 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .top-selling h1 {
   text-align: center;
-  font-family: "Gorditas", serif;
   font-size: 48px;
   font-weight: 700;
   padding-top: 3rem;
@@ -268,7 +251,6 @@ nav .options img {
 
 /* ==== REVIEWS SECTION START ====*/
 .reviews-section {
-  font-family: "Gorditas", serif;
   margin: 4rem 0;
 }
 
@@ -331,7 +313,6 @@ footer {
   padding-top: 11rem;
   padding-bottom: 5rem;
   margin-top: 13rem;
-  font-family: "Poppins", sans-serif;
 }
 
 .socials-card {
@@ -393,7 +374,6 @@ footer {
 }
 
 .form-container h1 {
-  font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 30px;
   line-height: 45px;
@@ -557,51 +537,50 @@ form {
 }
 
 @media (max-width: 450px) {
+  .search-container {
+    display: none;
+  }
+  .hero {
+    margin-top: -4rem;
+  }
+  .hero img {
+    max-width: 100vw;
+  }
 
-.search-container {
-  display: none;
-}
-.hero {
-  margin-top: -4rem;
-}
-.hero img {
-  max-width: 100vw;
-}
+  .hero-content {
+    margin: 1rem;
+  }
 
-.hero-content {
-  margin: 1rem;
-}
+  .hero-content-width {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 
-.hero-content-width {
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
+  .hero-content-width h1 {
+    font-size: 20px;
+  }
 
-.hero-content-width h1 {
-  font-size: 20px;
-}
+  .hero-content-width button {
+    width: 100%;
+  }
 
-.hero-content-width button {
-  width: 100%;
-}
+  .articles {
+    flex-direction: column;
+    align-items: start;
+  }
 
-.articles {
-  flex-direction: column;
-  align-items: start;
-}
+  .logo-section {
+    display: none;
+  }
 
-.logo-section {
-  display: none;
-}
+  .container {
+    flex-direction: column;
+  }
 
-.container {
-  flex-direction: column;
-}
-
-.reviews-container {
-  flex-direction: column;
-}
+  .reviews-container {
+    flex-direction: column;
+  }
 
   .form {
     bottom: 90%;
