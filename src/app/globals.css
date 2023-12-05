@@ -4,6 +4,9 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Gorditas:wght@400;700&family=Inter:wght@400;500;600;700&family=Poppins&display=swap");
 
+@import url("../../node_modules/slick-carousel/slick/slick.css");
+@import url("../../node_modules/slick-carousel/slick/slick-theme.css");
+
 * {
   margin: 0;
   padding: 0;
