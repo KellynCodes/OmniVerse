@@ -1,8 +1,8 @@
+import Product from "@/components/products/Product";
+import { Button } from "@/components/shared/Button";
 import React from "react";
-import Product from "./Product";
-import { Button } from "../shared/Button";
 
-const TopSelling = (): JSX.Element => {
+const TopSellingList = () => {
   return (
     <section
       id="top-selling"
@@ -15,10 +15,10 @@ const TopSelling = (): JSX.Element => {
       <Button
         customDesign="mt-2 border border-accent bg-accent-white text-accent-light"
         link="top-selling"
-        label="View All"
+        label="Load More"
       />
     </section>
   );
 };
 
-export default TopSelling;
+export default TopSellingList;

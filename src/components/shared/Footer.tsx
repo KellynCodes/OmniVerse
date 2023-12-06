@@ -3,7 +3,30 @@ import Image from "next/image";
 
 const Footer = (): React.JSX.Element => {
   return (
-    <footer>
+    <footer className="relative">
+      <div className="form">
+        <div className="form-container">
+          <div>
+            <h1 className="">
+              STAY UPTO DATE ABOUT <br /> OUR LATEST OFFERS
+            </h1>
+          </div>
+          <form action="">
+            <div className="input-1">
+              <Image src="/images/email.png" width={28} height={28} alt="" />
+              <input
+                type="text"
+                name="search"
+                placeholder="Enter your email address"
+              />
+            </div>
+            <button className="btn-input" type="button">
+              Subscribe to Newsletter
+            </button>
+          </form>
+        </div>
+      </div>
+
       <div className="footer-container">
         <div className="socials-card">
           <p className="text-[1rem] text-gray-400">
@@ -70,30 +93,7 @@ const Footer = (): React.JSX.Element => {
         </div>
       </div>
 
-      <div className="form">
-        <div className="form-container">
-          <div>
-            <h1 className="">
-              STAY UPTO DATE ABOUT <br /> OUR LATEST OFFERS
-            </h1>
-          </div>
-          <form action="">
-            <div className="input-1">
-              <Image src="/images/email.png" width={28} height={28} alt="" />
-              <input
-                type="text"
-                name="search"
-                placeholder="Enter your email address"
-              />
-            </div>
-            <button className="btn-input" type="button">
-              Subscribe to Newsletter
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <div className="border-1"></div>
+      <hr />
 
       <p className="footer-text">OmniVerse © 2000-2023, All Rights Reserved</p>
     </footer>
