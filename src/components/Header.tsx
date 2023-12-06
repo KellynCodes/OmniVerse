@@ -1,4 +1,5 @@
 import React from "react";
+// @ts-ignore
 import Image from "next/image";
 import { Button } from "./shared/Button";
 
