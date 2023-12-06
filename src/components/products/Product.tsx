@@ -12,11 +12,11 @@ const Product = (): JSX.Element => {
     <>
       {ProductsData &&
         ProductsData.map((product) => (
-          <Link href={`auth?redirectUrl=/product/${product.id}`}>
-            <div
-              className="w-[18.4375rem] mx-1 h-[25.5rem] flex flex-col"
-              key={product.id}
-            >
+          <Link
+            href={`auth?redirectUrl=/product/${product.id}`}
+            key={product.id}
+          >
+            <div className="w-[18.4375rem] mx-1 h-[25.5rem] flex flex-col">
               <Image
                 src={product.productImg}
                 width={product.width}
