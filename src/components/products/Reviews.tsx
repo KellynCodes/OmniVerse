@@ -6,11 +6,6 @@ import { ReviewData } from "../../libs/data/products/product.review";
 import Slider from "react-slick";
 
 export default class Reviews extends Component {
-  state = {
-    activeSlide: 0,
-    activeSlide2: 0,
-  };
-
   constructor(props: any) {
     super(props);
     this.next = this.next.bind(this);
@@ -30,15 +25,13 @@ export default class Reviews extends Component {
       dots: true,
       draggable: true,
       infinite: true,
+      autoPlay: true,
       speed: 500,
       slidesToShow: 3,
       slidesToScroll: 1,
       initialSlide: 0,
       pauseOnHover: true,
       cssEase: "linear",
-      beforeChange: (current: any, next: any) =>
-        this.setState({ activeSlide: next }),
-      afterChange: (current: any) => this.setState({ activeSlide2: current }),
       responsive: [
         {
           breakpoint: 1024,
@@ -119,9 +112,7 @@ export default class Reviews extends Component {
                       alt={review.userName}
                     />
                   </div>
-                  <span
-                    className="text-black text-opacity-60 text-base font-normal font-['Satoshi'] leading-snug"
-                  >
+                  <span className="text-black text-opacity-60 text-base font-normal font-['Satoshi'] leading-snug">
                     &quot;{review.reviewText}&quot;
                   </span>
                 </div>

@@ -88,6 +88,101 @@ nav .options img {
 
 /* ==== NEW ARRIVALS SECTION ===== */
 
+/*=== 0RDER SUMMARRY SECTION ====*/
+ .checkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 50%;
+  padding: 20px 24px;
+  border-radius: 20px;
+  border: 1px solid #F0F0F0;
+}
+
+.checkout h1 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.checkout-card {
+  width: 100%;
+}
+
+.checkout-details {
+  display: flex;
+justify-content: space-between;
+gap: 6rem;
+margin-top: 1rem;
+} 
+
+.name {
+  color: #999999;
+}
+
+.price {
+  font-weight: bold;
+}
+
+.checkout-input {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  width: 100%;
+}
+
+.checkout-input input {
+  background-color: #F0F0F0;
+  padding: 12px 16px;
+  gap: 12px;
+  border-radius: 62px;
+  width: 70%;
+}
+
+.checkout-input button {
+  padding: 12px 16px;
+  background-color: #000000;
+  border-radius: 62px;
+  color: #F0F0F0;
+  width: 30%;
+}
+
+.checkout-btn {
+  padding: 16px 54px;
+  background-color: #000000;
+  color: #F0F0F0;
+  border-radius: 62px;
+  width: 100%;
+}
+
+.payment-form {
+  margin: 6rem auto;
+  width: 50%;
+}
+
+.payment-form input[type=text] {
+  border: 1px solid #B3B3B3;
+  border-radius: 5px;
+  color: #525252;
+  padding:  16px 54px;
+}
+
+.payment-form textarea {
+  border: 1px solid #B3B3B3;
+  border-radius: 5px;
+  color: #525252;
+  margin-top: 4rem;
+}
+
+.payment-form input[type=submit] {
+  background-color: #000000;
+  color: #FFFFFF;
+  padding: 14px 245px;
+  border-radius: 5px;
+}
+
 .arrivals h1 {
   text-align: center;
   font-size: 48px;
