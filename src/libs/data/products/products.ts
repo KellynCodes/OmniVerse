@@ -1,4 +1,4 @@
-import { ProductDto } from "../types/Dtos/product.dto";
+import { ProductDto } from "../../types/Dtos/product.dto";
 import { ProductStars } from "./product.start";
 
 export const ProductsData: ProductDto[] = [

@@ -7,7 +7,6 @@ import TopSelling from "../components/products/TopSelling";
 export default function Home() {
   return (
     <main>
-      <Image src="/images/Frame.jpg" width={1440} height={38} alt="" />
       <Header />
       {/* LOGO SECTION */}
       <div className="logo-section">
@@ -19,8 +18,6 @@ export default function Home() {
           <Image src="/images/calvin.png" width={208} height={34} alt="" />
         </div>
       </div>
-
-      {/* PRODUCT SECTION START */}
 
       <div className="border"></div>
       <Products />

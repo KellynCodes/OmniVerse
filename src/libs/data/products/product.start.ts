@@ -1,4 +1,4 @@
-import { ProductStarDto } from "../types/Dtos/product.star.dto";
+import { ProductStarDto } from "../../types/Dtos/product.star.dto";
 
 export const ProductStars: ProductStarDto[] = [
   { key: 1, value: "/images/Star-1.png" },
