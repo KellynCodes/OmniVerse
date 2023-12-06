@@ -1,8 +1,10 @@
 import "./globals.css";
 import Footer from "../components/shared/Footer";
 import { NavBar } from "../components/shared/Navbar";
+// @ts-ignore
 import Image from "next/image";
 import { gorditas, roboto_mono, poppins } from "@/config/font.config";
+// @ts-ignore
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
     },
     {
       name: "Kendrick",
-      url: "https://github.com/kendrichukwu",
+      url: "https://github.com/kendrichibueze",
     },
   ],
 };
