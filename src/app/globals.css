@@ -492,10 +492,30 @@ form {
   border-radius: 5px;
 }
 
+
+/*==== CONFIGURATION PAGE ====*/
+.landing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.landing button {
+ background-color: #000000;
+ color: #ffff;
+ padding: 2rem 4rem;
+ border: none;
+ margin: 0 .5rem;
+ border-radius: 2rem;
+ font-size: 2rem;
+}
+
 /*=== MEDIA QUERIES ===*/
 @media (max-width: 850px) {
   .form {
-    left: -70px;
+    left: 0px;
+    width: auto;
   }
 }
 
