@@ -5,7 +5,13 @@ import { Button } from "./shared/Button";
 const Header = (): JSX.Element => {
   return (
     <header className="hero">
-      <Image src="/images/hero.jpg" width={1440} height={663} alt="" />
+      <Image
+        src="/images/hero.jpg"
+        className="w-[100vw]"
+        width={1440}
+        height={650}
+        alt=""
+      />
       <div className="hero-content">
         <div className="hero-content-width">
           <h1>FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
@@ -14,7 +20,11 @@ const Header = (): JSX.Element => {
             designed to bring out your individuality and cater to your sense of
             style.
           </p>
-          <Button label="Shop Now" link="/products" />
+          <Button
+            customDesign="bg-accent text-white hover:bg-accent-light"
+            label="Shop Now"
+            link="/products"
+          />
           <div className="articles">
             <article>
               <h2>200+</h2>
