@@ -9,8 +9,8 @@ export default function Home() {
     <main>
       <Header />
       {/* LOGO SECTION */}
-      <div className="logo-section">
-        <div className="logos">
+      <div className="bg-accent">
+        <div className="flex justify-between p-6">
           <Image src="/images/versace.png" width={167} height={34} alt="" />
           <Image src="/images/zara-logo.png" width={92} height={38} alt="" />
           <Image src="/images/gucci-logo.png" width={157} height={36} alt="" />
@@ -19,7 +19,6 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="border"></div>
       <Products />
 
       <TopSelling />

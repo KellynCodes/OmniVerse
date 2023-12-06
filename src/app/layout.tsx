@@ -2,7 +2,7 @@ import "./globals.css";
 import Footer from "../components/shared/Footer";
 import { NavBar } from "../components/shared/Navbar";
 import Image from "next/image";
-import { gorditas, roboto_mono } from "@/config/font.config";
+import { gorditas, roboto_mono, poppins } from "@/config/font.config";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${gorditas.variable} ${roboto_mono.variable} ${gorditas.className}`}
+        className={`${gorditas.variable} ${roboto_mono.variable} ${poppins.variable} ${poppins.className}`}
       >
         <Image src="/images/Frame.jpg" width={1440} height={38} alt="" />
         <NavBar />
