@@ -6,6 +6,11 @@ import Image from "next/image";
 export const NavBar = (): React.JSX.Element => {
   return (
     <nav>
+      <div className="flex items-center justify-center">
+        <Link href="/">
+          <h1 className="font-bold text-[2rem]">OmniVerse</h1>
+        </Link>
+      </div>
       <div className="options">
         <ul>
           <li className="shop">
@@ -18,7 +23,7 @@ export const NavBar = (): React.JSX.Element => {
             </Link>
           </li>
           <li>
-            <Link href="#top-selling">On Sale</Link>
+            <Link href="/#top-selling">On Sale</Link>
           </li>
           <li>
             <Link href="/#new-arrivals">New Arrivals</Link>
