@@ -89,7 +89,7 @@ nav .options img {
 /* ==== NEW ARRIVALS SECTION ===== */
 
 /*=== 0RDER SUMMARRY SECTION ====*/
- .checkout {
+.checkout {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -98,7 +98,7 @@ nav .options img {
   width: 50%;
   padding: 20px 24px;
   border-radius: 20px;
-  border: 1px solid #F0F0F0;
+  border: 1px solid #f0f0f0;
 }
 
 .checkout h1 {
@@ -113,10 +113,10 @@ nav .options img {
 
 .checkout-details {
   display: flex;
-justify-content: space-between;
-gap: 6rem;
-margin-top: 1rem;
-} 
+  justify-content: space-between;
+  gap: 6rem;
+  margin-top: 1rem;
+}
 
 .name {
   color: #999999;
@@ -134,7 +134,7 @@ margin-top: 1rem;
 }
 
 .checkout-input input {
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   padding: 12px 16px;
   gap: 12px;
   border-radius: 62px;
@@ -145,14 +145,14 @@ margin-top: 1rem;
   padding: 12px 16px;
   background-color: #000000;
   border-radius: 62px;
-  color: #F0F0F0;
+  color: #f0f0f0;
   width: 30%;
 }
 
 .checkout-btn {
   padding: 16px 54px;
   background-color: #000000;
-  color: #F0F0F0;
+  color: #f0f0f0;
   border-radius: 62px;
   width: 100%;
 }
@@ -162,23 +162,23 @@ margin-top: 1rem;
   width: 50%;
 }
 
-.payment-form input[type=text] {
-  border: 1px solid #B3B3B3;
+.payment-form input[type="text"] {
+  border: 1px solid #b3b3b3;
   border-radius: 5px;
   color: #525252;
-  padding:  16px 54px;
+  padding: 16px 54px;
 }
 
 .payment-form textarea {
-  border: 1px solid #B3B3B3;
+  border: 1px solid #b3b3b3;
   border-radius: 5px;
   color: #525252;
   margin-top: 4rem;
 }
 
-.payment-form input[type=submit] {
+.payment-form input[type="submit"] {
   background-color: #000000;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 14px 245px;
   border-radius: 5px;
 }
@@ -330,13 +330,16 @@ footer {
 .form {
   background-color: #000000;
   position: absolute;
-  bottom: 80%;
   z-index: 99;
   color: #f0f0f0;
-  padding: 36px 64px;
-  left: 100px;
-  width: auto;
+  padding: 1.5rem;
+  width: 80vw;
+  top: -10%;
+  left: 4%;
+  right: 4%;
+  margin: 0 auto;
   border-radius: 20px;
+  gap: 1.5rem;
 }
 
 .form-container {
@@ -492,7 +495,6 @@ form {
   border-radius: 5px;
 }
 
-
 /*==== CONFIGURATION PAGE ====*/
 .landing {
   display: flex;
@@ -502,13 +504,13 @@ form {
 }
 
 .landing button {
- background-color: #000000;
- color: #ffff;
- padding: 2rem 4rem;
- border: none;
- margin: 0 .5rem;
- border-radius: 2rem;
- font-size: 2rem;
+  background-color: #000000;
+  color: #ffff;
+  padding: 2rem 4rem;
+  border: none;
+  margin: 0 0.5rem;
+  border-radius: 2rem;
+  font-size: 2rem;
 }
 
 /*=== MEDIA QUERIES ===*/

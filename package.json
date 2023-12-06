@@ -1,13 +1,27 @@
 {
   "name": "OmniVerse",
   "version": "1.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
+  "authors": [
+    {
+      "name": "Kelechi Amos",
+      "url": "https://github.com/kellyncodes"
+    },
+    {
+      "name": "Becky",
+      "url": "https://github.com/beckyyCodes"
+    },
+    {
+      "name": "Kendrick",
+      "url": "https://github.com/kendrichibueze"
+    }
+  ],
   "dependencies": {
     "next": "14.0.3",
     "react": "^18",
