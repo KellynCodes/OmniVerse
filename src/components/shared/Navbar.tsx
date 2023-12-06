@@ -5,8 +5,8 @@ import Image from "next/image";
 
 export const NavBar = (): React.JSX.Element => {
   return (
-    <nav>
-      <div className="flex items-center justify-center">
+    <nav className="w-[100vw] mx-auto h-fit">
+      <div className="flex items-center h-fit justify-start">
         <Link href="/">
           <h1 className="font-bold text-[2rem]">OmniVerse</h1>
         </Link>
