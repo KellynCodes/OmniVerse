@@ -10,6 +10,7 @@ const config: Config = {
     fontFamily: {
       sans: ["var(--font-gorditas)"],
       mono: ["var(--font-roboto-mono)"],
+      poppins: ["var(--font-poppins)"],
     },
     opacity: {
       0: "0",
@@ -34,16 +35,17 @@ const config: Config = {
         96: "24rem",
       },
       colors: {
+        primary: "#999999",
         accent: {
           light: "#131212",
           DEFAULT: "#000000",
           white: "#F2F0F1",
         },
-        
+
         border: {
           light: "",
           DEFAULT: "#0000001a",
-          white: "#f0f0f0"
+          white: "#f0f0f0",
         },
 
         white: "#ffffff",

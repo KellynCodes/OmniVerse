@@ -1,69 +1,134 @@
 "use client";
 
-import React from "react";
+import React, { Component } from "react";
 import Image from "next/image";
 import { ReviewData } from "../../libs/data/products/product.review";
 import Slider from "react-slick";
 
-const Reviews = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
+export default class Reviews extends Component {
+  state = {
+    activeSlide: 0,
+    activeSlide2: 0,
   };
 
-  return (
-    <section className="my-5 py-10 px-6">
-      <div className="flex justify-between items-center w-full h-[4rem] my-4">
-        <h1 className="align-left font-bold text-[3rem] my-8">
-          OUR HAPPY CUSTOMERS
-        </h1>
-        <div className="flex w-[4rem] items-center justify-between">
-          <Image
-            src="/svg/arrow-left.svg"
-            alt="Previous"
-            width={24}
-            height={24}
-          />
-          <Image src="/svg/arrow-right.svg" alt="Next" width={24} height={24} />
-        </div>
-      </div>
-      <Slider {...settings} className="flex gap-10 items-center">
-        {ReviewData &&
-          ReviewData.map((review) => (
-            <div
-              className="flex flex-wrap w-[25rem] h-[15rem] justify-center items-center content-start gap-y-6 gap-x-[21.375rem] py-[1.75rem] px-[2rem] rounded-[1.25rem] border border-border mr-8"
-              style={{ marginRight: "3rem" }}
-              key={review.id}
-            >
-              <div className="review-star">
-                {review.stars.map((star) => (
-                  <Image
-                    key={star.key}
-                    src={star.value}
-                    width={23}
-                    height={21}
-                    alt="Stars"
-                  />
-                ))}
-              </div>
-              <div className="reviewer">
-                <p>{review.userName}</p>
-                <Image
-                  src={review.userImage}
-                  width={24}
-                  height={24}
-                  alt={review.userName}
-                />
-              </div>
-              <span>&quot;{review.reviewText}&quot;</span>
-            </div>
-          ))}
-      </Slider>
-    </section>
-  );
-};
+  constructor(props: any) {
+    super(props);
+    this.next = this.next.bind(this);
+    this.previous = this.previous.bind(this);
+  }
+  slider: any;
+  next(): void {
+    this.slider!.slickNext();
+  }
+  previous(): void {
+    this.slider!.slickPrev();
+  }
 
-export default Reviews;
+  render() {
+    const settings = {
+      className: "flex items-center justify-between w-full",
+      dots: true,
+      draggable: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      initialSlide: 0,
+      pauseOnHover: true,
+      cssEase: "linear",
+      beforeChange: (current: any, next: any) =>
+        this.setState({ activeSlide: next }),
+      afterChange: (current: any) => this.setState({ activeSlide2: current }),
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+    };
+    return (
+      <section className="my-5 h-[70vh] p-3">
+        <div className="flex justify-between items-center w-full h-[4rem] my-4">
+          <h1 className="align-left font-bold text-[2rem] my-8">
+            OUR HAPPY CUSTOMERS
+          </h1>
+          <div className="flex w-[4rem] items-center justify-between">
+            <Image
+              onClick={this.previous}
+              className="cursor-pointer"
+              src="/svg/arrow-left.svg"
+              alt="Previous"
+              width={24}
+              height={24}
+            />
+            <Image
+              onClick={this.next}
+              className="cursor-pointer"
+              src="/svg/arrow-right.svg"
+              alt="Next"
+              width={24}
+              height={24}
+            />
+          </div>
+        </div>
+        <Slider ref={(c: any) => (this.slider = c)} {...settings}>
+          {ReviewData &&
+            ReviewData.map((review) => (
+              <div
+                className="w-[390px] h-[220px] p-6 border border-black border-opacity-10 justify-evenly items-start inline-flex rounded-[1.25rem] "
+                key={review.id}
+              >
+                <div className="flex flex-col items-start">
+                  <div className="flex items-center justify-between">
+                    {review.stars.map((star) => (
+                      <Image
+                        key={star.key}
+                        src={star.value}
+                        width={23}
+                        height={21}
+                        alt="Stars"
+                      />
+                    ))}
+                  </div>
+                  <div className="flex items-center">
+                    <p className="font-bold text-lg">{review.userName}</p>
+                    <Image
+                      src={review.userImage}
+                      width={24}
+                      height={24}
+                      alt={review.userName}
+                    />
+                  </div>
+                  <span
+                    className="text-black text-opacity-60 text-base font-normal font-['Satoshi'] leading-snug"
+                  >
+                    &quot;{review.reviewText}&quot;
+                  </span>
+                </div>
+              </div>
+            ))}
+        </Slider>
+      </section>
+    );
+  }
+}

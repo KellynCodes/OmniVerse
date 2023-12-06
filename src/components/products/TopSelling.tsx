@@ -13,7 +13,7 @@ const TopSelling = (): JSX.Element => {
         <Product />
       </div>
       <Button
-        customDesign="border border-accent bg-accent-white text-accent-light"
+        customDesign="mt-2 border border-accent bg-accent-white text-accent-light"
         link="top-reviews"
         label="View All"
       />

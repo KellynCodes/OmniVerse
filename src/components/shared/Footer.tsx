@@ -6,14 +6,14 @@ const Footer = (): React.JSX.Element => {
     <footer>
       <div className="footer-container">
         <div className="socials-card">
-          <p>
+          <p className="text-[1rem] text-gray-400">
             We have clothes that suits your style and which you’re proud to
             wear. From women to men.
           </p>
           <div className="socials">
             <Image src="/images/1.png" width={28} height={28} alt="" />
-            <Image src="/images/2.png" width={28} height={28} alt="" />{" "}
-            <Image src="/images/3.png" width={28} height={28} alt="" />{" "}
+            <Image src="/images/2.png" width={28} height={28} alt="" />
+            <Image src="/images/3.png" width={28} height={28} alt="" />
             <Image src="/images/4.png" width={28} height={28} alt="" />
           </div>
         </div>
@@ -73,7 +73,7 @@ const Footer = (): React.JSX.Element => {
       <div className="form">
         <div className="form-container">
           <div>
-            <h1>
+            <h1 className="">
               STAY UPTO DATE ABOUT <br /> OUR LATEST OFFERS
             </h1>
           </div>

@@ -21,23 +21,21 @@ const Product = (): JSX.Element => {
             alt={product.title}
             className="w-[18.4375rem] max-h-[18.625rem] flex pt-0 pr-[0.8125rem] pb-[0.875rem] flex-col justify-center rounded-[1.25rem] bg-[#F0EEED] items-center"
           />
-          <div className="article-content">
+          <div className="flex flex-col items-start justify-start px-2 mt-3">
             <p className="text-lg font-[400] capitalize">{product.title}</p>
-            <article className="flex items-center justify-center">
-              <div className="flex items-center justify-center h-12">
-                {product.images.map((img) => (
-                  <Image
-                    key={img.key}
-                    src={img.value}
-                    width={23}
-                    height={21}
-                    alt="Stars"
-                  />
-                ))}
-              </div>
+            <div className="flex items-center justify-center h-12 gap-1">
+              {product.images.map((img) => (
+                <Image
+                  key={img.key}
+                  src={img.value}
+                  width={23}
+                  height={21}
+                  alt="Stars"
+                />
+              ))}
               <span className="text-sm font-[300]">{product.rating}</span>
-            </article>
-            <p className="text">${product.price}</p>
+            </div>
+              <p className="text">${product.price}</p>
           </div>
         </div>
       ))}

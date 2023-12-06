@@ -6,21 +6,33 @@
 @import url("../../node_modules/slick-carousel/slick/slick.css");
 @import url("../../node_modules/slick-carousel/slick/slick-theme.css");
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
+  overflow-x: hidden;
   background: #ffffff;
   scroll-behavior: smooth;
 }
 
-section,
-header {
+.slick-slide > div {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.slick-dots li button:before {
+  font-size: 20px;
+  margin: 2rem 0 0 0;
+}
+
+section {
   width: 97% !important;
-  margin: 2rem auto !important;
+  margin: 2rem auto;
   @apply border-[1.5px] border-border rounded-md py-12;
 }
 
@@ -71,69 +83,8 @@ nav .options img {
 /* ===== NAVBAR END ======*/
 
 /* === HERO SECTION START ===*/
-.hero {
-  position: relative;
-  height: 100vh !important;
-  max-width: 100vw;
-  margin-top: 4.5rem !important;
-}
 
-.hero img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-}
-
-.hero-content {
-  position: relative;
-  height: 100vh;
-  margin-left: 4rem;
-  z-index: 99;
-}
-
-.hero-content-width {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1rem;
-  height: 97vh;
-  width: 50%;
-}
-
-.hero-content-width h1 {
-  font-weight: bold;
-  font-size: 50px;
-}
-
-.hero-content-width p {
-  font-size: 16px;
-  color: #999999;
-}
-
-.articles {
-  display: flex;
-  gap: 32px;
-}
-
-.articles h2 {
-  font-weight: 700;
-  font-size: 40px;
-}
 /* === HERO SECTION END ===*/
-
-.logo-section {
-  background-color: #000000;
-  margin-top: 6rem;
-}
-
-.logos {
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem;
-}
 
 /* ==== NEW ARRIVALS SECTION ===== */
 
@@ -230,31 +181,6 @@ nav .options img {
   color: #f0f0f0;
 }
 
-/* ==== REVIEWS SECTION START ====*/
-
-.review-star {
-  display: flex;
-  gap: 6.49px;
-}
-
-.reviewer {
-  display: flex;
-}
-
-.reviewer img {
-  height: 24px;
-  width: 24px;
-}
-
-.reviews-card span {
-  color: #999999;
-}
-
-.reviewer p {
-  font-size: 20px;
-  font-weight: bold;
-}
-
 /*====  FOOTER SECTION START  ====*/
 footer {
   background-color: #f0f0f0;
@@ -279,11 +205,6 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 2rem;
-}
-
-.socials-card p {
-  font-size: 14px;
-  color: #999999;
 }
 
 .socials {
