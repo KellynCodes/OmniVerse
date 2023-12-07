@@ -1,6 +1,7 @@
 "use client";
 
 import React, { Component } from "react";
+// @ts-ignore
 import Image from "next/image";
 import { ReviewData } from "../../libs/data/products/product.review";
 import Slider from "react-slick";

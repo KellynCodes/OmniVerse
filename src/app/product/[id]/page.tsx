@@ -1,6 +1,8 @@
 "use client";
 
+// @ts-ignore
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+// @ts-ignore
 import { useParams } from "next/navigation";
 import React from "react";
 

@@ -2,6 +2,7 @@ import { ProductsData } from "../../libs/data/products/products";
 import React from "react";
 // @ts-ignore
 import Image from "next/image";
+// @ts-ignore
 import Link from "next/link";
 
 const Product = (): JSX.Element => {

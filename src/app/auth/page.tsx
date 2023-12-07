@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/shared/Button";
+// @ts-ignore
 import { useSearchParams } from "next/navigation";
 import React from "react";
 
