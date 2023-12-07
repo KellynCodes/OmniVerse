@@ -30,7 +30,7 @@ const Header = (): JSX.Element => {
             width={104}
             alt=""
           />
-          <h1 className="font-bold text-[2.5rem]">
+          <h1 className="hero-content-width font-bold text-[2.5rem]">
             FIND CLOTHES THAT MATCHES YOUR STYLE
           </h1>
           <p className="text-[1rem] text-primary">
@@ -43,7 +43,7 @@ const Header = (): JSX.Element => {
             label="Shop Now"
             link="/products"
           />
-          <div className="flex gap-3">
+          <div className="articles flex gap-3">
             <article>
               <h2 className="font-bold text-[2.5rem]">200+</h2>
               <p className="text-[1rem] text-primary">International Brands</p>
