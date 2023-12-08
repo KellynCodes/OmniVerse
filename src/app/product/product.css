@@ -1,0 +1,157 @@
+/*=== PRODUCT DETAILS PAGE ===*/
+.details-display {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1.3rem;
+  width: 100%;
+}
+
+.details-images {
+  display: grid;
+  grid-template-areas:
+    "two one"
+    "three one"
+    "four one";
+  width: 48%;
+}
+
+.details-image:nth-child(1) {
+  grid-area: one;
+  height: 530px;
+  width: 400px;
+}
+
+.details-image:nth-child(2) {
+  grid-area: two;
+}
+
+.details-image:nth-child(3) {
+  grid-area: three;
+}
+
+.details-image:nth-child(4) {
+  grid-area: four;
+}
+
+.product-details {
+  width: 55%;
+}
+
+.product-details-border {
+  background-color: #999999;
+  padding: 1rem;
+  border: 1px solid #999999;
+}
+
+.product-stars {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.product-stars p {
+  margin-left: 0.5rem;
+}
+
+.product-price {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.product-text {
+  color: #999999;
+}
+
+.colors {
+  display: flex;
+  gap: 1rem;
+}
+
+.quantity div {
+  display: flex;
+  align-items: center;
+  width: 13rem;
+  justify-content: space-evenly;
+  background-color: #f0f0f0;
+  border-radius: 2rem;
+  padding: 1rem;
+}
+
+.quantity div Image {
+  height: 24px;
+  width: 24px;
+}
+
+.quantity button {
+  background-color: #000000;
+  padding: 16px 54px;
+  border: none;
+  color: #ffffff;
+  border-radius: 62px;
+  width: 60%;
+}
+
+/*=== MEDIA QUERIES ===*/
+@media (max-width: 850px) {
+  .form {
+    left: 0px;
+    width: auto;
+  }
+
+  .details-display {
+    flex-direction: column;
+  }
+
+  .details-images {
+    width: 100%;
+  }
+
+  .product-details {
+    width: 100%;
+    margin: 0 2rem;
+  }
+}
+
+@media (max-width: 780px) {
+  .form {
+    left: 0px;
+    width: auto;
+  }
+
+  .form-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .form-container h1 {
+    font-size: 15px;
+    margin-right: 0rem;
+  }
+
+  .payment-form {
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .payment-form input[type="submit"] {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 14px 150px;
+    border-radius: 5px;
+  }
+
+  .checkout {
+    width: auto;
+    padding: 20px 24px;
+    border-radius: 20px;
+    border: 1px solid #f0f0f0;
+  }
+
+  .details-images {
+    gap: 1rem;
+    grid-template-areas:
+      "one one one"
+      "two three four";
+  }
+}

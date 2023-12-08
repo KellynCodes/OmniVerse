@@ -1,6 +1,7 @@
 import React from "react";
 import Product from "./Product";
 import { Button } from "../shared/Button";
+import { ProductsData } from "@/libs/data/products/products";
 
 const TopSelling = (): JSX.Element => {
   return (
@@ -10,10 +11,10 @@ const TopSelling = (): JSX.Element => {
     >
       <h1 className="uppercase text-[2.5rem] font-bold my-6">top selling</h1>
       <div className="flex mx-auto flex-wrap items-center justify-center my-4 h-fit w-full gap-3">
-        <Product />
+        <Product productData={ProductsData} />
       </div>
       <Button
-        customDesign="mt-2 border border-accent bg-accent-white text-accent-light"
+        className="mt-2 border  px-7 py-3 border-accent bg-accent-white text-accent-light"
         link="top-selling"
         label="View All"
       />

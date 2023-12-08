@@ -23,9 +23,9 @@ export default class Reviews extends Component {
 
   render() {
     return (
-      <section className="my-5 h-[70vh] p-3">
+      <section className="my-5 h-[70vh] md:h-[30rem] p-3">
         <div className="flex justify-between items-center w-full h-[4rem] my-4">
-          <h1 className="align-left font-bold text-[2rem] my-8">
+          <h1 className="align-left font-bold text-lg md:text-[2rem] my-8">
             OUR HAPPY CUSTOMERS
           </h1>
           <div className="flex w-[4rem] items-center justify-between">
@@ -51,7 +51,7 @@ export default class Reviews extends Component {
           {ReviewData &&
             ReviewData.map((review) => (
               <div
-                className="w-[390px] h-[220px] p-6 border border-black border-opacity-10 justify-evenly items-start inline-flex rounded-[1.25rem] "
+                className="w-[24.375rem] h-[16.75rem] md:h-[13.75rem] p-6 border border-black border-opacity-10 justify-evenly items-start inline-flex rounded-[1.25rem] "
                 key={review.id}
               >
                 <div className="flex flex-col items-start">
