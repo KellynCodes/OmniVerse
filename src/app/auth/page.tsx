@@ -20,7 +20,7 @@ const Auth = () => {
       </h1>
       <div className="flex w-[80%] items-center justify-between gap-3">
         <Button
-          customDesign="bg-accent text-white hover:bg-accent-light"
+          className="bg-accent text-white hover:bg-accent-light"
           link={redirectUrl == null ? "/" : redirectUrl!}
           label="Proceed"
         />
