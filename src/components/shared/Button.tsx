@@ -5,6 +5,7 @@ interface ButtonProps {
   label: string;
   link?: string;
   className?: string;
+  style?: {};
   onClick?: () => void;
 }
 
@@ -13,12 +14,14 @@ export const Button: React.FC<ButtonProps> = ({
   link,
   className,
   onClick,
+  style,
 }) => {
   if (link != null && link.length > 0) {
     return (
       <Link
+        style={style}
         href={link}
-        className={`${className} border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base w-[13.625rem] h-[3.25rem] text-accent text-[0.9rem] transition-all`}
+        className={`${className} border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base w-[13.625rem] h-[3.25rem] text-[0.9rem] transition-all`}
       >
         {label}
       </Link>
@@ -26,8 +29,9 @@ export const Button: React.FC<ButtonProps> = ({
   }
   return (
     <button
+      style={style}
       onClick={onClick}
-      className={`${className} border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base w-auto h-auto text-accent text-[0.9rem] transition-all`}
+      className={`${className} border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base w-auto h-auto  text-[0.9rem] transition-all`}
     >
       {label}
     </button>

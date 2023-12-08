@@ -22,7 +22,7 @@ export default class Reviews extends Component {
 
   render() {
     return (
-      <section className="my-5 h-[70vh] md:h-[30rem] p-3">
+      <section className="my-5 h-[100vh] md:h-[75vh] p-3">
         <div className="flex justify-between items-center w-full h-[4rem] my-4">
           <h1 className="align-left font-bold text-lg md:text-[2rem] my-8">
             OUR HAPPY CUSTOMERS
