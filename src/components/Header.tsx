@@ -44,7 +44,7 @@ const Header = (): JSX.Element => {
             label="Shop Now"
             link="/products"
           />
-          <div className="articles flex gap-3">
+          <div className="flex gap-3">
             <article>
               <h2 className="font-bold  text-lg md:text-[2.5rem]">200+</h2>
               <p className="text-[1rem] text-primary">International Brands</p>
