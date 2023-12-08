@@ -1,5 +1,6 @@
 import Product from "@/components/products/Product";
 import { Button } from "@/components/shared/Button";
+import { ProductsData } from "@/libs/data/products/products";
 import React from "react";
 
 const TopSellingList = () => {
@@ -10,10 +11,10 @@ const TopSellingList = () => {
     >
       <h1 className="uppercase text-[2.5rem] font-bold my-6">top selling</h1>
       <div className="flex mx-auto flex-wrap items-center justify-center my-4 h-fit w-full gap-3">
-        <Product />
+        <Product productData={ProductsData} />
       </div>
       <Button
-        customDesign="mt-2 border border-accent bg-accent-white text-accent-light"
+        className="mt-2 border border-accent bg-accent-white text-accent-light"
         link="top-selling"
         label="Load More"
       />
