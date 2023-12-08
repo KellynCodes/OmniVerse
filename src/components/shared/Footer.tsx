@@ -4,7 +4,7 @@ import Image from "next/image";
 const Footer = (): React.JSX.Element => {
   return (
     <footer className="relative">
-      <div className="bg-accent absolute z-[99] text-[#f0f0f0] p-5 w-[80vw] top-[-17%] left-[4%] right-[4%] my-0 mx-auto rounded-xl gap-5">
+      <div className="bg-accent absolute z-[99] text-[#f0f0f0] p-5 w-[80vw] top-[-15%] sm:top-[-17%] left-[4%] right-[4%] my-0 mx-auto rounded-xl gap-5">
         <div className="flex flex-wrap justify-between items-center gap-3">
           <div>
             <h1 className="font-bold text-sm md:text-3xl leading-10 md:leading-[4rem]">
@@ -44,7 +44,7 @@ const Footer = (): React.JSX.Element => {
             <Image src="/images/4.png" width={28} height={28} alt="" />
           </div>
         </div>
-        <div className="">
+        <div className="footer-details">
           <h2 className="font-bold tracking-widest leading-5 uppercase color-[#999999]">
             Company
           </h2>
@@ -105,8 +105,8 @@ const Footer = (): React.JSX.Element => {
 
       <hr />
 
-      <p className="text-[#999999] text-[0.2rem] p-6">
-        OmniVerse © 2000-2023, All Rights Reserved
+      <p className="text-[#999999] text-[1rem] p-6">
+        OmniVerse © 2000-{new Date().getFullYear()}, All Rights Reserved
       </p>
     </footer>
   );
