@@ -1,58 +1,70 @@
-
-const productProtocolDefinition = {
-    protocol: 'https://OmniVerse.com/product',
+const ProtocolDefinition = {
+    protocol: "https://OmniVerse",
     published: true,
     types: {
-        product: {
-            dataFormats: ['application/json'],
-            schema: 'https://OmniVerse.com/schemas/productSchema',
-            fields: {
-                name: 'string',
-                price: 'number',
-                description: 'string',
-
-            },
+        Image: {
+            dataFormats: ["image/png", "image/jpeg"]
         },
-        image: {
-            dataFormats: ['image/png', 'image/jpeg'],
+        ProductName: {
+            dataFormats: ["application/json"]
         },
+        Price: {
+            dataFormats: ["application/json"]
+        },
+        Rating: {
+            dataFormats: ["application/json"]
+        }
     },
     structure: {
-        product: {
+        Image: {
             $actions: [
                 {
-                    who: 'admin',
-                    can: 'create',
+                    who: "anyone",
+                    can: "write"
                 },
                 {
-                    who: 'admin',
-                    can: 'update',
+                    who: "anyone",
+                    can: "read"
+                }
+            ]
+        },
+        ProductName: {
+            $actions: [
+                {
+                    who: "anyone",
+                    can: "write"
                 },
                 {
-                    who: 'user',
-                    can: 'read',
+                    who: "anyone",
+                    can: "read"
+                }
+            ]
+        },
+        Price: {
+            $actions: [
+                {
+                    who: "anyone",
+                    can: "write"
                 },
-            ],
-            image: {
-                $actions: [
-                    {
-                        who: 'admin',
-                        can: 'write',
-                    },
-                    {
-                        who: 'user',
-                        can: 'read',
-                    },
-                ],
-            },
+                {
+                    who: "anyone",
+                    can: "read"
+                }
+            ]
         },
-    },
-    roles: {
-        user: {
-            can: ['read'],
-        },
-        admin: {
-            can: ['create', 'update', 'write', 'read'],
-        },
-    },
+        Rating: {
+            $actions: [
+                {
+                    who: "anyone",
+                    can: "write"
+                },
+                {
+                    who: "anyone",
+                    can: "read"
+                }
+            ]
+        }
+    }
 };
+
+export default ProtocolDefinition;

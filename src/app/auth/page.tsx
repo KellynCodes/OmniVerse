@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/shared/Button";
+// @ts-ignore
 import { useSearchParams } from "next/navigation";
 import React from "react";
 
@@ -20,7 +21,7 @@ const Auth = () => {
       </h1>
       <div className="flex w-[80%] items-center justify-between gap-3">
         <Button
-          className="bg-accent text-white hover:bg-accent-light"
+          className="bg-accent px-7 py-3 text-white hover:bg-accent-light"
           link={redirectUrl == null ? "/" : redirectUrl!}
           label="Proceed"
         />

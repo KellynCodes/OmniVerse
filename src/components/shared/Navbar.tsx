@@ -75,7 +75,7 @@ export const NavBar = (): React.JSX.Element => {
       <div className="w-[47%] sm:w-[8%] flex items-center justify-evenly md:justify-center pr-4">
         <Image
           className=""
-          src="/images/Vector-2.jpg"
+          src="/svg/cart.svg"
           width={33}
           height={33}
           alt="Account"
