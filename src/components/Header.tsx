@@ -47,15 +47,15 @@ const Header = (): JSX.Element => {
             link="/products"
           />
           <div className="flex gap-3">
-            <article>
+            <article className="flex flex-col items-center justify-between gap-3 p-3">
               <h2 className="font-bold  text-lg md:text-[2.5rem]">200+</h2>
               <p className="text-[1rem] text-primary">International Brands</p>
             </article>
-            <article>
+            <article className="flex flex-col items-center justify-between gap-3 border-gray-300 border-x-2 p-3">
               <h2 className="font-bold  text-lg md:text-[2.5rem]">2,000+</h2>
               <p className="text-[1rem] text-primary">High-Quality Products</p>
             </article>
-            <article className="border border-gray-500 border-r-2">
+            <article className="flex flex-col items-center justify-between  gap-3 p-3">
               <h2 className="font-bold text-lg md:text-[2.5rem]">30,000+</h2>
               <p className="text-[1rem] text-primary">Happy Customers</p>
             </article>
