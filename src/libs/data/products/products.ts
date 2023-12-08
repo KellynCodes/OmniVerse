@@ -23,7 +23,7 @@ export const ProductsData: ProductDto[] = [
     price: 240,
   },
   {
-    id: 1,
+    id: 3,
     productImg: "/images/image-9.png",
     width: 295,
     height: 298,
@@ -33,7 +33,7 @@ export const ProductsData: ProductDto[] = [
     price: 180,
   },
   {
-    id: 1,
+    id: 4,
     productImg: "/images/image-10.png",
     height: 295,
     width: 298,

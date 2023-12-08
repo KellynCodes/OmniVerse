@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import Image from "next/image";
 import { ReviewData } from "../../libs/data/products/product.review";
 import Slider from "react-slick";
+import { settings } from "@/libs/utils/slider.setting";
 
 export default class Reviews extends Component {
   constructor(props: any) {
@@ -20,49 +21,10 @@ export default class Reviews extends Component {
   }
 
   render() {
-    const settings = {
-      className: "flex items-center justify-between w-full",
-      dots: true,
-      draggable: true,
-      infinite: true,
-      autoPlay: true,
-      speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      initialSlide: 0,
-      pauseOnHover: true,
-      cssEase: "linear",
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: true,
-            dots: true,
-          },
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            initialSlide: 2,
-          },
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-          },
-        },
-      ],
-    };
     return (
-      <section className="my-5 h-[70vh] p-3">
+      <section className="my-5 h-[70vh] md:h-[30rem] p-3">
         <div className="flex justify-between items-center w-full h-[4rem] my-4">
-          <h1 className="align-left font-bold text-[2rem] my-8">
+          <h1 className="align-left font-bold text-lg md:text-[2rem] my-8">
             OUR HAPPY CUSTOMERS
           </h1>
           <div className="flex w-[4rem] items-center justify-between">
@@ -88,7 +50,7 @@ export default class Reviews extends Component {
           {ReviewData &&
             ReviewData.map((review) => (
               <div
-                className="w-[390px] h-[220px] p-6 border border-black border-opacity-10 justify-evenly items-start inline-flex rounded-[1.25rem] "
+                className="w-[24.375rem] h-[16.75rem] md:h-[13.75rem] p-6 border border-black border-opacity-10 justify-evenly items-start inline-flex rounded-[1.25rem] "
                 key={review.id}
               >
                 <div className="flex flex-col items-start">
