@@ -1,17 +1,20 @@
-import { ProductsData } from "../../libs/data/products/products";
 import React from "react";
+import { ProductDto } from "../../libs/types/Dtos/product.dto";
+// @ts-ignore
 import Image from "next/image";
 import Link from "next/link";
 
-const Product = (): JSX.Element => {
-  if (ProductsData.length <= 0) {
+const Product: React.FC<{ productData: ProductDto[] }> = ({
+  productData,
+}): JSX.Element => {
+  if (productData.length <= 0) {
     return <p>No product found.</p>;
   }
 
   return (
     <>
-      {ProductsData &&
-        ProductsData.map((product) => (
+      {productData &&
+        productData.map((product) => (
           <Link
             href={`auth?redirectUrl=/product/${product.id}`}
             key={product.id}

@@ -10,7 +10,7 @@ export default function Home() {
       <Header />
       {/* LOGO SECTION */}
       <div className="bg-accent">
-        <div className="flex justify-between p-6">
+        <div className="flex justify-between gap-8 flex-wrap w-auto p-6">
           <Image src="/images/versace.png" width={167} height={34} alt="" />
           <Image src="/images/zara-logo.png" width={92} height={38} alt="" />
           <Image src="/images/gucci-logo.png" width={157} height={36} alt="" />
@@ -18,9 +18,7 @@ export default function Home() {
           <Image src="/images/calvin.png" width={208} height={34} alt="" />
         </div>
       </div>
-
       <Products />
-
       <TopSelling />
       <Reviews />
     </main>
