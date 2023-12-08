@@ -41,7 +41,7 @@ section {
   /* NAvbar start */
   .navlinks-open {
     background: rgb(0, 0, 0, 0.5);
-    @apply w-[100vw] h-[85vh] bottom-0 z-40 fixed;
+    @apply w-[100vw] h-[85vh] bottom-0 z-[9999] fixed;
   }
 
   .open {
@@ -364,37 +364,4 @@ section {
   margin: 0 0.5rem;
   border-radius: 2rem;
   font-size: 2rem;
-}
-
-@media (max-width: 450px) {
-  .form-container h1 {
-    font-size: 15px;
-    margin-right: 0rem;
-  }
-
-  .payment-form {
-    width: 100%;
-    padding: 0 2rem;
-  }
-
-  .payment-form input[type="submit"] {
-    background-color: #000000;
-    color: #ffffff;
-    padding: 14px 150px;
-    border-radius: 5px;
-  }
-
-  .checkout {
-    width: auto;
-    padding: 20px 24px;
-    border-radius: 20px;
-    border: 1px solid #f0f0f0;
-  }
-
-  .details-images {
-    gap: 1rem;
-    grid-template-areas:
-      "one one one"
-      "two three four";
-  }
 }

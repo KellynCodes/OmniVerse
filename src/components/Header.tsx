@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 // @ts-ignore
 import Image from "next/image";
@@ -8,7 +10,7 @@ const Header = (): JSX.Element => {
     <header className="relative w-[100vw] h-[90vh] mt-4">
       <Image
         src="/images/hero.jpg"
-        className="absolute inset-0 w-[100vw]  h-[90vh] bg-cover"
+        className="absolute inset-0 w-[100vw] h-[90vh] bg-cover"
         width={1440}
         height={650}
         alt=""
@@ -40,7 +42,7 @@ const Header = (): JSX.Element => {
             style.
           </p>
           <Button
-            className="bg-accent text-white hover:bg-accent-light"
+            className="px-7 py-3 bg-accent text-white hover:bg-accent-light"
             label="Shop Now"
             link="/products"
           />
@@ -53,7 +55,7 @@ const Header = (): JSX.Element => {
               <h2 className="font-bold  text-lg md:text-[2.5rem]">2,000+</h2>
               <p className="text-[1rem] text-primary">High-Quality Products</p>
             </article>
-            <article>
+            <article className="border border-gray-500 border-r-2">
               <h2 className="font-bold text-lg md:text-[2.5rem]">30,000+</h2>
               <p className="text-[1rem] text-primary">Happy Customers</p>
             </article>
