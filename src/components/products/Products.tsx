@@ -14,7 +14,7 @@ const Products = (): JSX.Element => {
         <Product productData={ProductsData} />
       </div>
       <Button
-        className="mt-2 border border-accent bg-accent-white text-accent-light"
+        className="mt-2  px-7 py-3 border border-accent bg-accent-white text-accent-light"
         label="View All"
         link="/products"
       />
