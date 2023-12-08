@@ -2,6 +2,7 @@ import React from "react";
 import { ProductDto } from "../../libs/types/Dtos/product.dto";
 // @ts-ignore
 import Image from "next/image";
+// @ts-ignore
 import Link from "next/link";
 
 const Product: React.FC<{ productData: ProductDto[] }> = ({

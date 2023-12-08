@@ -2,6 +2,7 @@
 import Image from "next/image";
 import "../product.css";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+// @ts-ignore
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
 import { Button } from "@/components/shared/Button";
