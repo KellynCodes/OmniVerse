@@ -1,6 +1,7 @@
 import React from "react";
+import "../payment.css";
 
-const page = () => {
+const Payment = () => {
   return (
     <form className="payment-form" action="">
       <input type="text" placeholder="Enter DID" />
@@ -16,4 +17,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Payment;

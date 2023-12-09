@@ -10,7 +10,7 @@ export const NavBar = (): React.JSX.Element => {
   const [isNavbar, setNavbar] = useState(false);
 
   const toggleNavbar = () => {
-    if (window.innerWidth > 650) {
+    if (window.innerWidth > 640) {
       return;
     }
     setNavbar(!isNavbar);
@@ -70,16 +70,18 @@ export const NavBar = (): React.JSX.Element => {
           height={22}
           alt=""
         />
-        <SearchProduct search={`shoe`} />
+        <SearchProduct search={"shoe"} />
       </div>
       <div className="w-[47%] sm:w-[8%] flex items-center justify-evenly md:justify-center pr-4">
-        <Image
-          className=""
-          src="/images/Vector-2.jpg"
-          width={33}
-          height={33}
-          alt="Account"
-        />
+        <Link href="/cart">
+          <Image
+            className="cursor-pointer"
+            src="/svg/cart.svg"
+            width={26.13}
+            height={23.91}
+            alt="Cart"
+          />
+        </Link>
         <div className="block cursor-pointer sm:hidden" onClick={toggleNavbar}>
           Menu
         </div>

@@ -1,7 +1,7 @@
 import { Web5 } from 'https://cdn.jsdelivr.net/npm/@web5/api@0.8.2/dist/browser.mjs';;
 // Initiate web5 connect
 const { web5, did: myDid } = await Web5.connect();
-import {protocolDefinition} from './helper/ProductProtocol';
+import ProtocolDefinition from './helper/ProductProtocol';
 
 
 
@@ -9,7 +9,7 @@ import {protocolDefinition} from './helper/ProductProtocol';
 async function configProtocol() {
     const { protocol, status } = await web5.dwn.protocols.configure({
         message: {
-            definition: protocolDefinition,
+            definition: ProtocolDefinition,
         },
     });
     protocol.send(myDid);
@@ -23,7 +23,7 @@ async function queryProtocol() {
     const { protocols } = await web5.dwn.protocols.query({
         message: {
             filter: {
-                protocol: 'test3',
+                protocol: 'OmniVerse',
             },
         },
     });
