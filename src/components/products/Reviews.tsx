@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import Image from "next/image";
 import { ReviewData } from "../../libs/data/products/product.review";
 import Slider from "react-slick";
-import { settings } from "@/libs/utils/slider.setting";
+import { settings } from "@/libs/services/slider.setting";
 
 export default class Reviews extends Component {
   constructor(props: any) {

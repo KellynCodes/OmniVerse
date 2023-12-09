@@ -1,0 +1,19 @@
+.alert {
+  @apply fixed top-[-100%] left-[30%] z-[999999];
+  transition: all 1s ease-in-out;
+}
+
+@media screen and (max-width: 500px) {
+  .alert {
+    width: 96vw;
+    left: 2%;
+  }
+
+  .alert.show {
+    top: 5% !important;
+  }
+}
+
+.alert.show {
+  top: 10% !important;
+}

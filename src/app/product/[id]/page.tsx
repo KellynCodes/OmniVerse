@@ -6,43 +6,50 @@ import { useParams, useSearchParams } from "next/navigation";
 
 import React, { useState } from "react";
 import { Button } from "@/components/shared/Button";
-import RatingAndReviews from "@/components/products/RatingAndReviews";
-import MoreProductDetails from "@/components/products/MoreProductDetails";
-import Faqs from "@/components/Faqs";
-import Link from "next/link";
-import { useRouter } from "next/router";
+
+import { ProductsData } from "@/libs/data/products/products";
+import { ProductDto } from "@/libs/types/Dtos/product.dto";
+import Alert from "@/components/alert/Alert";
+import { useRouter } from "next/navigation";
+import { handleQuantityIncreaseORDecrease } from "@/libs/services/quantityIncrement";
+import { getProduct } from "@/libs/services/filterProuctById";
+import { RenderCurrentPage } from "@/components/shared/page.toggler";
 
 const ProductDetail = (): JSX.Element => {
   const [productQuantity, setProductQuantity] = useState(1);
   const [page, setPage] = useState("");
   const searchParams = useSearchParams();
   const params = useParams();
-
-  const renderCurrentPage = (): React.ReactNode => {
-    switch (page) {
-      case "productDetails":
-        return <MoreProductDetails />;
-      case "ratingAndReview":
-        return <RatingAndReviews />;
-      case "faq":
-        return <Faqs />;
-      default:
-        return <RatingAndReviews />;
-    }
+  const router = useRouter();
+  const { id } = params;
+  const product = getProduct(id);
+  const totalPrice = (): number => {
+    return product?.price! * productQuantity;
   };
+
+  if (product == null) {
+    const alert = (
+      <Alert errorMessage="Product Not found! Navigating to Products page..." />
+    );
+    setTimeout(() => {
+      router.push("/products");
+    }, 3000);
+    return alert;
+  }
 
   return (
     <>
-      <div className="details-display my-8 px-6 pb-10 ">
-        <div className="details-images">
-          <Image
-            className="details-image"
-            src="/images/details1.png"
-            width={1980}
-            height={2880}
-            alt=""
-          />
-          <Image
+      <div className="container flex my-8 py-10 flex-col">
+        <div className="details-display  px-0 md:px-6 ">
+          <div className="details-images">
+            <Image
+              className="details-image rounded-md"
+              src={product?.productImg!}
+              width={1980}
+              height={2880}
+              alt=""
+            />
+            {/* <Image
             className="details-image"
             src="/images/details2.png"
             width={152}
@@ -62,104 +69,148 @@ const ProductDetail = (): JSX.Element => {
             width={152}
             height={167}
             alt=""
-          />
-        </div>
-        <div className="product-details flex flex-col gap-2">
-          <h1 className="text-3xl md:text-[2.5rem]">
-            One Life Graphic T-shirt
-          </h1>
-          <div className="product-stars">
-            <Image src="/images/Star-1.png" width={24} height={24} alt="" />
-            <Image src="/images/Star-2.png" width={24} height={24} alt="" />
-            <Image src="/images/Star-3.png" width={24} height={24} alt="" />
-            <Image src="/images/Star-4.png" width={24} height={24} alt="" />
-            <Image src="/images/Star-6.png" width={9} height={17} alt="" />
-            <p>4.5/5</p>
+          /> */}
           </div>
-          <p className="product-price">$260</p>
-          <p className="product-text">
-            This graphic t-shirt which is perfect for any occasion. Crafted from
-            a soft and breathable fabric, it offers superior comfort and style.
-          </p>
-          <hr className="my-3" />
-          <div className="color-section">
-            <p className="product-text my-3">Select Colors</p>
-            <div className="colors">
-              <div className="flex items-center justify-center w-10 h-10 bg-[#4f4631] rounded-full">
+          <div className="product-details flex flex-col gap-2">
+            <h1 className="text-3xl md:text-[2.5rem]">{product?.title}</h1>
+            <div className="product-stars">
+              <Image src="/images/Star-1.png" width={24} height={24} alt="" />
+              <Image src="/images/Star-2.png" width={24} height={24} alt="" />
+              <Image src="/images/Star-3.png" width={24} height={24} alt="" />
+              <Image src="/images/Star-4.png" width={24} height={24} alt="" />
+              <Image src="/images/Star-6.png" width={9} height={17} alt="" />
+              <p>{product?.rating}</p>
+            </div>
+            <p className="product-price">${totalPrice()}</p>
+            <p className="product-text">
+              This graphic t-shirt which is perfect for any occasion. Crafted
+              from a soft and breathable fabric, it offers superior comfort and
+              style.
+            </p>
+            <hr className="my-3" />
+            <div className="color-section">
+              <p className="product-text my-3">Select Colors</p>
+              <div className="colors">
+                <div className="flex items-center justify-center w-10 h-10 bg-[#4f4631] rounded-full">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="white"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g id="Frame">
+                      <path
+                        id="Vector"
+                        d="M14.5306 5.03063L6.5306 13.0306C6.46092 13.1005 6.37813 13.156 6.28696 13.1939C6.1958 13.2317 6.09806 13.2512 5.99935 13.2512C5.90064 13.2512 5.8029 13.2317 5.71173 13.1939C5.62057 13.156 5.53778 13.1005 5.4681 13.0306L1.9681 9.53063C1.89833 9.46087 1.84299 9.37804 1.80524 9.28689C1.76748 9.19574 1.74805 9.09804 1.74805 8.99938C1.74805 8.90072 1.76748 8.80302 1.80524 8.71187C1.84299 8.62072 1.89833 8.53789 1.9681 8.46813C2.03786 8.39837 2.12069 8.34302 2.21184 8.30527C2.30299 8.26751 2.40069 8.24808 2.49935 8.24808C2.59801 8.24808 2.69571 8.26751 2.78686 8.30527C2.87801 8.34302 2.96083 8.39837 3.0306 8.46813L5.99997 11.4375L13.4693 3.96938C13.6102 3.82848 13.8013 3.74933 14.0006 3.74933C14.1999 3.74933 14.391 3.82848 14.5318 3.96938C14.6727 4.11028 14.7519 4.30137 14.7519 4.50063C14.7519 4.69989 14.6727 4.89098 14.5318 5.03188L14.5306 5.03063Z"
+                        fill="white"
+                      />
+                    </g>
+                  </svg>
+                </div>
                 <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="white"
                   xmlns="http://www.w3.org/2000/svg"
+                  width="37"
+                  height="37"
+                  viewBox="0 0 37 37"
+                  fill="none"
                 >
-                  <g id="Frame">
-                    <path
-                      id="Vector"
-                      d="M14.5306 5.03063L6.5306 13.0306C6.46092 13.1005 6.37813 13.156 6.28696 13.1939C6.1958 13.2317 6.09806 13.2512 5.99935 13.2512C5.90064 13.2512 5.8029 13.2317 5.71173 13.1939C5.62057 13.156 5.53778 13.1005 5.4681 13.0306L1.9681 9.53063C1.89833 9.46087 1.84299 9.37804 1.80524 9.28689C1.76748 9.19574 1.74805 9.09804 1.74805 8.99938C1.74805 8.90072 1.76748 8.80302 1.80524 8.71187C1.84299 8.62072 1.89833 8.53789 1.9681 8.46813C2.03786 8.39837 2.12069 8.34302 2.21184 8.30527C2.30299 8.26751 2.40069 8.24808 2.49935 8.24808C2.59801 8.24808 2.69571 8.26751 2.78686 8.30527C2.87801 8.34302 2.96083 8.39837 3.0306 8.46813L5.99997 11.4375L13.4693 3.96938C13.6102 3.82848 13.8013 3.74933 14.0006 3.74933C14.1999 3.74933 14.391 3.82848 14.5318 3.96938C14.6727 4.11028 14.7519 4.30137 14.7519 4.50063C14.7519 4.69989 14.6727 4.89098 14.5318 5.03188L14.5306 5.03063Z"
-                      fill="white"
-                    />
-                  </g>
+                  <circle cx="18.5" cy="18.5" r="18.5" fill="#314F4A" />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="37"
+                  height="37"
+                  viewBox="0 0 37 37"
+                  fill="none"
+                >
+                  <circle cx="18.5" cy="18.5" r="18.5" fill="#31344F" />
                 </svg>
               </div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="37"
-                height="37"
-                viewBox="0 0 37 37"
-                fill="none"
-              >
-                <circle cx="18.5" cy="18.5" r="18.5" fill="#314F4A" />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="37"
-                height="37"
-                viewBox="0 0 37 37"
-                fill="none"
-              >
-                <circle cx="18.5" cy="18.5" r="18.5" fill="#31344F" />
-              </svg>
             </div>
-          </div>
-          <hr className="my-2" />
-          <div className="">
-            <p className="my-1">Choose Size</p>
-            <div className="w-full flex gap-3 flex-wrap">
-              <Button
-                className="capitalize hover:bg-accent-light hover:text-white px-8 py-3 border border-border"
-                label="small"
-              />
-              <Button
-                className="capitalize hover:bg-accent-light hover:text-white px-8 py-3 border border-border"
-                label="medium"
-              />
-              <Button
-                style={{ backgroundColor: "black" }}
-                className="bg-accent-light text-white px-8 py-3 border"
-                label="Large"
-              />
+            <hr className="my-2" />
+            <div className="">
+              <p className="my-1">Choose Size</p>
+              <div className="w-full flex gap-3 flex-wrap">
+                <Button
+                  className="capitalize hover:bg-accent-light hover:text-white px-8 py-3 border border-border"
+                  label="small"
+                />
+                <Button
+                  className="capitalize hover:bg-accent-light hover:text-white px-8 py-3 border border-border"
+                  label="medium"
+                />
+                <Button
+                  style={{ backgroundColor: "black" }}
+                  className="bg-accent-light text-white px-8 py-3 border"
+                  label="Large"
+                />
 
-              <Button
-                className="capitalize  hover:bg-accent-light hover:text-white px-8 py-3 border border-border"
-                label="x-large"
-              />
+                <Button
+                  className="capitalize  hover:bg-accent-light hover:text-white px-8 py-3 border border-border"
+                  label="x-large"
+                />
+              </div>
             </div>
-          </div>
-          <br className="border" />
-          <div className="quantity flex flex-wrap gap-4">
-            <div className="w-[35%]">
-              <Image src="/images/minus.png" width={24} height={24} alt="" />
-              <p>{productQuantity}</p>
-              <Image src="/images/plus.png" width={24} height={24} alt="" />
+            <br className="border" />
+            <div className="flex flex-wrap gap-4">
+              <div className="w-full md:w-[13rem] flex items-center justify-evenly bg-[#f0f0f0] rounded-2xl p-1">
+                <div
+                  className="bg-[#31344F]  flex items-center justify-center w-12 h-12 rounded-full p-2 cursor-pointer"
+                  onClick={() =>
+                    setProductQuantity(
+                      handleQuantityIncreaseORDecrease(
+                        "decrement",
+                        product!,
+                        productQuantity
+                      )
+                    )
+                  }
+                >
+                  <Image
+                    className="text-white"
+                    src="/images/minus.png"
+                    width={24}
+                    height={24}
+                    alt=""
+                  />
+                </div>
+                <h5 className="font-bold">{productQuantity}</h5>
+                <div
+                  className="bg-[#314F4A] cursor-pointer flex items-center justify-center w-12 h-12 rounded-full p-2"
+                  onClick={() =>
+                    setProductQuantity(
+                      handleQuantityIncreaseORDecrease(
+                        "increment",
+                        product!,
+                        productQuantity
+                      )
+                    )
+                  }
+                >
+                  <Image
+                    className="text-white"
+                    src="/images/plus.png"
+                    width={24}
+                    height={24}
+                    alt=""
+                  />
+                </div>
+              </div>
+              <button
+                className="w-full md:w-[65%] capitalize md:px-12 text-white bg-accent  border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base py-3 px-7 h-auto  text-[0.9rem] transition-all"
+                onClick={() => {}}
+              >
+                Add to Cart
+              </button>
             </div>
-            <Button
-              className="w-[65%] capitalize md:px-12 text-white bg-accent"
-              link={`/cart?productId=${"product.productId"}?category=${"product.category"}`}
-              label="Add to Cart"
-            />
           </div>
         </div>
+        <Button
+          className="w-full mx-auto md:w-1/2 mt-6 py-5 px-7 text-white bg-accent"
+          link={`/checkout?productId=${product?.id}`}
+          label="Proceed to Checkout"
+        />
       </div>
 
       <section className="w-full min-h-screen p-3">
@@ -180,7 +231,7 @@ const ProductDetail = (): JSX.Element => {
             FAQs
           </li>
         </ul>
-        <div>{renderCurrentPage()}</div>
+        <div>{RenderCurrentPage(page)}</div>
       </section>
     </>
   );
