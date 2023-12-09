@@ -43,12 +43,11 @@ const page = () => {
             </div>
           </div>
 
-          <br className="border"></br>
           <div className="cart-container">
             <Image src="/images/cart2.png" width={128} height={187} alt="cart" />
             <div className="cart-details">
               <div className="cart-details-info">
-                <h2>Gradient Graphic T-shirt</h2>
+                <h2>SKINNY FIT JEANS</h2>
                 <p>
                   Size: <span>Large</span>
                 </p>
@@ -82,7 +81,7 @@ const page = () => {
           <Image src="/images/cart3.png" width={128} height={187} alt="cart" />
             <div className="cart-details">
               <div className="cart-details-info">
-                <h2>Gradient Graphic T-shirt</h2>
+                <h2>CHECKERED SHIRT</h2>
                 <p>
                   Size: <span>Large</span>
                 </p>
