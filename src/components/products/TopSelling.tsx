@@ -14,7 +14,7 @@ const TopSelling = (): JSX.Element => {
         <Product productData={ProductsData} />
       </div>
       <Button
-        className="mt-2 border  px-7 py-3 border-accent bg-accent-white text-accent-light"
+        className="mt-8 border  px-7 py-3 border-accent bg-accent-white text-accent-light"
         link="top-selling"
         label="View All"
       />
