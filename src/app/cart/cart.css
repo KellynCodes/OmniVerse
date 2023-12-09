@@ -14,7 +14,7 @@ text-transform: uppercase;
 
 .cart-grid {
   display: grid;
-  grid-template-columns: 58% 40%;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2%;
   align-items: center;
   margin: 1rem 0;
