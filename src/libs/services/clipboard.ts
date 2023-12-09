@@ -1,4 +1,4 @@
-import { AlertDto } from "./../types/Dtos/alert.dto";
+import { AlertDto } from "../types/Dtos/alert.dto";
 export const CopyText = async (
   textContent: string | undefined
 ): Promise<AlertDto> => {
