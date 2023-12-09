@@ -9,14 +9,18 @@ import { Button } from "@/components/shared/Button";
 import RatingAndReviews from "@/components/products/RatingAndReviews";
 import MoreProductDetails from "@/components/products/MoreProductDetails";
 import Faqs from "@/components/Faqs";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { ProductsData } from "@/libs/data/products/products";
+import { ProductDto } from "@/libs/types/Dtos/product.dto";
+import Alert from "@/components/alert/Alert";
+import { useRouter } from "next/navigation";
 
 const ProductDetail = (): JSX.Element => {
   const [productQuantity, setProductQuantity] = useState(1);
   const [page, setPage] = useState("");
   const searchParams = useSearchParams();
   const params = useParams();
+  const router = useRouter();
+  const { id } = params;
 
   const renderCurrentPage = (): React.ReactNode => {
     switch (page) {
@@ -31,13 +35,36 @@ const ProductDetail = (): JSX.Element => {
     }
   };
 
+  const product = (): ProductDto | null => {
+    const productId = Number(id);
+    if (isNaN(productId)) {
+      console.log("product was not a number", id);
+      return null;
+    }
+    let productData: ProductDto | null = null;
+    ProductsData.filter((x) => x.id == productId).map((product) => {
+      productData = product;
+    });
+    return productData;
+  };
+
+  if (product() == null) {
+    const alert = (
+      <Alert errorMessage="Product Not found! Navigating to Product page..." />
+    );
+    setTimeout(() => {
+      router.push("/products");
+    }, 2000);
+    return alert;
+  }
+
   return (
     <>
       <div className="details-display my-8 px-6 pb-10 ">
         <div className="details-images">
           <Image
             className="details-image"
-            src="/images/details1.png"
+            src={product()?.productImg!}
             width={1980}
             height={2880}
             alt=""
@@ -74,9 +101,9 @@ const ProductDetail = (): JSX.Element => {
             <Image src="/images/Star-3.png" width={24} height={24} alt="" />
             <Image src="/images/Star-4.png" width={24} height={24} alt="" />
             <Image src="/images/Star-6.png" width={9} height={17} alt="" />
-            <p>4.5/5</p>
+            <p>{product()?.rating}</p>
           </div>
-          <p className="product-price">$260</p>
+          <p className="product-price">${product()?.price}</p>
           <p className="product-text">
             This graphic t-shirt which is perfect for any occasion. Crafted from
             a soft and breathable fabric, it offers superior comfort and style.
