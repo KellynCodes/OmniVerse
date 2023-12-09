@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CopyText } from "@/libs/utils/clipboard";
+import { CopyText } from "@/libs/services/clipboard";
 import Alert from "@/components/alert/Alert";
 import { AlertDto } from "@/libs/types/Dtos/alert.dto";
 

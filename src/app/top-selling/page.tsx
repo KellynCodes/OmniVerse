@@ -14,7 +14,7 @@ const TopSellingList = () => {
         <Product productData={ProductsData} />
       </div>
       <Button
-        className="mt-2 border border-accent bg-accent-white text-accent-light"
+        className="mt-8 border border-accent bg-accent-white text-accent-light"
         link="top-selling"
         label="Load More"
       />
