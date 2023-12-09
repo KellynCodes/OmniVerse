@@ -50,7 +50,7 @@ const Product: React.FC<{ productData: ProductDto[] }> = ({
               href={`/auth?redirectUrl=/product/${product.id}`}
               className="w-auto h-[3.3rem] px-[2.3rem] py-3 bg-accent rounded-[1.5rem] mt-4 justify-center items-center inline-flex"
             >
-              <div className="flex flex-row items-center  gap-[5px] justify-center text-white text-xs font-normal font-['Poppins']">
+              <div className="flex flex-row items-center  gap-[5px] justify-center text-white text-xs font-normal">
                 Details
                 <Image
                   src="/images/link-to.png"

@@ -6,14 +6,12 @@ interface ButtonProps {
   link?: string;
   className?: string;
   style?: {};
-  onClick?: () => void;
 }
 
 export const Button: React.FC<ButtonProps> = ({
   label,
   link,
   className,
-  onClick,
   style,
 }) => {
   if (link != null && link.length > 0) {
@@ -30,7 +28,6 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       style={style}
-      onClick={onClick}
       className={`${className} border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base w-auto h-auto  text-[0.9rem] transition-all`}
     >
       {label}
