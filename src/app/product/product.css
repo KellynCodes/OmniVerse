@@ -1,8 +1,8 @@
 /*=== PRODUCT DETAILS PAGE ===*/
 .details-display {
-  display: grid;
-  grid-template-columns: 55% 40%;
-  gap: 5%;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1.3rem;
   width: 100%;
 }
 
@@ -12,6 +12,7 @@
     "two one"
     "three one"
     "four one";
+  width: 48%;
 }
 
 .details-image:nth-child(1) {
@@ -32,6 +33,9 @@
   grid-area: four;
 }
 
+.product-details {
+  width: 55%;
+}
 
 .product-details-border {
   background-color: #999999;
