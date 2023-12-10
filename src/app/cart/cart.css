@@ -32,7 +32,7 @@ main .heading {
   display: grid;
   grid-template-columns: auto auto;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding-bottom: 1rem;
+  padding: 1rem;
 }
 
 .cart-container Image {
@@ -51,7 +51,6 @@ main .heading {
 
 .cart-details-info {
   display: flex;
-  height: 7.375rem;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
@@ -200,7 +199,7 @@ main .heading {
   border: none;
 }
 
-.input button {
+.input Button {
   display: flex;
   width: 7.4375rem;
   padding: 0.75rem 1rem;
@@ -217,31 +216,31 @@ main .heading {
   line-height: normal;
 }
 
-.checkout {
-  border: 1px solid #656266;
+.check-out {
+  border: 1px solid #000;
   border-radius: 3.875rem;
   padding: 1rem 3.375rem;
   display: flex;
   align-items: center;
-  flex-shrink: 0;
-  align-self: stretch;
   width: 100%;
   background: #000;
 }
 
-.checkout > svg {
+.check-out > svg {
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.checkout input {
+.check-out Button {
   flex: 1;
   border: none;
   outline: none;
-  font-size: 13px;
-
-
+  background-color: #000;
   color: #fff;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .checkout > input::placeholder {
@@ -257,4 +256,21 @@ main .heading {
     flex-direction: column;
     padding: 0 1rem;
   }
+
+  .cart-images {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .quantity {
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 62px;
+    padding: 8px 16px;
+  }
+
+  
 }

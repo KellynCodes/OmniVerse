@@ -1,15 +1,36 @@
+"use client";
+
 import React from "react";
+import {useState} from 'react'
 import Image from "next/image";
 import "./cart.css";
+import { Button } from "@/components/shared/Button";
 
 const page = () => {
+
+  const [counter, setCounter] = useState(0);
+  // creating increment and decrement handlers
+const incrementHandler=()=> {
+setCounter((val) => val + 1)
+}
+
+// creating decrement and decrement handlers
+const decrementHandler=()=> {
+  setCounter((val) => val - 1)
+}
+
   return (
     <main>
       <h1 className="heading">Your Cart</h1>
       <div className="cart-grid">
         <div className="cart">
           <div className="cart-container">
-          <Image src="/images/cart1.png" width={128} height={187} alt="cart" />
+            <Image
+              src="/images/cart1.png"
+              width={128}
+              height={187}
+              alt="cart"
+            />
             <div className="cart-details">
               <div className="cart-details-info">
                 <h2>Gradient Graphic T-shirt</h2>
@@ -30,21 +51,33 @@ const page = () => {
                   alt="cart"
                 />
                 <div className="quantity">
-                  <Image
-                    src="/images/minus.png"
-                    width={24}
-                    height={24}
-                    alt=""
-                  />
-                  <p>1</p>
-                  <Image src="/images/plus.png" width={24} height={24} alt="" />
-                </div>
+      <Image
+        onClick={decrementHandler}
+        src="/images/minus.png"
+        width={24}
+        height={24}
+        alt=""
+      />
+      <p>{counter}</p>
+      <Image
+        onClick={incrementHandler}
+        src="/images/plus.png"
+        width={24}
+        height={24}
+        alt=""
+      />
+    </div>
               </div>
             </div>
           </div>
 
           <div className="cart-container">
-            <Image src="/images/cart2.png" width={128} height={187} alt="cart" />
+            <Image
+              src="/images/cart2.png"
+              width={128}
+              height={187}
+              alt="cart"
+            />
             <div className="cart-details">
               <div className="cart-details-info">
                 <h2>SKINNY FIT JEANS</h2>
@@ -54,7 +87,7 @@ const page = () => {
                 <p>
                   Color: <span>White</span>
                 </p>
-                <p className="cart-price">$145</p>
+                <p className="cart-price">$180</p>
               </div>
               <div className="cart-images">
                 <Image
@@ -64,21 +97,28 @@ const page = () => {
                   height={10}
                   alt="cart"
                 />
-                <div className="quantity">
-                  <Image
-                    src="/images/minus.png"
-                    width={24}
-                    height={24}
-                    alt=""
-                  />
-                  <p>1</p>
-                  <Image src="/images/plus.png" width={24} height={24} alt="" />
-                </div>
+               <div className="quantity">
+    <Image
+    onClick={decrementHandler}
+      src="/images/minus.png"
+      width={24}
+      height={24}
+      alt=""
+    />
+    <p>{counter}</p>
+    <Image 
+    onClick={incrementHandler} src="/images/plus.png" width={24} height={24} alt="" />
+  </div>
               </div>
             </div>
           </div>
           <div className="cart-container">
-          <Image src="/images/cart3.png" width={128} height={187} alt="cart" />
+            <Image
+              src="/images/cart3.png"
+              width={128}
+              height={187}
+              alt="cart"
+            />
             <div className="cart-details">
               <div className="cart-details-info">
                 <h2>CHECKERED SHIRT</h2>
@@ -88,7 +128,7 @@ const page = () => {
                 <p>
                   Color: <span>White</span>
                 </p>
-                <p className="cart-price">$145</p>
+                <p className="cart-price">$240</p>
               </div>
               <div className="cart-images">
                 <Image
@@ -99,15 +139,22 @@ const page = () => {
                   alt="cart"
                 />
                 <div className="quantity">
-                  <Image
-                    src="/images/minus.png"
-                    width={24}
-                    height={24}
-                    alt=""
-                  />
-                  <p>1</p>
-                  <Image src="/images/plus.png" width={24} height={24} alt="" />
-                </div>
+      <Image
+        onClick={decrementHandler}
+        src="/images/minus.png"
+        width={24}
+        height={24}
+        alt=""
+      />
+      <p>{counter}</p>
+      <Image
+        onClick={incrementHandler}
+        src="/images/plus.png"
+        width={24}
+        height={24}
+        alt=""
+      />
+    </div>
               </div>
             </div>
           </div>
@@ -136,10 +183,17 @@ const page = () => {
 
           <div className="input">
             <input type="text" placeholder="Add promo code" />
-            <button type="button">Apply</button>
+            <Button
+                  className="capitalize border border-border"
+                  label="Apply"
+                />
           </div>
 
-          <div className="checkout">
+          <div className="check-out">
+            <Button
+              className="capitalize border border-border"
+              label="Go to Checkout"
+            />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
@@ -152,9 +206,10 @@ const page = () => {
                 fill="white"
               />
             </svg>
-            <input type="button" placeholder="Go to Checkout" />
           </div>
         </div>
+
+        
       </div>
     </main>
   );
