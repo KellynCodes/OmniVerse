@@ -1,77 +1,112 @@
 "use client";
 
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import "./cart.css";
 import { Button } from "@/components/shared/Button";
 import { CartData } from "@/libs/data/carts/cart.data";
+import { CartDto } from "@/libs/types/Dtos/cart.dto";
 
 // Define the Cart component
 const Cart = () => {
-  const [counter, setCounter] = useState(1);
-
+  const [cartItems, setCartItems] = useState(CartData.carts);
   // Creating increment handler
-  const incrementHandler = () => {
-    setCounter((val) => val + 1);
+  const incrementHandler = (index: number) => {
+    const updatedCartItems = [...cartItems];
+    updatedCartItems[index].quantity += 1;
+    setCartItems(updatedCartItems);
   };
 
   // Creating decrement handler
-  const decrementHandler = () => {
-    setCounter((val) => val - 1);
+  const decrementHandler = (index: number) => {
+    const updatedCartItems = [...cartItems];
+    updatedCartItems[index].quantity = Math.max(
+      1,
+      updatedCartItems[index].quantity - 1
+    );
+    setCartItems(updatedCartItems);
   };
+
+  // Handle item deletion
+  const deleteHandler = (index: number) => {
+    const updatedCartItems = [...cartItems];
+    updatedCartItems.splice(index, 1);
+    setCartItems(updatedCartItems);
+  };
+
+  const calculateDiscountedPrice = (
+    totalPrice: number,
+    discountPercentage: number
+  ) => {
+    const discountAmount = (discountPercentage / 100) * totalPrice;
+    return totalPrice - discountAmount;
+  };
+
+  const calculateTotalPrice = () => {
+    // Calculate the total price without discount
+    const totalPrice = cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+
+    return totalPrice;
+  };
+
+  // Example usage
+  const discountPercentage = CartData.discount; // Adjust this value based on your discount percentage
+  const price = calculateTotalPrice();
+  const discountedPrice = calculateDiscountedPrice(price, discountPercentage);
+  const totalPrice = discountedPrice + CartData.deliveryFee;
 
   return (
     <main>
       <h1 className="heading">Your Cart</h1>
       <div className="cart-grid">
         <div className="cart">
-          {CartData &&
-            CartData.map((cart) => (
-              <div className="cart-container" key={cart.productId}>
-                {/* Fill in the source URL for the cart image */}
-                <Image src={cart.image} width={128} height={187} alt="cart" />
-                <div className="cart-details">
-                  <div className="cart-details-info">
-                    {/* Fill in the product name */}
-                    <h2>{cart.title}</h2>
-                    <p>
-                      Size: <span>Large</span>
-                    </p>
-                    <p>
-                      Color: <span>White</span>
-                    </p>
-                    <p className="cart-price">${cart.price}</p>
-                  </div>
-                  <div className="cart-images">
+          {cartItems.map((cart: CartDto, index: number) => (
+            <div className="cart-container" key={cart.productId}>
+              <Image src={cart.image} width={128} height={187} alt="cart" />
+              <div className="cart-details">
+                <div className="cart-details-info">
+                  <h2>{cart.title}</h2>
+                  <p>
+                    Size: <span>Large</span>
+                  </p>
+                  <p>
+                    Color: <span>White</span>
+                  </p>
+                  <p className="cart-price">${cart.price * cart.quantity}</p>
+                </div>
+                <div className="cart-images">
+                  <Image
+                    onClick={() => deleteHandler(index)}
+                    className="flex-1 cursor-pointer"
+                    src="/images/Frame2.png"
+                    width={24}
+                    height={10}
+                    alt="cart"
+                  />
+                  <div className="quantity">
                     <Image
-                      className="flex-1"
-                      src="/images/Frame2.png"
+                      onClick={() => decrementHandler(index)}
+                      src="/images/minus.png"
                       width={24}
-                      height={10}
-                      alt="cart"
+                      height={24}
+                      alt=""
                     />
-                    <div className="quantity">
-                      <Image
-                        onClick={decrementHandler}
-                        src="/images/minus.png"
-                        width={24}
-                        height={24}
-                        alt=""
-                      />
-                      <p>{counter}</p>
-                      <Image
-                        onClick={incrementHandler}
-                        src="/images/plus.png"
-                        width={24}
-                        height={24}
-                        alt=""
-                      />
-                    </div>
+                    <p>{cart.quantity}</p>
+                    <Image
+                      onClick={() => incrementHandler(index)}
+                      src="/images/plus.png"
+                      width={24}
+                      height={24}
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
 
         <div className="order-container">
@@ -79,11 +114,11 @@ const Cart = () => {
           <div className="order-summary">
             <article>
               <p>Subtotal</p>
-              <p>$565</p>
+              <p>${price}</p>
             </article>
             <article>
-              <p>Discount (-20%)</p>
-              <p className="red">-$113</p>
+              <p>Discount (-{CartData.discount}%)</p>
+              <p className="red">-${discountedPrice}</p>
             </article>
             <article>
               <p>Delivery Fee</p>
@@ -92,7 +127,7 @@ const Cart = () => {
           </div>
           <article className="total">
             <p>Total</p>
-            <p>$467</p>
+            <p>${totalPrice}</p>
           </article>
 
           <div className="input">

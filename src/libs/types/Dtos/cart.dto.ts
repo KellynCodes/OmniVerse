@@ -6,3 +6,9 @@ export interface CartDto {
   title: string;
   description: string;
 }
+
+export interface CartsDto {
+  deliveryFee: number;
+  discount: number;
+  carts: CartDto[];
+}
