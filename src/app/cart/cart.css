@@ -4,7 +4,6 @@ main {
 
 main .heading {
   color: #000;
-  font-family: Gordita;
   font-size: 2.5rem;
   font-style: normal;
   font-weight: 700;
@@ -58,7 +57,6 @@ main .heading {
 
 .cart-details-info h2 {
   color: #000;
-  font-family: Satoshi;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
@@ -75,7 +73,6 @@ main .heading {
 
 .cart-price {
   color: #000;
-  font-family: Satoshi;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
@@ -102,7 +99,6 @@ main .heading {
 }
 .order-container h1 {
   color: #000;
-  font-family: Satoshi;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
@@ -131,8 +127,6 @@ main .heading {
 
 .order-summary article p:last-child {
   color: #000;
-  text-align: right;
-  font-family: Satoshi;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
@@ -152,7 +146,6 @@ main .heading {
 
 .order-container .total p:first-child {
   color: #000;
-  font-family: Satoshi;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 400;
