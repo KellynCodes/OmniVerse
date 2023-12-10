@@ -1,23 +1,22 @@
 "use client";
 
 import React from "react";
-import {useState} from 'react'
+import { useState } from "react";
 import Image from "next/image";
 import "./cart.css";
 import { Button } from "@/components/shared/Button";
 
 const page = () => {
-
   const [counter, setCounter] = useState(0);
   // creating increment and decrement handlers
-const incrementHandler=()=> {
-setCounter((val) => val + 1)
-}
+  const incrementHandler = () => {
+    setCounter((val) => val + 1);
+  };
 
-// creating decrement and decrement handlers
-const decrementHandler=()=> {
-  setCounter((val) => val - 1)
-}
+  // creating decrement and decrement handlers
+  const decrementHandler = () => {
+    setCounter((val) => val - 1);
+  };
 
   return (
     <main>
@@ -51,22 +50,22 @@ const decrementHandler=()=> {
                   alt="cart"
                 />
                 <div className="quantity">
-      <Image
-        onClick={decrementHandler}
-        src="/images/minus.png"
-        width={24}
-        height={24}
-        alt=""
-      />
-      <p>{counter}</p>
-      <Image
-        onClick={incrementHandler}
-        src="/images/plus.png"
-        width={24}
-        height={24}
-        alt=""
-      />
-    </div>
+                  <Image
+                    onClick={decrementHandler}
+                    src="/images/minus.png"
+                    width={24}
+                    height={24}
+                    alt=""
+                  />
+                  <p>{counter}</p>
+                  <Image
+                    onClick={incrementHandler}
+                    src="/images/plus.png"
+                    width={24}
+                    height={24}
+                    alt=""
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -97,18 +96,16 @@ const decrementHandler=()=> {
                   height={10}
                   alt="cart"
                 />
-               <div className="quantity">
-    <Image
-    onClick={decrementHandler}
-      src="/images/minus.png"
-      width={24}
-      height={24}
-      alt=""
-    />
-    <p>{counter}</p>
-    <Image 
-    onClick={incrementHandler} src="/images/plus.png" width={24} height={24} alt="" />
-  </div>
+                <div className="quantity">
+                  <Image
+                    src="/images/minus.png"
+                    width={24}
+                    height={24}
+                    alt=""
+                  />
+                  <p>{counter}</p>
+                  <Image src="/images/plus.png" width={24} height={24} alt="" />
+                </div>
               </div>
             </div>
           </div>
@@ -139,22 +136,15 @@ const decrementHandler=()=> {
                   alt="cart"
                 />
                 <div className="quantity">
-      <Image
-        onClick={decrementHandler}
-        src="/images/minus.png"
-        width={24}
-        height={24}
-        alt=""
-      />
-      <p>{counter}</p>
-      <Image
-        onClick={incrementHandler}
-        src="/images/plus.png"
-        width={24}
-        height={24}
-        alt=""
-      />
-    </div>
+                  <Image
+                    src="/images/minus.png"
+                    width={24}
+                    height={24}
+                    alt=""
+                  />
+                  <p>{counter}</p>
+                  <Image src="/images/plus.png" width={24} height={24} alt="" />
+                </div>
               </div>
             </div>
           </div>
@@ -183,10 +173,7 @@ const decrementHandler=()=> {
 
           <div className="input">
             <input type="text" placeholder="Add promo code" />
-            <Button
-                  className="capitalize border border-border"
-                  label="Apply"
-                />
+            <Button className="capitalize border border-border" label="Apply" />
           </div>
 
           <div className="check-out">
@@ -208,8 +195,6 @@ const decrementHandler=()=> {
             </svg>
           </div>
         </div>
-
-        
       </div>
     </main>
   );
