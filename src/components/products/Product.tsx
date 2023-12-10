@@ -6,14 +6,10 @@ import { ProductDto } from "../../libs/types/Dtos/product.dto";
 import Image from "next/image";
 // @ts-ignore
 import Link from "next/link";
-import { Button } from "../shared/Button";
-import ConfigureProtocol from "../auth/ConfigureProtocol";
 
 const Product: React.FC<{ productData: ProductDto[] }> = ({
   productData,
 }): JSX.Element => {
-  const [url, setUrl] = useState("");
-  const [modal, setModal] = useState(false);
   if (productData.length <= 0) {
     return <p>No product found.</p>;
   }
@@ -50,23 +46,22 @@ const Product: React.FC<{ productData: ProductDto[] }> = ({
               <p className="text">${product.price}</p>
             </div>
 
-            <div className="w-auto h-[3.3rem] px-[2.3rem] py-3 bg-accent rounded-[1.5rem] mt-4 justify-center items-center gap-[5px] inline-flex">
-              <button
-                onClick={() => setModal(true)}
-                className="text-white text-xs font-normal font-['Poppins']"
-              >
+            <Link
+              href={`/auth?redirectUrl=/product/${product.id}`}
+              className="w-auto h-[3.3rem] px-[2.3rem] py-3 bg-accent rounded-[1.5rem] mt-4 justify-center items-center inline-flex"
+            >
+              <div className="flex flex-row items-center  gap-[5px] justify-center text-white text-xs font-normal font-['Poppins']">
                 Details
-              </button>
-              <Image
-                src="/images/link-to.png"
-                alt=""
-                width={9.8}
-                height={8.52}
-              />
-            </div>
+                <Image
+                  src="/images/link-to.png"
+                  alt=""
+                  width={9.8}
+                  height={8.52}
+                />
+              </div>
+            </Link>
           </div>
         ))}
-      {modal ? <ConfigureProtocol link={url} /> : null}
     </>
   );
 };
