@@ -6,7 +6,7 @@ import Image from "next/image";
 import "./cart.css";
 import { Button } from "@/components/shared/Button";
 
-const page = () => {
+const Cart = () => {
   const [counter, setCounter] = useState(0);
   // creating increment and decrement handlers
   const incrementHandler = () => {
@@ -103,7 +103,7 @@ const page = () => {
                     height={24}
                     alt=""
                   />
-                  <p>{counter}</p>
+                  <p>0</p>
                   <Image src="/images/plus.png" width={24} height={24} alt="" />
                 </div>
               </div>
@@ -142,7 +142,7 @@ const page = () => {
                     height={24}
                     alt=""
                   />
-                  <p>{counter}</p>
+                  <p>0</p>
                   <Image src="/images/plus.png" width={24} height={24} alt="" />
                 </div>
               </div>
@@ -200,4 +200,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Cart;
