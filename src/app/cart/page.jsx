@@ -98,6 +98,7 @@ const Cart = () => {
                 />
                 <div className="quantity">
                   <Image
+                    onClick={decrementHandler}
                     src="/images/minus.png"
                     width={24}
                     height={24}
@@ -111,6 +112,7 @@ const Cart = () => {
           </div>
           <div className="cart-container">
             <Image
+              onClick={incrementHandler}
               src="/images/cart3.png"
               width={128}
               height={187}
