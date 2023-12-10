@@ -1,14 +1,11 @@
 "use client";
 import Image from "next/image";
 import "../product.css";
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
 
 import React, { useState } from "react";
 import { Button } from "@/components/shared/Button";
 
-import { ProductsData } from "@/libs/data/products/products";
-import { ProductDto } from "@/libs/types/Dtos/product.dto";
 import Alert from "@/components/alert/Alert";
 import { useRouter } from "next/navigation";
 import { handleQuantityIncreaseORDecrease } from "@/libs/services/quantityIncrement";
@@ -18,7 +15,6 @@ import { RenderCurrentPage } from "@/components/shared/page.toggler";
 const ProductDetail = (): JSX.Element => {
   const [productQuantity, setProductQuantity] = useState(1);
   const [page, setPage] = useState("");
-  const searchParams = useSearchParams();
   const params = useParams();
   const router = useRouter();
   const { id } = params;
@@ -208,7 +204,7 @@ const ProductDetail = (): JSX.Element => {
         </div>
         <Button
           className="w-full mx-auto md:w-1/2 mt-6 py-5 px-7 text-white bg-accent"
-          link={`/checkout?productId=${product?.id}`}
+          link={`/payment?productId=${product?.id}`}
           label="Proceed to Checkout"
         />
       </div>
