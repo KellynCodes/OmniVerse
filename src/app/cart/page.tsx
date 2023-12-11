@@ -6,11 +6,16 @@ import "./cart.css";
 import { Button } from "@/components/shared/Button";
 import { CartData } from "@/libs/data/carts/cart.data";
 import { CartDto } from "@/libs/types/Dtos/cart.dto";
+import {
+  calculateDiscountedPrice,
+  calculateTotalPrice,
+} from "@/libs/services/calculate.cart.price";
+import ItemNotFound from "@/components/shared/ItemNotFound";
 
 // Define the Cart component
 const Cart = () => {
   const [cartItems, setCartItems] = useState(CartData.carts);
-  // Creating increment handler
+
   const incrementHandler = (index: number) => {
     const updatedCartItems = [...cartItems];
     updatedCartItems[index].quantity += 1;
@@ -34,36 +39,27 @@ const Cart = () => {
     setCartItems(updatedCartItems);
   };
 
-  const calculateDiscountedPrice = (
-    totalPrice: number,
-    discountPercentage: number
-  ) => {
-    const discountAmount = (discountPercentage / 100) * totalPrice;
-    return totalPrice - discountAmount;
-  };
+  const discountPercentage = CartData.discount;
+  const price = calculateTotalPrice(cartItems);
+  const discountPrice = calculateDiscountedPrice(price, discountPercentage);
+  const totalPrice = discountPrice + CartData.deliveryFee;
 
-  const calculateTotalPrice = () => {
-    // Calculate the total price without discount
-    const totalPrice = cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
+  if (cartItems.length <= 0) {
+    return (
+      <ItemNotFound
+        buttonLabel="Buy Products"
+        navigationLink="/#new-arrivals"
+        message="No Item In Your Cart"
+      />
     );
-
-    return totalPrice;
-  };
-
-  // Example usage
-  const discountPercentage = CartData.discount; // Adjust this value based on your discount percentage
-  const price = calculateTotalPrice();
-  const discountedPrice = calculateDiscountedPrice(price, discountPercentage);
-  const totalPrice = discountedPrice + CartData.deliveryFee;
+  }
 
   return (
-    <main>
+    <section>
       <h1 className="heading">Your Cart</h1>
       <div className="cart-grid">
         <div className="cart">
-          {cartItems.map((cart: CartDto, index: number) => (
+          {cartItems && cartItems.map((cart: CartDto, index: number) => (
             <div className="cart-container" key={cart.productId}>
               <div className="cart-image">
                 <Image src={cart.image} width={128} height={187} alt="cart" />
@@ -97,18 +93,36 @@ const Cart = () => {
                       alt=""
                     />
                     <p>{cart.quantity}</p>
+
                     <Image
-                      onClick={() => incrementHandler(index)}
-                      src="/images/plus.png"
+                      onClick={() => deleteHandler(index)}
+                      className="flex-1 cursor-pointer"
+                      src="/images/Frame2.png"
                       width={24}
-                      height={24}
-                      alt=""
+                      height={10}
+                      alt="cart"
                     />
+                    <div className="quantity">
+                      <Image
+                        onClick={() => decrementHandler(index)}
+                        src="/images/minus.png"
+                        width={24}
+                        height={24}
+                        alt=""
+                      />
+                      <p>{cart.quantity}</p>
+                      <Image
+                        onClick={() => incrementHandler(index)}
+                        src="/images/plus.png"
+                        width={24}
+                        height={24}
+                        alt=""
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
 
         <div className="order-container">
@@ -120,7 +134,7 @@ const Cart = () => {
             </article>
             <article>
               <p>Discount (-{CartData.discount}%)</p>
-              <p className="red">-${discountedPrice}</p>
+              <p className="red">-${discountPrice}</p>
             </article>
             <article>
               <p>Delivery Fee</p>
@@ -157,7 +171,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 };
 
