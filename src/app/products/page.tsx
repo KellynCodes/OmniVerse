@@ -7,7 +7,7 @@ const ProductList = () => {
   return (
     <section
       id="new-arrivals"
-      className="h-fit w-full flex flex-wrap items-center justify-center my-5 gap-4"
+      className="h-fit flex flex-wrap flex-col items-center justify-center my-5 gap-4"
     >
       <h1 className="uppercase text-xl md:text-[2.5rem] font-bold my-4 md:my-8">
         NEW ARRIVALS

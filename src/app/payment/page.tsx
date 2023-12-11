@@ -6,7 +6,7 @@ import "./payment.css";
 import { Button } from "@/components/shared/Button";
 import { getProduct } from "@/libs/services/filterProuctById";
 import { useSearchParams } from "next/navigation";
-import Alert from "@/components/alert/Alert";
+import Alert from "@/components/shared/alert/Alert";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
