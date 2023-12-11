@@ -17,8 +17,13 @@ const MakePayment = () => {
   const product = getProduct(id!);
 
   if (product == null) {
+ 
+
+
+
     const alert: JSX.Element = (
       <Alert errorMessage="Payment or Product Not found! Navigating to Products page..." />
+
     );
     setTimeout(() => {
       router.push("/products");
@@ -53,7 +58,10 @@ const MakePayment = () => {
               See Cart
             </Link>
             <Button
+
+
               className="bg-accent text-white py-3 px-7"
+
               label="Connect Wallet"
             />
           </div>
