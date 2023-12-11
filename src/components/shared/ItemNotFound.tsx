@@ -13,7 +13,7 @@ const ItemNotFound: React.FC<{
       <Button
         link={navigationLink}
         label={buttonLabel}
-        className="bg-accent text-white px-7 py-4"
+        className="bg-accent text-white px-7 py-4 w-auto"
       />
     </div>
   );

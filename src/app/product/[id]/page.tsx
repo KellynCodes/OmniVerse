@@ -11,10 +11,13 @@ import { useRouter } from "next/navigation";
 import { handleQuantityIncreaseORDecrease } from "@/libs/services/quantityIncrement";
 import { getProduct } from "@/libs/services/filterProuctById";
 import { RenderCurrentPage } from "@/components/shared/page.toggler";
+import { Page } from "@/libs/data/enums/page";
+import Products from "@/components/products/Products";
+import { ProductsData } from "@/libs/data/products/products";
 
 const ProductDetail = (): JSX.Element => {
   const [productQuantity, setProductQuantity] = useState(1);
-  const [page, setPage] = useState("");
+  const [page, setPage] = useState(Page.REVIEW_RATING);
   const params = useParams();
   const router = useRouter();
   const { id } = params;
@@ -35,8 +38,8 @@ const ProductDetail = (): JSX.Element => {
 
   return (
     <>
-      <div className="container flex my-8 py-10 flex-col">
-        <div className="details-display  px-0 md:px-6 ">
+      <div className="flex my-8 px-4 py-10 flex-col">
+        <div className="details-display px-6">
           <div className="details-images">
             <Image
               className="details-image rounded-md"
@@ -70,11 +73,36 @@ const ProductDetail = (): JSX.Element => {
           <div className="product-details flex flex-col gap-2">
             <h1 className="text-3xl md:text-[2.5rem]">{product?.title}</h1>
             <div className="product-stars">
-              <Image src="/images/Star-1.png" width={24} height={24} alt="" />
-              <Image src="/images/Star-2.png" width={24} height={24} alt="" />
-              <Image src="/images/Star-3.png" width={24} height={24} alt="" />
-              <Image src="/images/Star-4.png" width={24} height={24} alt="" />
-              <Image src="/images/Star-6.png" width={9} height={17} alt="" />
+              <Image
+                src="/images/rating/Star-1.png"
+                width={24}
+                height={24}
+                alt=""
+              />
+              <Image
+                src="/images/rating/Star-2.png"
+                width={24}
+                height={24}
+                alt=""
+              />
+              <Image
+                src="/images/rating/Star-3.png"
+                width={24}
+                height={24}
+                alt=""
+              />
+              <Image
+                src="/images/rating/Star-4.png"
+                width={24}
+                height={24}
+                alt=""
+              />
+              <Image
+                src="/images/rating/Star-6.png"
+                width={9}
+                height={17}
+                alt=""
+              />
               <p>{product?.rating}</p>
             </div>
             <p className="product-price">${totalPrice()}</p>
@@ -149,8 +177,8 @@ const ProductDetail = (): JSX.Element => {
               </div>
             </div>
             <br className="border" />
-            <div className="flex flex-wrap gap-4">
-              <div className="w-full md:w-[13rem] flex items-center justify-evenly bg-[#f0f0f0] rounded-2xl p-1">
+            <div className="flex flex-wrap gap-4 w-full h-full">
+              <div className="w-[38%] flex items-center justify-evenly bg-[#f0f0f0] rounded-2xl p-1">
                 <div
                   className="bg-[#31344F]  flex items-center justify-center w-12 h-12 rounded-full p-2 cursor-pointer"
                   onClick={() =>
@@ -165,7 +193,7 @@ const ProductDetail = (): JSX.Element => {
                 >
                   <Image
                     className="text-white"
-                    src="/images/minus.png"
+                    src="/images/icons/minus.png"
                     width={24}
                     height={24}
                     alt=""
@@ -186,7 +214,7 @@ const ProductDetail = (): JSX.Element => {
                 >
                   <Image
                     className="text-white"
-                    src="/images/plus.png"
+                    src="/images/icons/plus.png"
                     width={24}
                     height={24}
                     alt=""
@@ -194,7 +222,7 @@ const ProductDetail = (): JSX.Element => {
                 </div>
               </div>
               <button
-                className="w-full md:w-[65%] capitalize md:px-12 text-white bg-accent  border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base py-3 px-7 h-auto  text-[0.9rem] transition-all"
+                className="w-[56%] capitalize md:px-12 text-white bg-accent  border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base py-3 px-7 h-auto  text-[0.9rem] transition-all"
                 onClick={() => {}}
               >
                 Add to Cart
@@ -209,26 +237,43 @@ const ProductDetail = (): JSX.Element => {
         />
       </div>
 
-      <section className="w-full min-h-screen p-3">
-        <ul className="flex justify-between items-center p-4 my-5 border border-b-4">
+      <div className="w-full min-h-screen mx-auto p-3">
+        <ul className="flex justify-between items-baseline my-5 w-full border-b border-black border-opacity-10">
           <li
-            className="cursor-pointer"
-            onClick={() => setPage("productDetails")}
+            className={`${
+              page == Page.PRODUCT_DETAIL ? "border-b-2" : ""
+            } cursor-pointer w-[33%] text-center border-black`}
+            onClick={() => setPage(Page.PRODUCT_DETAIL)}
           >
             Product Details
           </li>
           <li
-            className="cursor-pointer"
-            onClick={() => setPage("ratingAndReview")}
+            className={`${
+              page == Page.REVIEW_RATING ? "border-b-2" : ""
+            } cursor-pointer w-[33%] text-center border-black`}
+            onClick={() => setPage(Page.REVIEW_RATING)}
           >
             Rating & Reviews
           </li>
-          <li className="cursor-pointer" onClick={() => setPage("faq")}>
+          <li
+            className={`${
+              page == Page.FAQS ? "border-b-2" : ""
+            } cursor-pointer w-[33%] text-center border-black`}
+            onClick={() => setPage(Page.FAQS)}
+          >
             FAQs
           </li>
         </ul>
         <div>{RenderCurrentPage(page)}</div>
-      </section>
+
+        <Products
+          pageId="product-suggestion"
+          pageTitle="You Might Also Like"
+          productsData={ProductsData}
+          buttonLabel="Load More"
+          buttonLink="/products"
+        />
+      </div>
     </>
   );
 };

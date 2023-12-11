@@ -78,7 +78,7 @@ const Cart = () => {
                     <Image
                       onClick={() => deleteHandler(index)}
                       className="flex-1 cursor-pointer"
-                      src="/images/Frame2.png"
+                      src="/images/icons/delete-btn.png"
                       width={24}
                       height={10}
                       alt="cart"
@@ -86,7 +86,7 @@ const Cart = () => {
                     <div className="quantity">
                       <Image
                         onClick={() => decrementHandler(index)}
-                        src="/images/minus.png"
+                        src="/images/icons/minus.png"
                         width={24}
                         height={24}
                         alt=""
@@ -94,7 +94,7 @@ const Cart = () => {
                       <p>{cart.quantity}</p>
                       <Image
                         onClick={() => incrementHandler(index)}
-                        src="/images/plus.png"
+                        src="/images/icons/plus.png"
                         width={24}
                         height={24}
                         alt=""
@@ -115,7 +115,7 @@ const Cart = () => {
             </article>
             <article>
               <p>Discount (-{CartData.discount}%)</p>
-              <p className="red">-${discountPrice}</p>
+              <p className="red">${discountPrice}</p>
             </article>
             <article>
               <p>Delivery Fee</p>
