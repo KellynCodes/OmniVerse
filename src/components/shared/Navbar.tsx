@@ -46,7 +46,7 @@ export const NavBar = (): React.JSX.Element => {
               Shop
               <Image
                 className="ml-4"
-                src="/images/Vector-3.jpg"
+                src="/images/icons/Vector-3.jpg"
                 width={12}
                 height={7}
                 alt=""
@@ -73,7 +73,7 @@ export const NavBar = (): React.JSX.Element => {
       <div className="hidden md:flex items-center gap-3 mt-[0.2rem] md:w-[20%] md:h-[2rem] lg:w-[35%] lg:h-[2.7rem] bg-[#f0f0f0] rounded-[30px] pl-4 md:py-3">
         <Image
           className="w-[1rem] h-[1rem]"
-          src="/images/Vector-1.png"
+          src="/images/icons/Vector-1.png"
           width={22}
           height={22}
           alt=""

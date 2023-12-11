@@ -2,6 +2,7 @@
   "name": "OmniVerse",
   "version": "1.1.0",
   "private": false,
+  "description": "A web-5 shopping cart. Own your data with web5 technologies.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
