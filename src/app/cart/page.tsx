@@ -59,41 +59,22 @@ const Cart = () => {
       <h1 className="heading">Your Cart</h1>
       <div className="cart-grid">
         <div className="cart">
-          {cartItems && cartItems.map((cart: CartDto, index: number) => (
-            <div className="cart-container" key={cart.productId}>
-              <div className="cart-image">
+          {cartItems &&
+            cartItems.map((cart: CartDto, index: number) => (
+              <div className="cart-container" key={cart.productId}>
                 <Image src={cart.image} width={128} height={187} alt="cart" />
-              </div>
-              <div className="cart-details">
-                <div className="cart-details-info">
-                  <h2>{cart.title}</h2>
-                  <p>
-                    Size: <span>Large</span>
-                  </p>
-                  <p>
-                    Color: <span>White</span>
-                  </p>
-                  <p className="cart-price">${cart.price * cart.quantity}</p>
-                </div>
-                <div className="cart-images">
-                  <Image
-                    onClick={() => deleteHandler(index)}
-                    className="flex-1 cursor-pointer"
-                    src="/images/Frame2.png"
-                    width={24}
-                    height={10}
-                    alt="cart"
-                  />
-                  <div className="quantity">
-                    <Image
-                      onClick={() => decrementHandler(index)}
-                      src="/images/minus.png"
-                      width={24}
-                      height={24}
-                      alt=""
-                    />
-                    <p>{cart.quantity}</p>
-
+                <div className="cart-details">
+                  <div className="cart-details-info">
+                    <h2>{cart.title}</h2>
+                    <p>
+                      Size: <span>Large</span>
+                    </p>
+                    <p>
+                      Color: <span>White</span>
+                    </p>
+                    <p className="cart-price">${cart.price * cart.quantity}</p>
+                  </div>
+                  <div className="cart-images">
                     <Image
                       onClick={() => deleteHandler(index)}
                       className="flex-1 cursor-pointer"
