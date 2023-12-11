@@ -38,6 +38,10 @@ section {
 
 /* ===== NAVBAR START ======*/
 @media (max-width: 640px) {
+  .clients .client-img {
+    @apply: w-[3.5rem];
+  }
+
   /* NAvbar start */
   .navlinks-open {
     background: rgb(0, 0, 0, 0.5);

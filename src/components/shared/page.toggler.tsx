@@ -1,14 +1,15 @@
 import RatingAndReviews from "@/components/products/RatingAndReviews";
 import MoreProductDetails from "@/components/products/MoreProductDetails";
 import Faqs from "@/components/Faqs";
+import { Page } from "@/libs/data/enums/page";
 
-export const RenderCurrentPage = (page: string): React.ReactNode => {
+export const RenderCurrentPage = (page: Page): React.ReactNode => {
   switch (page) {
-    case "productDetails":
+    case Page.PRODUCT_DETAIL:
       return <MoreProductDetails />;
-    case "ratingAndReview":
+    case Page.REVIEW_RATING:
       return <RatingAndReviews />;
-    case "faq":
+    case Page.FAQS:
       return <Faqs />;
     default:
       return <RatingAndReviews />;
