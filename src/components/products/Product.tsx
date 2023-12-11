@@ -6,12 +6,19 @@ import { ProductDto } from "../../libs/types/Dtos/product.dto";
 import Image from "next/image";
 // @ts-ignore
 import Link from "next/link";
+import ItemNotFound from "../shared/ItemNotFound";
 
 const Product: React.FC<{ productData: ProductDto[] }> = ({
   productData,
 }): JSX.Element => {
   if (productData.length <= 0) {
-    return <p>No product found.</p>;
+    return (
+      <ItemNotFound
+        buttonLabel="Check our Products"
+        navigationLink="/products"
+        message="No Product found."
+      />
+    );
   }
 
   return (

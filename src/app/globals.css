@@ -32,8 +32,8 @@ body {
 
 section {
   width: 97% !important;
-  margin: 2rem auto;
-  @apply border-[1.5px] border-border rounded-md py-12;
+  margin: 1.3rem auto;
+  @apply border-[1.5px] border-border rounded-md py-8;
 }
 
 /* ===== NAVBAR START ======*/
@@ -242,7 +242,6 @@ section {
   line-height: 19px;
   color: #999999;
 }
-
 
 /*=== 0RDER SUMMARRY SECTION ====*/
 .checkout {

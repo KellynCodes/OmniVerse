@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import React, { useState } from "react";
 import { Button } from "@/components/shared/Button";
 
-import Alert from "@/components/alert/Alert";
+import Alert from "@/components/shared/alert/Alert";
 import { useRouter } from "next/navigation";
 import { handleQuantityIncreaseORDecrease } from "@/libs/services/quantityIncrement";
 import { getProduct } from "@/libs/services/filterProuctById";

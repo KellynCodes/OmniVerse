@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CopyText } from "@/libs/services/clipboard";
-import Alert from "@/components/alert/Alert";
+import Alert from "@/components/shared/alert/Alert";
 import { AlertDto } from "@/libs/types/Dtos/alert.dto";
 
 const ConfigureProtocol = () => {
