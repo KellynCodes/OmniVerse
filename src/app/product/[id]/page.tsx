@@ -13,7 +13,7 @@ import { getProduct } from "@/libs/services/filterProuctById";
 import { RenderCurrentPage } from "@/components/shared/page.toggler";
 
 import ProtocolDefinition from "@/app/auth/ProtocolDefinition";
-import {Web5} from "@web5/api";
+
 
 const ProductDetail = (): JSX.Element => {
   const [web5, setWeb5] = useState<any>(null);
@@ -31,6 +31,9 @@ const ProductDetail = (): JSX.Element => {
 
   useEffect(() => {
     const initWeb5 = async () => {
+
+      const { Web5 } = await import('@web5/api/browser');
+
       try {
         const { web5, did } = await Web5.connect();
         console.log(web5);
