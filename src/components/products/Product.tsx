@@ -60,7 +60,7 @@ const Product: React.FC<{ productData: ProductDto[] }> = ({
               <div className="flex flex-row items-center  gap-[5px] justify-center text-white text-xs font-normal">
                 Details
                 <Image
-                  src="/images/link-to.png"
+                  src="/images/icons/link-to.png"
                   alt=""
                   width={9.8}
                   height={8.52}

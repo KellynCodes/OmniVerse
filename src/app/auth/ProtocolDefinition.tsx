@@ -13,6 +13,9 @@ const ProtocolDefinition = {
         },
         Rating: {
             dataFormats: ["application/json"]
+        },
+        Id: {
+            dataFormats: ["application/json"]
         }
     },
     structure: {
