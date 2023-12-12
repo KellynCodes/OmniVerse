@@ -8,12 +8,7 @@ import Link from "next/link";
 import { CopyText } from "@/libs/services/clipboard";
 import Alert from "@/components/shared/alert/Alert";
 import { AlertDto } from "@/libs/types/Dtos/alert.dto";
-
-
 import ProtocolDefinition from './ProtocolDefinition';
-
-
-
 
 const ConfigureProtocol = () => {
   const searchParams = useSearchParams();
