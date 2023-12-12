@@ -3,7 +3,7 @@ import Image from "next/image";
 import "../product.css";
 import { useParams } from "next/navigation";
 
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Button } from "@/components/shared/Button";
 
 import Alert from "@/components/alert/Alert";
@@ -12,13 +12,41 @@ import { handleQuantityIncreaseORDecrease } from "@/libs/services/quantityIncrem
 import { getProduct } from "@/libs/services/filterProuctById";
 import { RenderCurrentPage } from "@/components/shared/page.toggler";
 
+import ProtocolDefinition from "@/app/auth/ProtocolDefinition";
+import {Web5} from "@web5/api";
+
 const ProductDetail = (): JSX.Element => {
+  const [web5, setWeb5] = useState<any>(null);
+  const [myDid, setMyDid] = useState<any>(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
+
   const [productQuantity, setProductQuantity] = useState(1);
   const [page, setPage] = useState("");
   const params = useParams();
   const router = useRouter();
   const { id } = params;
   const product = getProduct(id);
+
+
+
+  useEffect(() => {
+    const initWeb5 = async () => {
+      try {
+        const { web5, did } = await Web5.connect();
+        console.log(web5);
+        setWeb5(web5);
+        setMyDid(did);
+      } catch (error) {
+        console.error("Failed to connect using Web5: ", error);
+      }
+    };
+
+    initWeb5();
+
+  }, []);
+
+
+
   const totalPrice = (): number => {
     return product?.price! * productQuantity;
   };
@@ -33,6 +61,45 @@ const ProductDetail = (): JSX.Element => {
     return alert;
   }
 
+  const addToCart = async () => {
+    try {
+
+      const productData = {
+        Id: product?.id,
+        Image: product?.productImg,
+        ProductName: product?.title,
+        Price: product?.price,
+        Rating: product?.rating,
+      };
+
+      const { record: productRecord } = await web5.dwn.records.create({
+        data: productData,
+        store: false,
+        message: {
+          schema: 'Product',
+          dataFormat: 'application/json',
+          protocol: ProtocolDefinition.protocol,
+          protocolPath: 'Product',
+          published: true,
+        },
+      });
+
+      // Send the product data using the myDid identity
+      const { status: productStatus } = await productRecord.send(myDid);
+      console.log(productStatus);
+
+     // console.log('Local DWN:', web5.dwn);
+      setShowSuccessMessage(true);
+
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 5000);
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+    }
+  };
+
+
   return (
     <>
       <div className="container flex my-8 py-10 flex-col">
@@ -45,27 +112,7 @@ const ProductDetail = (): JSX.Element => {
               height={2880}
               alt=""
             />
-            {/* <Image
-            className="details-image"
-            src="/images/details2.png"
-            width={152}
-            height={167}
-            alt=""
-          />
-          <Image
-            className="details-image"
-            src="/images/details3.png"
-            width={152}
-            height={167}
-            alt=""
-          />
-          <Image
-            className="details-image"
-            src="/images/details4.png"
-            width={152}
-            height={167}
-            alt=""
-          /> */}
+
           </div>
           <div className="product-details flex flex-col gap-2">
             <h1 className="text-3xl md:text-[2.5rem]">{product?.title}</h1>
@@ -195,10 +242,15 @@ const ProductDetail = (): JSX.Element => {
               </div>
               <button
                 className="w-full md:w-[65%] capitalize md:px-12 text-white bg-accent  border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base py-3 px-7 h-auto  text-[0.9rem] transition-all"
-                onClick={() => {}}
+                onClick={addToCart}
               >
                 Add to Cart
               </button>
+              {showSuccessMessage && (
+                  <div className="bg-green-500 text-white p-3 rounded-md my-3">
+                    Product added to the cart successfully!
+                  </div>
+              )}
             </div>
           </div>
         </div>
@@ -232,5 +284,6 @@ const ProductDetail = (): JSX.Element => {
     </>
   );
 };
+
 
 export default ProductDetail;

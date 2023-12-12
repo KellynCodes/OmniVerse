@@ -1,3 +1,4 @@
+
 "use client";
 import { Web5 } from '@web5/api';
 import { Button } from "@/components/shared/Button";
@@ -11,9 +12,6 @@ import { AlertDto } from "@/libs/types/Dtos/alert.dto";
 
 
 import ProtocolDefinition from './ProtocolDefinition';
-
-
-
 
 const ConfigureProtocol = () => {
   const searchParams = useSearchParams();
@@ -36,6 +34,9 @@ const ConfigureProtocol = () => {
   const [queryProtocolStatus, setQueryProtocolStatus] = useState<any>(null);
   const [isDidVisible, setIsDidVisible] = useState<boolean>(false);
 
+
+
+
   useEffect(() => {
     const initWeb5 = async () => {
       try {
@@ -44,6 +45,7 @@ const ConfigureProtocol = () => {
         setWeb5(web5);
         setMyDid(did);
         setIsLoading(false);
+
       } catch (error) {
         console.error("Failed to connect using Web5: ", error);
       }
@@ -111,6 +113,7 @@ const ConfigureProtocol = () => {
       setTimeout(() => setMessage({ isSuccess: false, text: null }), 5000);
     }
   };
+
 
 
   return (
@@ -215,4 +218,8 @@ const ConfigureProtocol = () => {
   );
 };
 
+
+
 export default ConfigureProtocol;
+
+

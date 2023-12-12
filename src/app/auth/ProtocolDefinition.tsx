@@ -16,10 +16,14 @@ const ProtocolDefinition = {
         },
         Id: {
             dataFormats: ["application/json"]
-        }
+        },
+        Product: {
+            dataFormats: ["application/json"]
+        },
+
     },
     structure: {
-        Image: {
+        Product: {
             $actions: [
                 {
                     who: "anyone",
@@ -29,43 +33,67 @@ const ProtocolDefinition = {
                     who: "anyone",
                     can: "read"
                 }
-            ]
-        },
-        ProductName: {
-            $actions: [
-                {
-                    who: "anyone",
-                    can: "write"
-                },
-                {
-                    who: "anyone",
-                    can: "read"
-                }
-            ]
-        },
-        Price: {
-            $actions: [
-                {
-                    who: "anyone",
-                    can: "write"
-                },
-                {
-                    who: "anyone",
-                    can: "read"
-                }
-            ]
-        },
-        Rating: {
-            $actions: [
-                {
-                    who: "anyone",
-                    can: "write"
-                },
-                {
-                    who: "anyone",
-                    can: "read"
-                }
-            ]
+            ],
+            Id: {
+                $actions: [
+                    {
+                        who: "anyone",
+                        can: "write"
+                    },
+                    {
+                        who: "anyone",
+                        can: "read"
+                    }
+                ]
+            },
+            Image: {
+                $actions: [
+                    {
+                        who: "anyone",
+                        can: "write"
+                    },
+                    {
+                        who: "anyone",
+                        can: "read"
+                    }
+                ]
+            },
+            ProductName: {
+                $actions: [
+                    {
+                        who: "anyone",
+                        can: "write"
+                    },
+                    {
+                        who: "anyone",
+                        can: "read"
+                    }
+                ]
+            },
+            Price: {
+                $actions: [
+                    {
+                        who: "anyone",
+                        can: "write"
+                    },
+                    {
+                        who: "anyone",
+                        can: "read"
+                    }
+                ]
+            },
+            Rating: {
+                $actions: [
+                    {
+                        who: "anyone",
+                        can: "write"
+                    },
+                    {
+                        who: "anyone",
+                        can: "read"
+                    }
+                ]
+            }
         }
     }
 };
