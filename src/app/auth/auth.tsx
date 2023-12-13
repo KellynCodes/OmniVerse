@@ -23,12 +23,12 @@ const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
   });
 
   const [web5, setWeb5] = useState<any>(null);
-  const [myDid, setMyDid] = useState<any>(null);
+  const [myDid, setMyDid] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [protocolStatus, setProtocolStatus] = useState<{
     code: number | null;
     detail: string | null;
-  }>({ code: 0, detail: null });
+  } | null>({ code: 0, detail: null });
   const [queryProtocolStatus, setQueryProtocolStatus] = useState<any>(null);
   const [isDidVisible, setIsDidVisible] = useState<boolean>(false);
 
@@ -38,7 +38,6 @@ const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
       const { Web5 } = await import("@web5/api");
       try {
         const { web5, did } = await Web5.connect();
-        console.log(web5);
         setWeb5(web5);
         setMyDid(did);
         setIsLoading(false);
@@ -77,10 +76,11 @@ const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
       setMessage({ isSuccessful: false, message: `${error}` });
     } finally {
       setIsLoading(false);
-      setTimeout(
-        () => setMessage({ isSuccessful: false, message: null }),
-        5000
-      );
+      setTimeout(() => {
+        setMessage({ isSuccessful: false, message: null });
+        setProtocolStatus(null);
+      }),
+        5000;
     }
   };
 
@@ -136,31 +136,37 @@ const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
         </h2>
 
         {isLoading ? (
-          <div className="bg-accent text-white p-4 rounded-md">
-            Loading... Please wait!
+          <div className="flex items-center justify-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-black"></div>
           </div>
         ) : null}
 
         {message.message != null ||
         (message.message != "" && message.isSuccessful) ? (
-          <div className="bg-accent text-white text-sm p-4 rounded-md">
-            {message.message}
-          </div>
+          <Alert successMessage={message.message} />
         ) : message.message != null ||
-          (message.message != "" && message.isSuccessful != false) ? (
-          <div className="bg-red-500 text-white text-sm p-4 rounded-md">
-            {message.message}
-          </div>
+          (message.message != "" && message.isSuccessful == false) ? (
+          <Alert errorMessage={message.message} />
         ) : null}
         <Link href="/#new-arrivals">
           <Image
-            className="absolute right-[3%] top-8"
+            className="fixed right-[3%] top-8"
             src="/svg/cut.svg"
             alt="Close Menu"
             width={20}
             height={20}
           />
         </Link>
+        {protocolStatus != null &&
+        protocolStatus.code == 202 &&
+        protocolStatus.detail == "Accepted" ? (
+          <Alert successMessage="Configuration Successful Copy Your DID and CLick on proceed" />
+        ) : protocolStatus &&
+          protocolStatus.code == 202 &&
+          protocolStatus.detail == "Accepted" ? (
+          <Alert errorMessage="Sorry something unexpected happened while configuring your session. Please try again." />
+        ) : null}
+
         {!isLoading ? (
           <div className="flex flex-col w-full">
             <div className="flex flex-col w-full">
@@ -172,18 +178,6 @@ const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
                   Protocol Config
                 </h3>
               </div>
-              {protocolStatus.code == 202 &&
-              protocolStatus.detail == "Accepted" ? (
-                <p className="text-green-500 text-lg font-medium mb-4 ml-4">
-                  Configuration Successful.
-                </p>
-              ) : protocolStatus.code == 202 &&
-                protocolStatus.detail == "Accepted" ? (
-                <p className="text-white text-sm font-medium mb-4 ml-4 p-2 bg-red-500">
-                  Some thing unexpected happened while configuring you session.
-                  Please try again!
-                </p>
-              ) : null}
 
               <div
                 onClick={handleQueryProtocol}
@@ -194,9 +188,7 @@ const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
                 </h3>
               </div>
               {queryProtocolStatus && (
-                <p className="text-black text-sm font-medium mb-4 ml-4">
-                  {queryProtocolStatus}
-                </p>
+                <Alert successMessage={queryProtocolStatus} />
               )}
 
               <div
@@ -208,22 +200,24 @@ const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
                 </h3>
               </div>
               {isDidVisible && (
-                <div className="mt-4 p-4 bg-gray-200 rounded">
-                  <p className="text-black text-sm font-medium">Your DID:</p>
-                  <div className="overflow-auto max-h-40">
-                    <pre className="text-xs break-words">{myDid}</pre>
+                <div className="w-full h-[15rem] flex mt-4 p-4 bg-gray-200 rounded">
+                  <div className="w-full overflow-x-hidden overflow-y-scroll scroll-p-1 flex flex-wrap">
+                    {myDid &&
+                      myDid
+                        .split("")
+                        .map((char, index) => <span key={index}>{char}</span>)}
                   </div>
                 </div>
               )}
               <Button
                 label="Proceed"
                 link={redirectUrl!}
-                className="w-full bg-accent py-4 rounded-md text-white text-center"
+                className="w-full bg-accent py-4 rounded-md mt-5 text-white text-center"
               />
 
               <div
                 onClick={handleCopy}
-                className="flex w-fit flex-row items-center justify-between text-slate-900 text-xs font-medium cursor-pointer"
+                className="flex w-fit mx-auto flex-row items-center justify-center mt-6 text-slate-900 text-xs font-medium cursor-pointer"
               >
                 Copy DID instead
                 <span>
