@@ -34,7 +34,7 @@ const ConfigureProtocol = () => {
 
   useEffect(() => {
     const initWeb5 = async () => {
-      const { Web5 } = await import("@web5/api/browser");
+      const { Web5 } = await import("@web5/api");
       try {
         const { web5, did } = await Web5.connect();
         console.log(web5);
