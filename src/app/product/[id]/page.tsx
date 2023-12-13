@@ -19,7 +19,10 @@ import ProtocolDefinition from "@/app/auth/ProtocolDefinition";
 const ProductDetail = (): JSX.Element => {
   const [web5, setWeb5] = useState<any>(null);
   const [myDid, setMyDid] = useState<any>(null);
-  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState<{
+    message: string;
+    isSuccessful: boolean;
+  } | null>(null);
 
   const [productQuantity, setProductQuantity] = useState(1);
   const [page, setPage] = useState(Page.REVIEW_RATING);
@@ -115,14 +118,24 @@ const ProductDetail = (): JSX.Element => {
       await imageWrite(imageBlob, productRecord.id);
 
       console.log(productStatus);
+      if (productStatus.code == 202) {
+        setShowSuccessMessage({
+          message: " Product added to the cart successfully!",
+          isSuccessful: true,
+        });
 
-      setShowSuccessMessage(true);
+        //dispatch state function to update the number of item in cart.
 
-      setTimeout(() => {
-        setShowSuccessMessage(false);
-      }, 5000);
+        setTimeout(() => {
+          setShowSuccessMessage(null);
+        }, 5000);
+      }
     } catch (error) {
       console.error("Error adding product to cart:", error);
+      setShowSuccessMessage({
+        message: `Something unexpected happened while adding your product to the cart:  ${error}`,
+        isSuccessful: false,
+      });
     }
   };
 
@@ -292,15 +305,21 @@ const ProductDetail = (): JSX.Element => {
               </div>
               <button
                 className="w-[56%] capitalize md:px-12 text-white bg-accent  border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base py-3 px-7 h-auto  text-[0.9rem] transition-all"
-                onClick={() => {}}
+                onClick={addToCart}
               >
                 Add to Cart
               </button>
-              {showSuccessMessage && (
+              {showSuccessMessage != null &&
+              showSuccessMessage?.isSuccessful ? (
                 <div className="bg-green-500 text-white p-3 rounded-md my-3">
-                  Product added to the cart successfully!
+                  {showSuccessMessage.message}
                 </div>
-              )}
+              ) : showSuccessMessage !== null &&
+                showSuccessMessage.isSuccessful ? (
+                <div className="bg-red-500 text-white p-3 rounded-md my-3">
+                  {showSuccessMessage?.message}
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
