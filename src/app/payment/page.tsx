@@ -6,7 +6,7 @@ import "./payment.css";
 import { Button } from "@/components/shared/Button";
 import { getProduct } from "@/libs/services/filterProuctById";
 import { useSearchParams } from "next/navigation";
-import Alert from "@/components/alert/Alert";
+import Alert from "@/components/shared/alert/Alert";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -17,8 +17,8 @@ const MakePayment = () => {
   const product = getProduct(id!);
 
   if (product == null) {
-    const alert = (
-      <Alert errorMessage="Product Not found! Navigating to Products page..." />
+    const alert: JSX.Element = (
+      <Alert errorMessage="Payment or Product Not found! Navigating to Products page..." />
     );
     setTimeout(() => {
       router.push("/products");
@@ -51,7 +51,7 @@ const MakePayment = () => {
           <div className="w-full flex justify-between items-center h-fit gap-4">
 
             <Button
-              className="bg-accent text-white py-3 px-7 sm:px-4"
+              className="bg-accent text-white py-3 px-7"
               label="Connect Wallet"
             />
           </div>
