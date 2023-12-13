@@ -8,6 +8,7 @@ import { CopyText } from "@/libs/services/clipboard";
 import Alert from "@/components/shared/alert/Alert";
 import { AlertDto } from "@/libs/types/Dtos/alert.dto";
 import ProtocolDefinition from "./ProtocolDefinition";
+import Spinner from "@/components/shared/Spinner";
 
 const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
   redirectUrl,
@@ -29,7 +30,7 @@ const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
     code: number | null;
     detail: string | null;
   } | null>({ code: 0, detail: null });
-  const [queryProtocolStatus, setQueryProtocolStatus] = useState<any>(null);
+  const [queryProtocolStatus, setQueryProtocolStatus] = useState<string>("");
   const [isDidVisible, setIsDidVisible] = useState<boolean>(false);
 
   useEffect(() => {
@@ -40,10 +41,12 @@ const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
         const { web5, did } = await Web5.connect();
         setWeb5(web5);
         setMyDid(did);
-        setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
         console.error("Failed to connect using Web5: ", error);
+        setMessage({ isSuccessful: false, message: `${message}` });
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -104,15 +107,14 @@ const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
       } else {
         setQueryProtocolStatus("No protocol found.");
       }
-      setIsLoading(false);
     } catch (error) {
       console.error("Error querying protocol:", error);
     } finally {
       setIsLoading(false);
-      setTimeout(
-        () => setMessage({ isSuccessful: false, message: null }),
-        5000
-      );
+      setTimeout(() => {
+        setQueryProtocolStatus("");
+        setMessage({ isSuccessful: false, message: null });
+      }, 5000);
     }
   };
 
@@ -135,11 +137,7 @@ const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
           already.
         </h2>
 
-        {isLoading ? (
-          <div className="flex items-center justify-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-black"></div>
-          </div>
-        ) : null}
+        {isLoading ? <Spinner /> : null}
 
         {message.message != null ||
         (message.message != "" && message.isSuccessful) ? (
@@ -187,7 +185,7 @@ const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
                   Protocol Query
                 </h3>
               </div>
-              {queryProtocolStatus && (
+              {queryProtocolStatus != "" && (
                 <Alert successMessage={queryProtocolStatus} />
               )}
 
@@ -196,7 +194,7 @@ const ConfigureProtocol: React.FC<{ redirectUrl: string }> = ({
                 className="w-full py-4 inline-flex items-center bg-gray-500  bg-opacity-10 gap-2.5 opacity-70 justify-center text-center  cursor-pointer"
               >
                 <h3 id="seeDidInfo" className="text-black text-sm font-medium">
-                  See DID
+                  {isDidVisible ? "Close" : "See DID"}
                 </h3>
               </div>
               {isDidVisible && (

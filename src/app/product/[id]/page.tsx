@@ -311,14 +311,10 @@ const ProductDetail = (): JSX.Element => {
               </button>
               {showSuccessMessage != null &&
               showSuccessMessage?.isSuccessful ? (
-                <div className="bg-green-500 text-white p-3 rounded-md my-3">
-                  {showSuccessMessage.message}
-                </div>
+                <Alert successMessage={showSuccessMessage.message} />
               ) : showSuccessMessage !== null &&
                 showSuccessMessage.isSuccessful ? (
-                <div className="bg-red-500 text-white p-3 rounded-md my-3">
-                  {showSuccessMessage?.message}
-                </div>
+                <Alert errorMessage={showSuccessMessage?.message} />
               ) : null}
             </div>
           </div>
