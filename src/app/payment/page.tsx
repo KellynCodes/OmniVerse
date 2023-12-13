@@ -49,9 +49,7 @@ const MakePayment = () => {
         </div>
         <form className="flex flex-col items-center justify-between gap-4 w-full md:w-[38%]">
           <div className="w-full flex justify-between items-center h-fit gap-4">
-            <Link className="underline text-accent " href="/cart">
-              See Cart
-            </Link>
+
             <Button
               className="bg-accent text-white py-3 px-7"
               label="Connect Wallet"
@@ -64,7 +62,7 @@ const MakePayment = () => {
             placeholder="Enter DID"
           ></textarea>
           <Button
-            label="Make Payment"
+            label="See Product From Cart"
             className="bg-accent w-full  text-white py-3 px-7 text-center"
           />
         </form>
