@@ -17,36 +17,33 @@
       <a href="#introduction">Introduction</a>
     </li>
     <li>
-      <a href="#getting-started">Project Overview</a>
+      <a href="#Project-Overview">Project Overview</a>
       <ul>
-        <li><a href="#installation">Decentralized Identity (DID) Introduction</a></li>
-        <li><a href="#Objectivess">Objectives</a></li>
+        <li><a href="#Decentralized-Identity">Decentralized Identity (DID) Introduction</a></li>
+        <li><a href="#Objectives">Objectives</a></li>
       </ul>
     </li>
-    <li><a href="#usage"> Project Architecture</a>
+    <li><a href="#Project-Architecture"> Project Architecture</a>
     <ul>
-        <li><a href="#prerequisites">High-Level Overview</a></li>
-        <li><a href="#installation">DID Integration</a></li>
-        <li><a href="#Objectives">Web5 Integration</a></li>
-        <li><a href="#Objectives">SDK Implementation</a></li>
-        <li><a href="#Objectives">Next.js Setup</a></li>
+        <li><a href="#High-Level-Overview">High-Level Overview</a></li>
+        <li><a href="#DID-Integration">DID Integration</a></li>
+        <li><a href="#eb5-Integration">Web5 Integration</a></li>
+        <li><a href="#SDK-Implementation">SDK Implementation</a></li>
+        <li><a href="#Nextjs-Setup">Next.js Setup</a></li>
       </ul>
     </li>
-    <li><a href="#roadmap">Achievements</a>
+    <li><a href="#Achievements">Achievements</a>
     <ul>
-        <li><a href="#installation">Enhanced User Privacy</a></li>
-        <li><a href="#Objectivess">Password-Free Authentication</a></li>
+        <li><a href="#Enhanced-User-Privacy">Enhanced User Privacy</a></li>
+        <li><a href="#Password-Free-Authentication">Password-Free Authentication</a></li>
     </ul>
     </li>
-    <li><a href="#contributing"> Future Improvements</a>
+    <li><a href="#Future-Improvements"> Future Improvements</a>
     <ul>
-        <li><a href="#installation">Additional DID Methods</a></li>
-        <li><a href="#Objectivess">Enhanced User Experience</a></li>
+        <li><a href="#Additional-DID-Methods">Additional DID Methods</a></li>
+        <li><a href="#Enhanced-User-Experience">Enhanced User Experience</a></li>
     </ul>
     </li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
