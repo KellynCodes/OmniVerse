@@ -3,7 +3,7 @@ import Image from "next/image";
 import "../product.css";
 import { useParams } from "next/navigation";
 
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/shared/Button";
 
 import Alert from "@/components/shared/alert/Alert";
@@ -15,6 +15,7 @@ import { Page } from "@/libs/data/enums/page";
 import Products from "@/components/products/Products";
 import { ProductsData } from "@/libs/data/products/products";
 import ProtocolDefinition from "@/app/auth/ProtocolDefinition";
+import dynamic from "next/dynamic";
 
 const ProductDetail = (): JSX.Element => {
   const [web5, setWeb5] = useState<any>(null);
@@ -28,13 +29,9 @@ const ProductDetail = (): JSX.Element => {
   const { id } = params;
   const product = getProduct(id);
 
-
-
   useEffect(() => {
     const initWeb5 = async () => {
-
-      const { Web5 } = await import('@web5/api/browser');
-
+      const { Web5 } = await import("@web5/api");
       try {
         const { web5, did } = await Web5.connect();
         console.log(web5);
@@ -46,10 +43,7 @@ const ProductDetail = (): JSX.Element => {
     };
 
     initWeb5();
-
   }, []);
-
-
 
   const totalPrice = (): number => {
     return product?.price! * productQuantity;
@@ -65,19 +59,17 @@ const ProductDetail = (): JSX.Element => {
     return alert;
   }
 
-
-
-  const imageWrite = async (imageDataFile:any, contextId: any) => {
-    const imageBlob = new Blob([imageDataFile], { type: 'image/png' });
+  const imageWrite = async (imageDataFile: any, contextId: any) => {
+    const imageBlob = new Blob([imageDataFile], { type: "image/png" });
     try {
       const { record: imageRecord } = await web5.dwn.records.create({
         data: imageBlob,
         store: false,
         message: {
-          schema: 'Product',
-          dataFormat: 'image/png',
+          schema: "Product",
+          dataFormat: "image/png",
           protocol: ProtocolDefinition.protocol,
-          protocolPath: 'Product/Image',
+          protocolPath: "Product/Image",
           parentId: contextId,
           contextId: contextId,
           published: true,
@@ -87,12 +79,10 @@ const ProductDetail = (): JSX.Element => {
       const { status: imageStatus } = await imageRecord.send(myDid);
 
       console.log(imageStatus);
-
     } catch (error) {
-      console.error('Error writing image:', error);
+      console.error("Error writing image:", error);
     }
   };
-
 
   const addToCart = async () => {
     try {
@@ -105,22 +95,23 @@ const ProductDetail = (): JSX.Element => {
       };
 
       // Convert base64 image string to Blob
-      const imageBlob = await fetch(productData.Image).then((response) => response.blob());
+      const imageBlob = await fetch(productData.Image).then((response) =>
+        response.blob()
+      );
 
       const { record: productRecord } = await web5.dwn.records.create({
         data: { ...productData, Image: undefined },
         store: false,
         message: {
-          schema: 'Product',
-          dataFormat: 'application/json',
+          schema: "Product",
+          dataFormat: "application/json",
           protocol: ProtocolDefinition.protocol,
-          protocolPath: 'Product',
+          protocolPath: "Product",
           published: true,
         },
       });
 
       const { status: productStatus } = await productRecord.send(myDid);
-
 
       await imageWrite(imageBlob, productRecord.id);
 
@@ -132,12 +123,9 @@ const ProductDetail = (): JSX.Element => {
         setShowSuccessMessage(false);
       }, 5000);
     } catch (error) {
-      console.error('Error adding product to cart:', error);
+      console.error("Error adding product to cart:", error);
     }
   };
-
-
-
 
   return (
     <>
@@ -151,7 +139,6 @@ const ProductDetail = (): JSX.Element => {
               height={2880}
               alt=""
             />
-
           </div>
           <div className="product-details flex flex-col gap-2">
             <h1 className="text-3xl md:text-[2.5rem]">{product?.title}</h1>
@@ -311,9 +298,9 @@ const ProductDetail = (): JSX.Element => {
                 Add to Cart
               </button>
               {showSuccessMessage && (
-                  <div className="bg-green-500 text-white p-3 rounded-md my-3">
-                    Product added to the cart successfully!
-                  </div>
+                <div className="bg-green-500 text-white p-3 rounded-md my-3">
+                  Product added to the cart successfully!
+                </div>
               )}
             </div>
           </div>
@@ -365,6 +352,5 @@ const ProductDetail = (): JSX.Element => {
     </>
   );
 };
-
 
 export default ProductDetail;
