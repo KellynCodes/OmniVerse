@@ -291,7 +291,7 @@ const ProductDetail = (): JSX.Element => {
                 </div>
               </div>
               <button
-                className="w-full md:w-[65%] capitalize md:px-12 text-white bg-accent  border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base py-3 px-7 h-auto  text-[0.9rem] transition-all"
+                className="w-[56%] capitalize md:px-12 text-white bg-accent  border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base py-3 px-7 h-auto  text-[0.9rem] transition-all"
                 onClick={() => {}}
               >
                 Add to Cart
