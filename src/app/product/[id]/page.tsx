@@ -15,7 +15,6 @@ import { Page } from "@/libs/data/enums/page";
 import Products from "@/components/products/Products";
 import { ProductsData } from "@/libs/data/products/products";
 import ProtocolDefinition from "@/app/auth/ProtocolDefinition";
-import dynamic from "next/dynamic";
 
 const ProductDetail = (): JSX.Element => {
   const [web5, setWeb5] = useState<any>(null);
