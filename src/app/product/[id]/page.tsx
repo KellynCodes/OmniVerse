@@ -64,9 +64,37 @@ const ProductDetail = (): JSX.Element => {
     return alert;
   }
 
+
+
+  const imageWrite = async (imageDataFile:any, contextId: any) => {
+    const imageBlob = new Blob([imageDataFile], { type: 'image/png' });
+    try {
+      const { record: imageRecord } = await web5.dwn.records.create({
+        data: imageBlob,
+        store: false,
+        message: {
+          schema: 'Product',
+          dataFormat: 'image/png',
+          protocol: ProtocolDefinition.protocol,
+          protocolPath: 'Product/Image',
+          parentId: contextId,
+          contextId: contextId,
+          published: true,
+        },
+      });
+
+      const { status: imageStatus } = await imageRecord.send(myDid);
+
+      console.log(imageStatus);
+
+    } catch (error) {
+      console.error('Error writing image:', error);
+    }
+  };
+
+
   const addToCart = async () => {
     try {
-
       const productData = {
         Id: product?.id,
         Image: product?.productImg,
@@ -75,8 +103,11 @@ const ProductDetail = (): JSX.Element => {
         Rating: product?.rating,
       };
 
+      // Convert base64 image string to Blob
+      const imageBlob = await fetch(productData.Image).then((response) => response.blob());
+
       const { record: productRecord } = await web5.dwn.records.create({
-        data: productData,
+        data: { ...productData, Image: undefined },
         store: false,
         message: {
           schema: 'Product',
@@ -87,11 +118,13 @@ const ProductDetail = (): JSX.Element => {
         },
       });
 
-      // Send the product data using the myDid identity
       const { status: productStatus } = await productRecord.send(myDid);
+
+
+      await imageWrite(imageBlob, productRecord.id);
+
       console.log(productStatus);
 
-     // console.log('Local DWN:', web5.dwn);
       setShowSuccessMessage(true);
 
       setTimeout(() => {
@@ -101,6 +134,8 @@ const ProductDetail = (): JSX.Element => {
       console.error('Error adding product to cart:', error);
     }
   };
+
+
 
 
   return (
