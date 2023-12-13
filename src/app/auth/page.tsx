@@ -59,7 +59,7 @@ const ConfigureProtocol = () => {
     }
   };
 
-  const handleSeeDid = () => {
+  const handleSeeDid = (): void => {
     setIsDidVisible(true);
   };
 
