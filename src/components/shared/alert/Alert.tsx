@@ -23,12 +23,7 @@ const Alert: React.FC<{
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 13l4 4L19 7"
-              ></path>
+              <path></path>
             </svg>
           </div>
           <div>
@@ -53,12 +48,7 @@ const Alert: React.FC<{
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
+              <path d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           </div>
           <div>
@@ -83,12 +73,7 @@ const Alert: React.FC<{
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 13l4 4L19 7"
-              ></path>
+              <path d="M5 13l4 4L19 7"></path>
             </svg>
           </div>
           <div>

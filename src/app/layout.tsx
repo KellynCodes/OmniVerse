@@ -33,6 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        suppressHydrationWarning={true}
         className={`${gorditas.variable} ${roboto_mono.variable} ${poppins.variable} ${poppins.className}`}
       >
         <Image
