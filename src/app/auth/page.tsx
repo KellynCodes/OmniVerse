@@ -33,6 +33,7 @@ const ConfigureProtocol = () => {
   const [protocolStatus, setProtocolStatus] = useState<any>(null);
   const [queryProtocolStatus, setQueryProtocolStatus] = useState<any>(null);
   const [isDidVisible, setIsDidVisible] = useState<boolean>(false);
+  const [web5Initialized, setWeb5Initialized] = useState(false);
 
 
 

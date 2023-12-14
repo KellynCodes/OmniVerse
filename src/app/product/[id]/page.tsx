@@ -7,7 +7,7 @@ import React, {useEffect, useState} from "react";
 import { Button } from "@/components/shared/Button";
 
 import Alert from "@/components/alert/Alert";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 import { handleQuantityIncreaseORDecrease } from "@/libs/services/quantityIncrement";
 import { getProduct } from "@/libs/services/filterProuctById";
 import { RenderCurrentPage } from "@/components/shared/page.toggler";
@@ -19,20 +19,21 @@ const ProductDetail = (): JSX.Element => {
   const [web5, setWeb5] = useState<any>(null);
   const [myDid, setMyDid] = useState<any>(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
+  const [product, setProduct] = useState<any>(null);
 
   const [productQuantity, setProductQuantity] = useState(1);
   const [page, setPage] = useState("");
   const params = useParams();
-  const router = useRouter();
+
   const { id } = params;
-  const product = getProduct(id);
 
 
+  const router = useRouter();
 
   useEffect(() => {
     const initWeb5 = async () => {
 
-      const { Web5 } = await import('@web5/api/browser');
+      const { Web5 } = await import("@web5/api");
 
       try {
         const { web5, did } = await Web5.connect();
@@ -46,7 +47,9 @@ const ProductDetail = (): JSX.Element => {
 
     initWeb5();
 
-  }, []);
+     const product = getProduct(id);
+     setProduct(product);
+  }, [id]);
 
 
 
@@ -54,47 +57,109 @@ const ProductDetail = (): JSX.Element => {
     return product?.price! * productQuantity;
   };
 
-  if (product == null) {
-    const alert = (
-      <Alert errorMessage="Product Not found! Navigating to Products page..." />
-    );
-    setTimeout(() => {
-      router.push("/products");
-    }, 3000);
-    return alert;
-  }
 
 
-
-  const imageWrite = async (imageDataFile:any, contextId: any) => {
-    const imageBlob = new Blob([imageDataFile], { type: 'image/png' });
-    try {
-      const { record: imageRecord } = await web5.dwn.records.create({
-        data: imageBlob,
-        store: false,
-        message: {
-          schema: 'Product',
-          dataFormat: 'image/png',
-          protocol: ProtocolDefinition.protocol,
-          protocolPath: 'Product/Image',
-          parentId: contextId,
-          contextId: contextId,
-          published: true,
-        },
-      });
-
-      const { status: imageStatus } = await imageRecord.send(myDid);
-
-      console.log(imageStatus);
-
-    } catch (error) {
-      console.error('Error writing image:', error);
-    }
-  };
+//   const addToCart = async () => {
+//     try {
+//       if (!product) {
+//         console.error('Product not found');
+//         return;
+//       }
+//
+//       const productData = {
+//         Id: product?.id,
+//         Image: product?.productImg,
+//         ProductName: product?.title,
+//         Price: product?.price,
+//         Rating: product?.rating,
+//       };
+//
+//
+//
+//       // Convert base64 image string to Blob
+//       const imageBlob = await fetch(productData.Image).then((response) => response.blob());
+//
+//       // Create a product record
+//       const { record: productRecord } = await web5.dwn.records.create({
+//         data: { ...productData, Image: undefined },
+//         store: false,
+//         message: {
+//           schema: 'Product',
+//           dataFormat: 'application/json',
+//           protocol: ProtocolDefinition.protocol,
+//           protocolPath: 'Product',
+//           published: true,
+//         },
+//       });
+//       console.log('Product Record ID:', productRecord.id);
+//
+//       // Create an image record
+//       const contextId = productRecord.id; // Use the product record ID as the context ID
+//       const { record: imageRecord } = await web5.dwn.records.create({
+//         data: imageBlob,
+//         store: false,
+//         message: {
+//           schema: 'Product',
+//           dataFormat: 'image/png',
+//           protocol: ProtocolDefinition.protocol,
+//           protocolPath: 'Product/Image',
+//           parentId: contextId, // Set the parent ID to the product record ID
+//           contextId: contextId,
+//           published: true,
+//         },
+//       });
+//       console.log('Product Record ID:', imageRecord.id);
+//       // Send both records to the DWN
+//       const { status: productStatus } = await productRecord.send(myDid);
+//       const { status: imageStatus } = await imageRecord.send(myDid);
+//
+//       console.log(productStatus, imageStatus);
+//       console.log(web5);
+//       setShowSuccessMessage(true);
+//
+// // Fetch records after adding the product
+//       const imageRecords = await web5.dwn.records.query({
+//         from: myDid,
+//         message: {
+//           filter: {
+//             protocol: ProtocolDefinition.protocol,
+//             protocolPath: 'Product/Image',
+//             parentId: contextId, // Make sure to use the correct parent ID here
+//           },
+//         },
+//       });
+//
+//       console.log('Image Records:', imageRecords);
+//       console.log(ProtocolDefinition.protocol);
+//
+//       const productRecords = await web5.dwn.records.query({
+//         from: myDid,
+//         message: {
+//           filter: {
+//             protocol: ProtocolDefinition.protocol,
+//             protocolPath: 'Product',
+//           },
+//         },
+//       });
+//
+//       console.log('Product Records:', productRecords);
+//
+//       setTimeout(() => {
+//         setShowSuccessMessage(false);
+//       }, 5000);
+//     } catch (error) {
+//       console.error('Error adding product to cart:', error);
+//     }
+//   };
 
 
   const addToCart = async () => {
     try {
+      if (!product) {
+        console.error('Product not found');
+        return;
+      }
+
       const productData = {
         Id: product?.id,
         Image: product?.productImg,
@@ -106,9 +171,13 @@ const ProductDetail = (): JSX.Element => {
       // Convert base64 image string to Blob
       const imageBlob = await fetch(productData.Image).then((response) => response.blob());
 
-      const { record: productRecord } = await web5.dwn.records.create({
-        data: { ...productData, Image: undefined },
-        store: false,
+      // Create a combined record with product details and image
+      const { record: combinedRecord } = await web5.dwn.records.create({
+        data: {
+          ...productData,
+          Image: imageBlob,
+        },
+        store: true,
         message: {
           schema: 'Product',
           dataFormat: 'application/json',
@@ -117,15 +186,29 @@ const ProductDetail = (): JSX.Element => {
           published: true,
         },
       });
+      console.log('Combined Record ID:', combinedRecord.id);
 
-      const { status: productStatus } = await productRecord.send(myDid);
+      // Send the combined record to the DWN
+      const { status: combinedStatus } = await combinedRecord.send(myDid);
 
-
-      await imageWrite(imageBlob, productRecord.id);
-
-      console.log(productStatus);
-
+      console.log(combinedStatus);
+      console.log(web5);
       setShowSuccessMessage(true);
+
+      // Fetch records after adding the product
+      const combinedRecords = await web5.dwn.records.query({
+        from: myDid,
+        message: {
+          filter: {
+            protocol: ProtocolDefinition.protocol,
+            protocolPath: 'Product',
+          },
+        },
+      });
+
+      console.log('Combined Records:', combinedRecords);
+      console.log(ProtocolDefinition.protocol);
+
 
       setTimeout(() => {
         setShowSuccessMessage(false);
@@ -134,7 +217,6 @@ const ProductDetail = (): JSX.Element => {
       console.error('Error adding product to cart:', error);
     }
   };
-
 
 
 
