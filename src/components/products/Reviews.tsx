@@ -3,11 +3,16 @@
 import React, { Component } from "react";
 // @ts-ignore
 import Image from "next/image";
-import { ReviewData } from "../../libs/data/products/product.review";
 import Slider from "react-slick";
 import { settings } from "@/libs/services/slider.setting";
+import { ProductReviewDto } from "@/libs/types/Dtos/product.review";
+import ItemNotFound from "../shared/ItemNotFound";
 
-export default class Reviews extends Component {
+export default class Reviews extends Component<{
+  ReviewData: ProductReviewDto[];
+  className: string;
+  pageTitle: string;
+}> {
   constructor(props: any) {
     super(props);
     this.next = this.next.bind(this);
@@ -22,11 +27,21 @@ export default class Reviews extends Component {
   }
 
   render() {
+    const ReviewData = this.props?.ReviewData;
+    if (ReviewData == null || ReviewData.length <= 0) {
+      return (
+        <ItemNotFound
+          buttonLabel="Write Your own Review"
+          navigationLink="/new-review"
+          message="No Review was found!"
+        />
+      );
+    }
     return (
-      <section className="my-5 h-[100vh] md:h-[75vh] p-3">
+      <div className={`${this.props.className} h-[75vh] p-4`}>
         <div className="flex justify-between items-center w-full h-[4rem] my-4">
           <h1 className="align-left font-bold text-lg md:text-[2rem] my-8">
-            OUR HAPPY CUSTOMERS
+            {this.props.pageTitle}
           </h1>
           <div className="flex w-[4rem] items-center justify-between">
             <Image
@@ -49,9 +64,9 @@ export default class Reviews extends Component {
         </div>
         <Slider ref={(c: any) => (this.slider = c)} {...settings}>
           {ReviewData &&
-            ReviewData.map((review) => (
+            ReviewData.map((review: ProductReviewDto) => (
               <div
-                className="w-[24.375rem] h-[16.75rem] md:h-[13.75rem] p-6 border border-black border-opacity-10 justify-evenly items-start inline-flex rounded-[1.25rem] "
+                className="relative w-[24.375rem] h-[16.75rem] md:h-[13.75rem] p-6 border border-black border-opacity-10 justify-evenly items-start inline-flex rounded-[1.25rem] "
                 key={review.id}
               >
                 <div className="flex flex-col items-start">
@@ -75,14 +90,21 @@ export default class Reviews extends Component {
                       alt={review.userName}
                     />
                   </div>
-                  <span className="text-black text-opacity-60 text-base font-normal font-['Satoshi'] leading-snug">
+                  <span className="text-black text-opacity-60 text-base font-normal leading-snug">
                     &quot;{review.reviewText}&quot;
                   </span>
                 </div>
+                <Image
+                  className="absolute top-2 right-4"
+                  src="/svg/dots.svg"
+                  width={24}
+                  height={24}
+                  alt=""
+                />
               </div>
             ))}
         </Slider>
-      </section>
+      </div>
     );
   }
 }

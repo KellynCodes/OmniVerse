@@ -6,7 +6,7 @@ import "./payment.css";
 import { Button } from "@/components/shared/Button";
 import { getProduct } from "@/libs/services/filterProuctById";
 import { useSearchParams } from "next/navigation";
-import Alert from "@/components/alert/Alert";
+import Alert from "@/components/shared/alert/Alert";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import ProtocolDefinition from "@/app/auth/ProtocolDefinition";
@@ -20,7 +20,6 @@ const MakePayment = () => {
   const id = productId.get("productId");
   const router = useRouter();
   const product = getProduct(id!);
-
 
   useEffect(() => {
     const initWeb5 = async () => {
@@ -142,6 +141,17 @@ const MakePayment = () => {
 
 
 
+  if (product == null) {
+    const alert: JSX.Element = (
+      <Alert errorMessage="Payment or Product Not found! Navigating to Products page..." />
+    );
+    setTimeout(() => {
+      router.push("/products");
+    }, 3000);
+    return alert;
+  }
+
+
   return (
       <section className="px-4 w-full flex flex-col items-center justify-between gap-2">
         <h1 className="text-center">PAYMENT METHOD</h1>
@@ -198,7 +208,9 @@ const MakePayment = () => {
             </button>
           </form>
         </div>
+
       </section>
+
   );
 }
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import "../product.css";
 import { useParams } from "next/navigation";
 
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/shared/Button";
 
 import Alert from "@/components/alert/Alert";
@@ -11,22 +11,24 @@ import { useRouter } from 'next/navigation';
 import { handleQuantityIncreaseORDecrease } from "@/libs/services/quantityIncrement";
 import { getProduct } from "@/libs/services/filterProuctById";
 import { RenderCurrentPage } from "@/components/shared/page.toggler";
-
+import { Page } from "@/libs/data/enums/page";
+import Products from "@/components/products/Products";
+import { ProductsData } from "@/libs/data/products/products";
 import ProtocolDefinition from "@/app/auth/ProtocolDefinition";
-
 
 const ProductDetail = (): JSX.Element => {
   const [web5, setWeb5] = useState<any>(null);
   const [myDid, setMyDid] = useState<any>(null);
-  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
-  const [product, setProduct] = useState<any>(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState<{
+    message: string;
+    isSuccessful: boolean;
+  } | null>(null);
 
   const [productQuantity, setProductQuantity] = useState(1);
-  const [page, setPage] = useState("");
+  const [page, setPage] = useState(Page.REVIEW_RATING);
   const params = useParams();
 
   const { id } = params;
-
 
   const router = useRouter();
 
@@ -46,11 +48,9 @@ const ProductDetail = (): JSX.Element => {
     };
 
     initWeb5();
-
      const product = getProduct(id);
      setProduct(product);
   }, [id]);
-
 
 
   const totalPrice = (): number => {
@@ -58,7 +58,41 @@ const ProductDetail = (): JSX.Element => {
   };
 
 
-//working
+  if (product == null) {
+    const alert = (
+      <Alert errorMessage="Product Not found! Navigating to Products page..." />
+    );
+    setTimeout(() => {
+      router.push("/products");
+    }, 3000);
+    return alert;
+  }
+
+  const imageWrite = async (imageDataFile: any, contextId: any) => {
+    const imageBlob = new Blob([imageDataFile], { type: "image/png" });
+    try {
+      const { record: imageRecord } = await web5.dwn.records.create({
+        data: imageBlob,
+        store: false,
+        message: {
+          schema: "Product",
+          dataFormat: "image/png",
+          protocol: ProtocolDefinition.protocol,
+          protocolPath: "Product/Image",
+          parentId: contextId,
+          contextId: contextId,
+          published: true,
+        },
+      });
+
+      const { status: imageStatus } = await imageRecord.send(myDid);
+
+      console.log(imageStatus);
+    } catch (error) {
+      console.error("Error writing image:", error);
+    }
+  };
+  
   const addToCart = async () => {
     try {
       if (!product) {
@@ -78,18 +112,20 @@ const ProductDetail = (): JSX.Element => {
 
 
       // Convert base64 image string to Blob
+
       const imageBlob = await fetch(productData.Image).then((response) => response.blob());
       console.log(imageBlob)
+
 
       // Create a product record
       const { record: productRecord } = await web5.dwn.records.create({
         data: { ...productData, Image: undefined },
         store: false,
         message: {
-          schema: 'Product',
-          dataFormat: 'application/json',
+          schema: "Product",
+          dataFormat: "application/json",
           protocol: ProtocolDefinition.protocol,
-          protocolPath: 'Product',
+          protocolPath: "Product",
           published: true,
         },
       });
@@ -114,6 +150,7 @@ const ProductDetail = (): JSX.Element => {
       // Send both records to the DWN
       const { status: productStatus } = await productRecord.send(myDid);
       const { status: imageStatus } = await imageRecord.send(myDid);
+
 
       console.log(productStatus, imageStatus);
       console.log(web5);
@@ -146,20 +183,23 @@ const ProductDetail = (): JSX.Element => {
 
       console.log('Product Records:', productRecords);
 
-      setTimeout(() => {
-        setShowSuccessMessage(false);
-      }, 5000);
+        setTimeout(() => {
+          setShowSuccessMessage(null);
+        }, 5000);
+      }
     } catch (error) {
-      console.error('Error adding product to cart:', error);
+      console.error("Error adding product to cart:", error);
+      setShowSuccessMessage({
+        message: `Something unexpected happened while adding your product to the cart:  ${error}`,
+        isSuccessful: false,
+      });
     }
   };
 
-
-
   return (
     <>
-      <div className="container flex my-8 py-10 flex-col">
-        <div className="details-display  px-0 md:px-6 ">
+      <div className="flex my-8 px-4 py-10 flex-col">
+        <div className="details-display px-6">
           <div className="details-images">
             <Image
               className="details-image rounded-md"
@@ -168,16 +208,40 @@ const ProductDetail = (): JSX.Element => {
               height={2880}
               alt=""
             />
-
           </div>
           <div className="product-details flex flex-col gap-2">
             <h1 className="text-3xl md:text-[2.5rem]">{product?.title}</h1>
             <div className="product-stars">
-              <Image src="/images/Star-1.png" width={24} height={24} alt="" />
-              <Image src="/images/Star-2.png" width={24} height={24} alt="" />
-              <Image src="/images/Star-3.png" width={24} height={24} alt="" />
-              <Image src="/images/Star-4.png" width={24} height={24} alt="" />
-              <Image src="/images/Star-6.png" width={9} height={17} alt="" />
+              <Image
+                src="/images/rating/Star-1.png"
+                width={24}
+                height={24}
+                alt=""
+              />
+              <Image
+                src="/images/rating/Star-2.png"
+                width={24}
+                height={24}
+                alt=""
+              />
+              <Image
+                src="/images/rating/Star-3.png"
+                width={24}
+                height={24}
+                alt=""
+              />
+              <Image
+                src="/images/rating/Star-4.png"
+                width={24}
+                height={24}
+                alt=""
+              />
+              <Image
+                src="/images/rating/Star-6.png"
+                width={9}
+                height={17}
+                alt=""
+              />
               <p>{product?.rating}</p>
             </div>
             <p className="product-price">${totalPrice()}</p>
@@ -252,8 +316,8 @@ const ProductDetail = (): JSX.Element => {
               </div>
             </div>
             <br className="border" />
-            <div className="flex flex-wrap gap-4">
-              <div className="w-full md:w-[13rem] flex items-center justify-evenly bg-[#f0f0f0] rounded-2xl p-1">
+            <div className="flex flex-wrap gap-4 w-full h-full">
+              <div className="w-[38%] flex items-center justify-evenly bg-[#f0f0f0] rounded-2xl p-1">
                 <div
                   className="bg-[#31344F]  flex items-center justify-center w-12 h-12 rounded-full p-2 cursor-pointer"
                   onClick={() =>
@@ -268,7 +332,7 @@ const ProductDetail = (): JSX.Element => {
                 >
                   <Image
                     className="text-white"
-                    src="/images/minus.png"
+                    src="/images/icons/minus.png"
                     width={24}
                     height={24}
                     alt=""
@@ -289,7 +353,7 @@ const ProductDetail = (): JSX.Element => {
                 >
                   <Image
                     className="text-white"
-                    src="/images/plus.png"
+                    src="/images/icons/plus.png"
                     width={24}
                     height={24}
                     alt=""
@@ -297,16 +361,18 @@ const ProductDetail = (): JSX.Element => {
                 </div>
               </div>
               <button
-                className="w-full md:w-[65%] capitalize md:px-12 text-white bg-accent  border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base py-3 px-7 h-auto  text-[0.9rem] transition-all"
+                className="w-[56%] capitalize md:px-12 text-white bg-accent  border-[#0000001a] flex items-center justify-center rounded-[3.875rem] gap-[0.75rem] font-[500] text-base py-3 px-7 h-auto  text-[0.9rem] transition-all"
                 onClick={addToCart}
               >
                 Add to Cart
               </button>
-              {showSuccessMessage && (
-                  <div className="bg-green-500 text-white p-3 rounded-md my-3">
-                    Product added to the cart successfully!
-                  </div>
-              )}
+              {showSuccessMessage != null &&
+              showSuccessMessage?.isSuccessful ? (
+                <Alert successMessage={showSuccessMessage.message} />
+              ) : showSuccessMessage !== null &&
+                showSuccessMessage.isSuccessful ? (
+                <Alert errorMessage={showSuccessMessage?.message} />
+              ) : null}
             </div>
           </div>
         </div>
@@ -317,29 +383,45 @@ const ProductDetail = (): JSX.Element => {
         />
       </div>
 
-      <section className="w-full min-h-screen p-3">
-        <ul className="flex justify-between items-center p-4 my-5 border border-b-4">
+      <div className="w-full min-h-screen mx-auto p-3">
+        <ul className="flex justify-between items-baseline my-5 w-full border-b border-black border-opacity-10">
           <li
-            className="cursor-pointer"
-            onClick={() => setPage("productDetails")}
+            className={`${
+              page == Page.PRODUCT_DETAIL ? "border-b-2" : ""
+            } cursor-pointer w-[33%] text-center border-black`}
+            onClick={() => setPage(Page.PRODUCT_DETAIL)}
           >
             Product Details
           </li>
           <li
-            className="cursor-pointer"
-            onClick={() => setPage("ratingAndReview")}
+            className={`${
+              page == Page.REVIEW_RATING ? "border-b-2" : ""
+            } cursor-pointer w-[33%] text-center border-black`}
+            onClick={() => setPage(Page.REVIEW_RATING)}
           >
             Rating & Reviews
           </li>
-          <li className="cursor-pointer" onClick={() => setPage("faq")}>
+          <li
+            className={`${
+              page == Page.FAQS ? "border-b-2" : ""
+            } cursor-pointer w-[33%] text-center border-black`}
+            onClick={() => setPage(Page.FAQS)}
+          >
             FAQs
           </li>
         </ul>
         <div>{RenderCurrentPage(page)}</div>
-      </section>
+
+        <Products
+          pageId="product-suggestion"
+          pageTitle="You Might Also Like"
+          productsData={ProductsData}
+          buttonLabel="Load More"
+          buttonLink="/products"
+        />
+      </div>
     </>
   );
 };
-
 
 export default ProductDetail;
