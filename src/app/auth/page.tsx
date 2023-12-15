@@ -12,7 +12,6 @@ const ProtocolConfig = dynamic(() => import("@/app/auth/auth"), {
 const Auth = () => {
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get("redirectUrl");
-
   return <ProtocolConfig redirectUrl={redirectUrl!} />;
 };
 
