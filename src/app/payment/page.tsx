@@ -158,17 +158,17 @@ const MakePayment = () => {
     return <Spinner />;
   }
   return (
-    <section className="px-4 w-full flex flex-col items-center justify-between gap-2">
+    <section className="px-4 w-full h-auto flex flex-col items-center justify-between gap-2">
       <h1 className="text-center">PAYMENT METHOD</h1>
-      <div className="w-full h-full flex flex-col items-center justify-between gap-2">
-        <div className="w-full md:w-[80%] overflow-y-scroll flex  gap-5 items-center justify-center mx-4">
+      <div className="w-full h-auto flex flex-col items-center justify-between gap-2">
+        <div className="w-[100vw] flex-wrap overflow-x-scroll flex  gap-3 items-center justify-center mx-4">
           {isProductLoading ? (
             <Spinner />
           ) : productFromCart && productFromCart.length > 0 ? (
             productFromCart.map((product: any, index: number) => (
               <div
                 key={index}
-                className="w-[25rem] h-[25rem] flex items-center justify-center gap-5 flex-col mx-5"
+                className="w-[16rem] h-[25rem] flex items-center justify-center gap-5 flex-col mx-3"
               >
                 {product.images ? (
                   <img
@@ -178,7 +178,7 @@ const MakePayment = () => {
                 ) : (
                   <p>No Image Available</p>
                 )}
-                <div className="w-full sm:w-[40%] flex flex-col items-start justify-start gap-5">
+                <div className="w-full flex flex-col items-start justify-start gap-5">
                   <h2 className="capitalize font-bold">
                     {product.details?.ProductName || "Product Name"}
                   </h2>
