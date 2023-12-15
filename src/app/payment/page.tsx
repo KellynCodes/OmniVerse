@@ -25,10 +25,10 @@ const MakePayment = () => {
   useEffect(() => {
     const initWeb5 = async () => {
 
-       const { Web5 } = await import("@web5/api");
+      const {Web5} = await import("@web5/api");
 
       try {
-        const { web5, did } = await Web5.connect();
+        const {web5, did} = await Web5.connect();
         console.log(web5);
         setWeb5(web5);
         setMyDid(did);
@@ -42,11 +42,11 @@ const MakePayment = () => {
   }, []);
 
 
+  const seeProductFromCart = async (event: any) => {
+    event.preventDefault();
 
-  const seeProductFromCart = async (event:any) => {
-    event.preventDefault()
     try {
-      const { records: productRecords } = await web5.dwn.records.query({
+      const {records: productRecords} = await web5.dwn.records.query({
         from: myDid,
         message: {
           filter: {
@@ -65,7 +65,7 @@ const MakePayment = () => {
         const productId = productRecord.id;
 
         try {
-          const { record, status } = await web5.dwn.records.read({
+          const {record, status} = await web5.dwn.records.read({
             from: myDid,
             message: {
               filter: {
@@ -74,22 +74,26 @@ const MakePayment = () => {
             },
           });
 
-          console.log('Product Record:', { record, status });
+          console.log('Product Record:', {record, status});
 
           const productData = await record.data.json();
           console.log('Product Data:', productData);
 
           // Fetch image records within the try block
-          const imageRecords = await web5.dwn.records.query({
+          const imageRecordsResponse = await web5.dwn.records.query({
             from: myDid,
             message: {
               filter: {
                 protocol: ProtocolDefinition.protocol,
                 protocolPath: 'Product/Image',
-                parentId: productId,
+
               },
             },
           });
+
+          console.log('Image Records Response:', imageRecordsResponse);
+
+          const imageRecords = imageRecordsResponse.records;
 
           console.log('Image Records:', imageRecords);
 
@@ -112,10 +116,10 @@ const MakePayment = () => {
               const imageData = await image.data.blob();
               images.push(URL.createObjectURL(imageData));
             }
-
-          }else{
+          } else {
             console.error('Image Records is not an array:', imageRecords);
           }
+
           // Combine product details with images
           const combinedProduct = {
             details: productData,
@@ -127,6 +131,7 @@ const MakePayment = () => {
           console.error('Error retrieving product details:', error);
         }
       }
+
       console.log('Combined Products:', combinedProducts);
       // Set state to update the component
       setProductFromCart(combinedProducts);
@@ -138,59 +143,63 @@ const MakePayment = () => {
 
 
   return (
-    <section className="px-4 w-full flex flex-col items-center justify-between gap-2">
-      <h1 className="text-center">PAYMENT METHOD</h1>
-      <div className="w-full h-full flex flex-wrap items-center justify-between gap-2">
-        <div className="w-full md:w-[60%] h-full flex flex-col items-center justify-start">
-          <div className="w-full flex flex-wrap items-center h-full justify-center gap-3">
-            <div className="w-full flex items-center justify-center sm:w-[57%]">
-              {productFromCart?.images ? (
-                  productFromCart.images.map((image:any, index:any) => (
-                      <img
-                          key={index}
-                          src={image}
-                          alt={`Product Image ${index}`}
-                      />
-                  ))
-              ) : (
-                  <p>No Image Available</p>
-              )}
-
-            </div>
-            <div className="w-full sm:w-[40%] flex flex-col items-start justify-start gap-5">
-              <h2 className="capitalize font-bold">
-                {productFromCart?.details?.ProductName || 'Product Name'}
-              </h2>
-              <h4 className="font-[400] ">
-                Price ${productFromCart?.details?.Price || '0.00'}
-              </h4>
-            </div>
+      <section className="px-4 w-full flex flex-col items-center justify-between gap-2">
+        <h1 className="text-center">PAYMENT METHOD</h1>
+        <div className="w-full h-full flex flex-wrap items-center justify-between gap-2">
+          <div className="w-full md:w-[60%] h-full flex flex-col items-center justify-start">
+            {productFromCart && productFromCart.length > 0 ? (
+                productFromCart.map((product: any, index: number) => (
+                    <div key={index} className="w-full flex flex-wrap items-center h-full justify-center gap-3">
+                      <div className="w-full flex items-center justify-center sm:w-[57%]">
+                        {product.images ? (
+                            product.images.map((image: any, imageIndex: number) => (
+                                <img
+                                    key={imageIndex}
+                                    src={image}
+                                    alt={`Product Image ${imageIndex}`}
+                                />
+                            ))
+                        ) : (
+                            <p>No Image Available</p>
+                        )}
+                      </div>
+                      <div className="w-full sm:w-[40%] flex flex-col items-start justify-start gap-5">
+                        <h2 className="capitalize font-bold">
+                          {product.details?.ProductName || 'Product Name'}
+                        </h2>
+                        <h4 className="font-[400] ">
+                          Price ${product.details?.Price || '0.00'}
+                        </h4>
+                      </div>
+                    </div>
+                ))
+            ) : (
+                <p>No products in the cart</p>
+            )}
           </div>
+          <form className="flex flex-col items-center justify-between gap-4 w-full md:w-[38%]">
+            <div className="w-full flex justify-between items-center h-fit gap-4">
+              <Button
+                  className="bg-accent text-white py-3 px-7 sm:px-4"
+                  label="Connect Wallet"
+              />
+            </div>
+            <textarea
+                className="p-4 mt-4 w-full"
+                id="did"
+                name="did"
+                placeholder="Enter DID"
+            ></textarea>
+            <button
+                className="bg-accent w-full  text-white py-3 px-7 text-center"
+                onClick={seeProductFromCart}
+            >
+              See Product From Cart
+            </button>
+          </form>
         </div>
-        <form className="flex flex-col items-center justify-between gap-4 w-full md:w-[38%]">
-          <div className="w-full flex justify-between items-center h-fit gap-4">
-
-            <Button
-                className="bg-accent text-white py-3 px-7 sm:px-4"
-                label="Connect Wallet"
-            />
-          </div>
-          <textarea
-              className="p-4 mt-4 w-full"
-              id="did"
-              name="did"
-              placeholder="Enter DID"
-          ></textarea>
-          <button
-            className="bg-accent w-full  text-white py-3 px-7 text-center"
-            onClick={seeProductFromCart}
-          >
-            See Product From Cart
-          </button>
-        </form>
-      </div>
-    </section>
+      </section>
   );
-};
+}
 
-export default MakePayment;
+  export default MakePayment;

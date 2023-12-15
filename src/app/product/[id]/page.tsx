@@ -58,101 +58,7 @@ const ProductDetail = (): JSX.Element => {
   };
 
 
-
-//   const addToCart = async () => {
-//     try {
-//       if (!product) {
-//         console.error('Product not found');
-//         return;
-//       }
-//
-//       const productData = {
-//         Id: product?.id,
-//         Image: product?.productImg,
-//         ProductName: product?.title,
-//         Price: product?.price,
-//         Rating: product?.rating,
-//       };
-//
-//
-//
-//       // Convert base64 image string to Blob
-//       const imageBlob = await fetch(productData.Image).then((response) => response.blob());
-//
-//       // Create a product record
-//       const { record: productRecord } = await web5.dwn.records.create({
-//         data: { ...productData, Image: undefined },
-//         store: false,
-//         message: {
-//           schema: 'Product',
-//           dataFormat: 'application/json',
-//           protocol: ProtocolDefinition.protocol,
-//           protocolPath: 'Product',
-//           published: true,
-//         },
-//       });
-//       console.log('Product Record ID:', productRecord.id);
-//
-//       // Create an image record
-//       const contextId = productRecord.id; // Use the product record ID as the context ID
-//       const { record: imageRecord } = await web5.dwn.records.create({
-//         data: imageBlob,
-//         store: false,
-//         message: {
-//           schema: 'Product',
-//           dataFormat: 'image/png',
-//           protocol: ProtocolDefinition.protocol,
-//           protocolPath: 'Product/Image',
-//           parentId: contextId, // Set the parent ID to the product record ID
-//           contextId: contextId,
-//           published: true,
-//         },
-//       });
-//       console.log('Product Record ID:', imageRecord.id);
-//       // Send both records to the DWN
-//       const { status: productStatus } = await productRecord.send(myDid);
-//       const { status: imageStatus } = await imageRecord.send(myDid);
-//
-//       console.log(productStatus, imageStatus);
-//       console.log(web5);
-//       setShowSuccessMessage(true);
-//
-// // Fetch records after adding the product
-//       const imageRecords = await web5.dwn.records.query({
-//         from: myDid,
-//         message: {
-//           filter: {
-//             protocol: ProtocolDefinition.protocol,
-//             protocolPath: 'Product/Image',
-//             parentId: contextId, // Make sure to use the correct parent ID here
-//           },
-//         },
-//       });
-//
-//       console.log('Image Records:', imageRecords);
-//       console.log(ProtocolDefinition.protocol);
-//
-//       const productRecords = await web5.dwn.records.query({
-//         from: myDid,
-//         message: {
-//           filter: {
-//             protocol: ProtocolDefinition.protocol,
-//             protocolPath: 'Product',
-//           },
-//         },
-//       });
-//
-//       console.log('Product Records:', productRecords);
-//
-//       setTimeout(() => {
-//         setShowSuccessMessage(false);
-//       }, 5000);
-//     } catch (error) {
-//       console.error('Error adding product to cart:', error);
-//     }
-//   };
-
-
+//working
   const addToCart = async () => {
     try {
       if (!product) {
@@ -168,16 +74,17 @@ const ProductDetail = (): JSX.Element => {
         Rating: product?.rating,
       };
 
+      console.log(productData)
+
+
       // Convert base64 image string to Blob
       const imageBlob = await fetch(productData.Image).then((response) => response.blob());
+      console.log(imageBlob)
 
-      // Create a combined record with product details and image
-      const { record: combinedRecord } = await web5.dwn.records.create({
-        data: {
-          ...productData,
-          Image: imageBlob,
-        },
-        store: true,
+      // Create a product record
+      const { record: productRecord } = await web5.dwn.records.create({
+        data: { ...productData, Image: undefined },
+        store: false,
         message: {
           schema: 'Product',
           dataFormat: 'application/json',
@@ -186,17 +93,48 @@ const ProductDetail = (): JSX.Element => {
           published: true,
         },
       });
-      console.log('Combined Record ID:', combinedRecord.id);
+      console.log('Product Record ID:', productRecord.id);
 
-      // Send the combined record to the DWN
-      const { status: combinedStatus } = await combinedRecord.send(myDid);
+      // Create an image record
+      const contextId = productRecord.id; // Use the product record ID as the context ID
+      const { record: imageRecord } = await web5.dwn.records.create({
+        data: imageBlob,
+        store: false,
+        message: {
+          schema: 'Product',
+          dataFormat: 'image/png',
+          protocol: ProtocolDefinition.protocol,
+          protocolPath: 'Product/Image',
+          parentId: contextId, // Set the parent ID to the product record ID
+          contextId: contextId,
+          published: true,
+        },
+      });
+      console.log('Product Record ID:', imageRecord.id);
+      // Send both records to the DWN
+      const { status: productStatus } = await productRecord.send(myDid);
+      const { status: imageStatus } = await imageRecord.send(myDid);
 
-      console.log(combinedStatus);
+      console.log(productStatus, imageStatus);
       console.log(web5);
       setShowSuccessMessage(true);
 
-      // Fetch records after adding the product
-      const combinedRecords = await web5.dwn.records.query({
+// Fetch records after adding the product
+      const imageRecords = await web5.dwn.records.query({
+        from: myDid,
+        message: {
+          filter: {
+            protocol: ProtocolDefinition.protocol,
+            protocolPath: 'Product/Image',
+
+          },
+        },
+      });
+
+      console.log('Image Records:', imageRecords);
+      console.log(ProtocolDefinition.protocol);
+
+      const productRecords = await web5.dwn.records.query({
         from: myDid,
         message: {
           filter: {
@@ -206,9 +144,7 @@ const ProductDetail = (): JSX.Element => {
         },
       });
 
-      console.log('Combined Records:', combinedRecords);
-      console.log(ProtocolDefinition.protocol);
-
+      console.log('Product Records:', productRecords);
 
       setTimeout(() => {
         setShowSuccessMessage(false);
