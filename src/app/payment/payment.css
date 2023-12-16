@@ -19,7 +19,56 @@ textarea {
   border: 1px solid #b3b3b3;
   width: 34.9375rem;
   height: 8.75rem;
+
 }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px; /* Adjust card width as needed */
+  margin-top: 66px;
+  padding: 16px;
+}
+
+.card-images {
+  display: flex;
+  gap: 8px;
+}
+
+.card-image {
+  width: 100%; /* Adjust image width as needed */
+  height: auto;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.card-title {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.card-price {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Add media query for responsive design */
+@media (min-width: 600px) {
+  .card {
+    width: calc(50% - 16px); /* Adjust card width and margin as needed */
+  }
+}
+
 
 @media (max-width: 450px) {
   .payment-container {
