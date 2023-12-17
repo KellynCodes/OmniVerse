@@ -72,7 +72,7 @@ const MakePayment = () => {
             from: myDid,
             message: {
               filter: {
-                recordId: productId,
+               recordId: productId,
               },
             },
           });
@@ -89,6 +89,7 @@ const MakePayment = () => {
               filter: {
                 protocol: ProtocolDefinition.protocol,
                 protocolPath: "Product/Image",
+                contextId: productId,
               },
             },
           });
@@ -145,16 +146,19 @@ const MakePayment = () => {
   };
 
 
+
   if (isPageLoading) {
     return <Spinner/>;
   }
 
+
+
   // @ts-ignore
-  const Card = ({images, productName, price}) => (
+  const Card = ({ images, productName, price, rating }) => (
       <div className="card">
         <div className="card-images">
           {images && images.length > 0 ? (
-              images.map((image: any, imageIndex: any) => (
+              images.map((image:any, imageIndex:any) => (
                   <img
                       key={imageIndex}
                       src={image}
@@ -168,42 +172,47 @@ const MakePayment = () => {
         </div>
         <div className="card-details">
           <div className="card-body">
-            <h2 className="card-title">{productName}</h2>
-            <h4 className="card-price">${price}</h4>
+            <h2 className="card-title">{productName || 'Product Name'}</h2>
+            <h4 className="card-price">${price || '0.00'}</h4>
+            <h4 className="card-rating">⭐{rating || '⭐'}</h4>
           </div>
         </div>
       </div>
   );
 
 
+  const uniqueProducts =
+      productFromCart &&
+      productFromCart.map((product: any, index: number) => (
+          <Card
+              key={index}
+              images={product.images || []}
+              productName={product.details?.ProductName || 'Product Name'}
+              price={product.details?.Price || '0.00'}
+              rating={product.details?.Rating || '⭐'}
+          />
+      ));
 
- const uniqueProducts =
-      productFromCart && Array.from(new Map(productFromCart.map((product: any) => [product.details?.ProductId, product])).values());
+
+
 
 
 
   return (
       <section className="px-4 w-full flex flex-col items-center justify-between gap-4">
         <h1 className="text-center">PAYMENT METHOD</h1>
+        <Button
+          className="bg-accent text-white py-3 px-7 sm:px-4 mt-1 ml-24"
+          label="Connect Wallet"
+      />
         <div className="w-full h-full flex flex-wrap items-start justify-around gap-4">
           {isProductLoading ? (
               <Spinner /> // Display the spinner when loading
           ) : uniqueProducts && uniqueProducts.length > 0 ? (
-              uniqueProducts.map((product: any, index: number) => (
-                  <Card
-                      key={index}
-                      images={product.images || []}
-                      productName={product.details?.ProductName || 'Product Name'}
-                      price={product.details?.Price || '0.00'}
-                  />
-              ))
+              uniqueProducts
           ) : (
               <p>No products in the cart</p>
           )}
-          <Button
-              className="bg-accent text-white py-3 px-7 sm:px-4 mt-1 ml-24"
-              label="Connect Wallet"
-          />
           <form className="flex flex-col items-center justify-between gap-4 w-full md:w-[38%] mt-48 ">
             <div className="w-full flex justify-between items-center h-fit gap-4">
             </div>
